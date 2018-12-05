@@ -8,7 +8,6 @@ public class User {
 		private String userSignature;	
 		private String username;
 		private String password;
-		private String address;
 		private String email;
 		private String phone;
 		private int type; //Type 0 for Regular User, type 1 for Employee
@@ -16,13 +15,12 @@ public class User {
 
 		// -------------------------------Constructor------------------------------
 		
-		public User(String publicAddress, String userSignature,String username, String password, String address,
+		public User(String publicAddress, String userSignature,String username, String password,
 				String email, String phone, int type) {
 			this.username = username;
 			this.password = password;
 			this.publicAddress = publicAddress;
 			this.userSignature = userSignature;
-			this.address = address;
 			this.email = email;
 			this.phone = phone;
 			this.type = type;
@@ -67,16 +65,6 @@ public class User {
 
 		public void setUserSignature(String userSignature) {
 			this.userSignature = userSignature;
-		}
-
-
-		public String getAddress() {
-			return address;
-		}
-
-
-		public void setAddress(String address) {
-			this.address = address;
 		}
 
 

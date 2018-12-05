@@ -6,12 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
-import java.util.Date;
-
-import entity.Consts;
-import entity.Employee;
+import Model.User;
+import Model.Consts;
 
 public class UserLogic {
 	private static UserLogic _instance;
@@ -26,21 +23,20 @@ public class UserLogic {
 	}
 
 	/**
-	 * fetches all employees from DB file.
-	 * @return ArrayList of employees.
+	 * fetches all users from DB file.
+	 * @return ArrayList of users.
 	 */
-	public ArrayList<Employee> getEmployees() {
-		ArrayList<Employee> results = new ArrayList<Employee>();
+	public ArrayList<User> getEmployees() {
+		ArrayList<User> results = new ArrayList<User>();
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_EMPLOYEES);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_USERS);
 					ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Employee(rs.getLong(rs.findColumn("id")), rs.getString(i++), rs.getString(i++), rs.getString(i++),
-							rs.getDate(i++), rs.getDate(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
-							rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+					results.add(new User(rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
+							rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -51,59 +47,36 @@ public class UserLogic {
 		return results;
 	}
 	
-	/*----------------------------------------- ADD / REMOVE / UPDATE EMPLOYEE METHODS --------------------------------------------*/
+	/*----------------------------------------- ADD / REMOVE / UPDATE USER METHODS --------------------------------------------*/
 
 	/**
 	 * Adding a new Employee with the parameters received from the form.
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addEmployee(String lastName, String firstName, String title, Date birthDate, Date hireDate,
-			String address, String city, String country, String homePhone, String extension, String photo) {
+	public boolean addUser(String publicAddress, String userSignature,String username, String password,
+	String email, String phone, int type) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_EMPLOYEE)) {
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_USER)) {
 				
 				int i = 1;
-				stmt.setString(i++, lastName); // can't be null
-				stmt.setString(i++, firstName); // can't be null
-				if (title != null)
-					stmt.setString(i++, title);
+				stmt.setString(i++, publicAddress); // can't be null
+				stmt.setString(i++, userSignature); // can't be null
+				stmt.setString(i++, username); // can't be null
+				stmt.setString(i++, password); // can't be null
+				if (email != null)
+					stmt.setString(i++, email);
 				else
 					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (birthDate != null)
-					stmt.setDate(i++, new java.sql.Date(birthDate.getTime()));
-				else
-					stmt.setNull(i++, java.sql.Types.DATE);
-				if (hireDate != null)
-					stmt.setDate(i++, new java.sql.Date(hireDate.getTime()));
-				else
-					stmt.setNull(i++, java.sql.Types.DATE);
-				if (address != null)
-					stmt.setString(i++, address);
+				
+				if (phone != null)
+					stmt.setString(i++, phone);
 				else
 					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (city != null)
-					stmt.setString(i++, city);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (country != null)
-					stmt.setString(i++, country);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (homePhone != null)
-					stmt.setString(i++, homePhone);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (extension != null)
-					stmt.setString(i++, extension);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (photo != null)
-					stmt.setString(i++, photo);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
+				
+				stmt.setInt(i++, type); // can't be null
 				stmt.executeUpdate();
 				return true;
 				
@@ -117,18 +90,19 @@ public class UserLogic {
 	}
 
 	/**
-	 * Delete the selected employee in form.
-	 * return true if the deletion was successful, else - return false
-	 * @param employeeID - the employee to delete from DB
-     * @return 
+	 * Delete the selected user in form.
+	 * Return true if the deletion was successful, else - return false
+	 * @param userID 
+     * @return boolean - if the user was removed from the DB
 	 */
-	public boolean removeEmployee(long employeeID) {
+	public boolean removeUser(String publicAddress, String userSignature) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_EMPLOYEE)) {
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_USER)) {
 				
-				stmt.setLong(1, employeeID);
+				stmt.setString(1, publicAddress);
+				stmt.setString(2, userSignature);
 				stmt.executeUpdate();
 				return true;
 				
@@ -146,54 +120,29 @@ public class UserLogic {
 	 * return true if the update was successful, else - return false
      * @return 
 	 */
-	public boolean editEmployee(long employeeID, String lastName, String firstName, String title, Date birthDate,
-			Date hireDate, String address, String city, String country, String homePhone, String extension,
-			String photo) {
+	public boolean editUser(String publicAddress, String userSignature,String username, String password,
+			String email, String phone, int type) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_EMPLOYEE)) {
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_USER)) {
 				int i = 1;
 
-				stmt.setString(i++, lastName); // can't be null
-				stmt.setString(i++, firstName); // can't be null
-				if (title != null)
-					stmt.setString(i++, title);
+				stmt.setString(i++, publicAddress); // can't be null
+				stmt.setString(i++, userSignature); // can't be null
+				stmt.setString(i++, username); // can't be null
+				stmt.setString(i++, password); // can't be null
+				if (email != null)
+					stmt.setString(i++, email);
 				else
 					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (birthDate != null)
-					stmt.setDate(i++, new java.sql.Date(birthDate.getTime()));
-				else
-					stmt.setNull(i++, java.sql.Types.DATE);
-				if (hireDate != null)
-					stmt.setDate(i++, new java.sql.Date(hireDate.getTime()));
-				else
-					stmt.setNull(i++, java.sql.Types.DATE);
-				if (address != null)
-					stmt.setString(i++, address);
+				
+				if (phone != null)
+					stmt.setString(i++, phone);
 				else
 					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (city != null)
-					stmt.setString(i++, city);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (country != null)
-					stmt.setString(i++, country);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (homePhone != null)
-					stmt.setString(i++, homePhone);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (extension != null)
-					stmt.setString(i++, extension);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				if (photo != null)
-					stmt.setString(i++, photo);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				stmt.setLong(i++, employeeID);
+				
+				stmt.setInt(i++, type); // can't be null
 				stmt.executeUpdate();
 				return true;
 				
