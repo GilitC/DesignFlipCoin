@@ -14,12 +14,12 @@ public abstract class WalletLogic {
 	 * @param myRow
 	 * @return
 	 */
-	public static BKWallet getBKWallet(Row myRow)
-	{
-		Connection conn = SysData.getInstance().getConnection();
+	//public static BKWallet getBKWallet(Row myRow)
+	//{
+		//Connection conn = SysData.getInstance().getConnection();
 		
 		
-	}
+	//}
 	
 	
 }

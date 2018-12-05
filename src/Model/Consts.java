@@ -14,31 +14,22 @@ public final class Consts {
 	public static final String CONN_STR = "jdbc:ucanaccess://" + DB_FILEPATH + ";COLUMNORDER=DISPLAY";
 	
 	
-	/*----------------------------------------- EMPLOYEES QUERIES -----------------------------------------*/
-	public static final String SQL_SEL_EMPLOYEES = "SELECT * FROM TblEmployees";
-	public static final String SQL_DEL_EMPLOYEE = "{ call qryDelEmployee(?) }";
-	public static final String SQL_INS_EMPLOYEE = "{ call qryInsEmployee(?,?,?,?,?,?,?,?,?,?,?) }";
-	public static final String SQL_UPD_EMPLOYEE = "{ call qryUpdEmployee(?,?,?,?,?,?,?,?,?,?,?,?) }";
+	/*----------------------------------------- USER QUERIES -----------------------------------------*/
+	public static final String SQL_SEL_USERS = "SELECT * FROM TblUser";
+	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
+	public static final String SQL_INS_USER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
+	public static final String SQL_UPD_USER = "{ call qryUpdUser(?,?,?,?,?,?,?) }";
 
-	/*----------------------------------------- ORDERS QUERIES --------------------------------------------*/
-	public static final String SQL_SEL_ORDERS = "SELECT * FROM TblOrders";
-	public static final String SQL_UPD_ORDER = "{ call qryUpdOrder(?,?,?,?,?,?,?,?,?,?) }";
-	public static final String SQL_ADD_ORDER = "{ call qryInsOrder(?,?,?,?,?,?,?,?,?) }";
-	public static final String SQL_DEL_ORDER = "{ call qryDelOrder(?) }";
-
-	/*----------------------------------------- ORDERS DETAILS QUERIES ------------------------------------*/
-	public static final String SQL_DEL_ORDER_DETAILS = "{ call qryDelOrderDetails(?) }";
-	public static final String SQL_DEL_ORDER_DETAILS_PRODUCT = "{ call qryDelOrderDetailProduct(?,?) }";
-	public static final String SQL_SEL_ORDER_DETAILS = "SELECT TblOrderDetails.orderID,TblOrderDetails.ProductID, TblProducts.ProductName, TblOrderDetails.Quantity, "
-			+ "TblOrderDetails.Discount, TblProducts.UnitPrice, [TblProducts].[UnitPrice]*[TblOrderDetails].[Quantity]*(1-[TblOrderDetails].[Discount]) AS LinePrice "
-			+ "FROM TblProducts INNER JOIN TblOrderDetails ON TblProducts.ProductID = TblOrderDetails.ProductID WHERE (((TblOrderDetails.OrderID)=?));";
-	public static final String SQL_UPD_ORDER_DETAILS = "{ call qryUpdOrderDetails(?,?,?,?) }";
-	public static final String SQL_INS_ORDER_DETAILS = "{ call qryInsOrderDetails(?,?,?,?) }";
+	/*----------------------------------------- RECOMMENDATION QUERIES --------------------------------------------*/
+	public static final String SQL_SEL_RECOMMENDATION = "SELECT * FROM TblRecommendation";
+	public static final String SQL_UPD_RECOMMENDATION = "{ call qryUpdRecommend(?,?,?,?,?,?,?) }";
+	public static final String SQL_ADD_RECOMMENDATION = "{ call qryInsRecommend(?,?,?,?,?,?) }";
 
 	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
-	public static final String SQL_SEL_CUSTOMERS = "SELECT TblCustomers.CustomerID, TblCustomers.CompanyName FROM TblCustomers;";
-	public static final String SQL_SEL_SHIPPERS = "SELECT TblShippers.* FROM TblShippers;";
-	public static final String SQL_SEL_PRODUCTS = "SELECT TblProducts.* FROM TblProducts;";
+	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
+	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblTransactionConfirm";
+	public static final String SQL_SEL_PRODUCTS = "SELECT TblProduct.* FROM TblProduct;";
+	public static final String SQL_SEL_ORDERS = "SELECT * FROM TblOrder";
 
 	/**
 	 * find the correct path of the DB file
@@ -53,10 +44,10 @@ public final class Consts {
 				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
 				System.out.println(decoded);
 
-				return decoded + "/database/Tirgul05_north2000.accdb";
+				return decoded + "/database/database.accdb";
 			} else {
 				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
-				return decoded + "/entity/Tirgul05_north2000.accdb";
+				return decoded + "/source/database.accdb";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
