@@ -1,5 +1,6 @@
 package View;
 
+import Control.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
@@ -25,7 +26,7 @@ public abstract class WindowManager {
 	}
 
 	public static void openWindow(NameToWindow n2w) {
-		System.out.println("Attempting to open " + n2w + ".fxml");
+		Logger.log("Attempting to open " + n2w + ".fxml");
 		try {
 			if (currentParent != null) {
 				previousParent = currentParent;

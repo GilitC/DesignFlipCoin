@@ -28,7 +28,6 @@ public class AdminMenuController implements Initializable{
 		// TODO Auto-generated method stub
 		WindowManager.setContentPane(this.menupane);
 		loadUI(NameToWindow.WELCOMESCREEN);
-
 	}
 
 

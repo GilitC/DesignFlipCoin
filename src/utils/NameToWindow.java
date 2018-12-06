@@ -4,7 +4,7 @@ package utils;
 
 public enum NameToWindow {
 
-	WELCOMESCREEN("View/welcome"),
+	WELCOMESCREEN("welcome"),
 
 	
 	/*------------BUY-------------------------------------------------*/
@@ -25,7 +25,8 @@ public enum NameToWindow {
 
 	
 	/*------------EMPLOYEE LOGIN SCREEN----------------------------------------------------------*/
-
+	VIEW_RECOMMENDATIONS("View/viewRecommendations"),
+	SEND_REC_TO_USER("View/sendRecommendations"),
 	/*------------ADD------------------------------------*/
 	ADD_USER("View/add/addUser"),
 	ADD_RECOMMENDATION("View/add/addReccomend"),

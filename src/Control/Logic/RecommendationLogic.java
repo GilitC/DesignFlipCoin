@@ -28,7 +28,7 @@ public class RecommendationLogic {
 	 * fetches all Recommendations from DB file.
 	 * @return ArrayList of Recommendations.
 	 */
-	public ArrayList<Recommendation> getEmployees() {
+	public ArrayList<Recommendation> getRecommendation() {
 		ArrayList<Recommendation> results = new ArrayList<Recommendation>();
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
