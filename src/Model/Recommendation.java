@@ -10,7 +10,6 @@ public class Recommendation {
 	private Date dateCreated;
 	private double chanceChosen;
 	private double amountTaxRecommended;
-	private String level;
 	private String publicAddress;
 	private String userSignature;	
 	
@@ -18,13 +17,12 @@ public class Recommendation {
 	
 	
 	public Recommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended,
-			String level, String publicAddress, String userSignature) {
+			String publicAddress, String userSignature) {
 		super();
 		this.recommedID = recommedID;
 		this.dateCreated = dateCreated;
 		this.chanceChosen = chanceChosen;
 		this.amountTaxRecommended = amountTaxRecommended;
-		this.level = level;
 		this.publicAddress = publicAddress;
 		this.userSignature = userSignature;
 	}
@@ -46,7 +44,6 @@ public class Recommendation {
 	public void setUserSignature(String userSignature) {
 		this.userSignature = userSignature;
 	}
-
 
 	public int getRecommedID() {
 		return recommedID;
@@ -71,15 +68,7 @@ public class Recommendation {
 	}
 	public void setAmountTaxRecommended(double amountTaxRecommended) {
 		this.amountTaxRecommended = amountTaxRecommended;
-	}
-	public String getLevel() {
-		return level;
-	}
-	public void setLevel(String level) {
-		this.level = level;
-	}
-	
-	
+	}	
 	
 	
 }
