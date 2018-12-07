@@ -38,7 +38,7 @@ public class RecommendationLogic {
 				while (rs.next()) {
 					int i = 1;
 					results.add(new Recommendation(rs.getInt(i++), rs.getDate(i++), rs.getDouble(i++), rs.getDouble(i++),
-							rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+							rs.getString(i++), rs.getString(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -57,7 +57,7 @@ public class RecommendationLogic {
      * @return 
 	 */
 	public boolean addRecommendation(Date dateCreated, double chanceChosen, double amountTaxRecommended,
-			String level, String publicAddress, String userSignature) {
+			String publicAddress, String userSignature) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -71,8 +71,7 @@ public class RecommendationLogic {
 				
 				stmt.setDouble(i++, chanceChosen); // can't be null
 				stmt.setDouble(i++, amountTaxRecommended); // can't be null
-				
-				stmt.setString(i++, level); // can't be null
+
 				stmt.setString(i++, publicAddress); // can't be null
 				stmt.setString(i++, userSignature); // can't be null
 				
@@ -95,7 +94,7 @@ public class RecommendationLogic {
      * @return 
 	 */
 	public boolean editRecommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended,
-			String level, String publicAddress, String userSignature) {
+			String publicAddress, String userSignature) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -111,10 +110,10 @@ public class RecommendationLogic {
 				
 				stmt.setDouble(i++, chanceChosen); // can't be null
 				stmt.setDouble(i++, amountTaxRecommended); // can't be null
-				
-				stmt.setString(i++, level); // can't be null
+
 				stmt.setString(i++, publicAddress); // can't be null
 				stmt.setString(i++, userSignature); // can't be null
+				
 				stmt.executeUpdate();
 				return true;
 				
