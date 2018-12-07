@@ -47,7 +47,7 @@ public final class Consts {
 				return decoded + "/database/database.accdb";
 			} else {
 				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
-				return decoded + "/source/database.accdb";
+				return decoded + "/sources/database.accdb";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

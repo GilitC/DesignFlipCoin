@@ -1,3 +1,4 @@
-07:28:20	Welcome
-****************************************************************************
-07:28:26	Attempting to open welcome.fxml
+02:18:32	Welcome
+02:18:37	Attempting to open welcome.fxml
+02:18:38	Attempting to open menus/recMenu.fxml
+02:18:39	Attempting to open viewRecommendations.fxml

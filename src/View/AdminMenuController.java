@@ -62,7 +62,7 @@ public class AdminMenuController implements Initializable{
 
 	@FXML
 	void GoToRecommendmenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
+		loadUI(NameToWindow.MENU_RECOMMENDATIONS);
 	}
 
 	@FXML

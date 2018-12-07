@@ -17,16 +17,18 @@ public enum NameToWindow {
 	SEND_EMAIL("View/add/sendEmail"),
 	
 	/*------------MENUS-------------------------------------------------*/
-	MENU_REPORTS("View/menus/reports"),
-	MENU_PRODUCT("View/menus/products"),
-	MENU_USER("View/menus/users"),
-	MENU_TRANSACTIONS("View/menus/users"),
-	QUERIES("View/menus/queries"),
+	MENU_REPORTS("menus/reports"),
+	MENU_PRODUCT("menus/products"),
+	MENU_USER("menus/users"),
+	MENU_TRANSACTIONS("menus/users"),
+	MENU_RECOMMENDATIONS("menus/recMenu"),
+	QUERIES("menus/queries"),
 
 	
 	/*------------EMPLOYEE LOGIN SCREEN----------------------------------------------------------*/
-	VIEW_RECOMMENDATIONS("View/viewRecommendations"),
-	SEND_REC_TO_USER("View/sendRecommendations"),
+	VIEW_RECOMMENDATIONS("viewRecommendations"),
+	SEND_REC_TO_USER("sendRecommendations"),
+	
 	/*------------ADD------------------------------------*/
 	ADD_USER("View/add/addUser"),
 	ADD_RECOMMENDATION("View/add/addReccomend"),
