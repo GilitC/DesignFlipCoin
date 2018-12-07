@@ -29,7 +29,7 @@ public class recController {
 	     */
 	    @FXML
 	    void goToAddRec(ActionEvent event) {
-	    	WindowManager.openWindow(NameToWindow.VIEW_RECOMMENDATIONS);
+	    	WindowManager.openWindow(NameToWindow.ADD_RECOMMENDATION);
 	    }
 
 	    /**

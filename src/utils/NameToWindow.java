@@ -30,8 +30,8 @@ public enum NameToWindow {
 	SEND_REC_TO_USER("sendRecommendations"),
 	
 	/*------------ADD------------------------------------*/
-	ADD_USER("View/add/addUser"),
-	ADD_RECOMMENDATION("View/add/addReccomend"),
+	ADD_USER("add/addUser"),
+	ADD_RECOMMENDATION("add/addRecommendation"),
 	/*------------REMOVE---------------------------------*/
 	DELETE_USER("View/delete/deleteuser"),
 	DELETE_PRODUCT("View/delete/deleteProduct"),
