@@ -29,6 +29,13 @@ public class ProductCategory {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ProductCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + "]";
+	}
+	
 	
 	
 }

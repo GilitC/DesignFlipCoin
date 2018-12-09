@@ -105,6 +105,14 @@ public class Product {
 	public void setPricePerUnit(double pricePerUnit) {
 		this.pricePerUnit = pricePerUnit;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", productName=" + productName + ", description=" + description
+				+ ", picture=" + picture + ", amountInStock=" + amountInStock + ", pricePerUnit=" + pricePerUnit
+				+ ", publicAddress=" + publicAddress + ", userSignature=" + userSignature + ", categoryID=" + categoryID
+				+ "]";
+	}
 	
 	
 	

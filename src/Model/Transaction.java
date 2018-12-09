@@ -149,6 +149,15 @@ public abstract class Transaction {
 	public void setToAddress(String toAddress) {
 		this.toAddress = toAddress;
 	}
+
+	@Override
+	public String toString() {
+		return "Transaction [transactionID=" + transactionID + ", description=" + description + ", sizeInBytes="
+				+ sizeInBytes + ", dtCreated=" + dtCreated + ", dtFinished=" + dtFinished + ", currentStatus="
+				+ currentStatus + ", taxAmount=" + taxAmount + ", toAddress=" + toAddress + ", publicAddress="
+				+ publicAddress + ", userSignature=" + userSignature + ", orderID=" + orderID + ", uniqueAddress="
+				+ uniqueAddress + "]";
+	}
 	
 	
 

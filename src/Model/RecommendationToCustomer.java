@@ -50,6 +50,12 @@ public class RecommendationToCustomer {
 	public void setRecommedID(int recommedID) {
 		this.recommedID = recommedID;
 	}
+
+	@Override
+	public String toString() {
+		return "RecommendationToCustomer [level=" + level + ", publicAddress=" + publicAddress + ", userSignature="
+				+ userSignature + ", recommedID=" + recommedID + "]";
+	}
 	
 	
 }

@@ -69,5 +69,12 @@ public class Wallet {
 		this.futureValue = futureValue;
 	}
 
+	@Override
+	public String toString() {
+		return "Wallet [uniqueAddress=" + uniqueAddress + ", cashFlow=" + cashFlow + ", futureValue=" + futureValue
+				+ ", publicAddress=" + publicAddress + ", userSignature=" + userSignature + "]";
+	}
+
+	
 	
 }

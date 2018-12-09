@@ -68,7 +68,16 @@ public class Recommendation {
 	}
 	public void setAmountTaxRecommended(double amountTaxRecommended) {
 		this.amountTaxRecommended = amountTaxRecommended;
+	}
+
+	@Override
+	public String toString() {
+		return "Recommendation [recommedID=" + recommedID + ", dateCreated=" + dateCreated + ", chanceChosen="
+				+ chanceChosen + ", amountTaxRecommended=" + amountTaxRecommended + ", publicAddress=" + publicAddress
+				+ ", userSignature=" + userSignature + "]";
 	}	
+	
+	
 	
 	
 }

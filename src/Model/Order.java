@@ -76,6 +76,13 @@ public class Order {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+
+	@Override
+	public String toString() {
+		return "Order [orderID=" + orderID + ", quantity=" + quantity + ", status=" + status + ", total=" + total
+				+ ", publicAddress=" + publicAddress + ", userSignature=" + userSignature + ", productID=" + productID
+				+ "]";
+	}
 	
 	
 }
