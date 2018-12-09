@@ -17,9 +17,6 @@ import utils.E_Levels;
 import View.WindowManager;
 
 public class addRecomController {
-	
-	@FXML
-    private ComboBox<E_Levels> lvlComboBox;
 
     @FXML
     private Button clearButton;
@@ -93,34 +90,23 @@ public class addRecomController {
 
 			java.sql.Date datecreat = java.sql.Date.valueOf(dateCreate.getValue());
 
-			E_Levels cl = lvlComboBox.getSelectionModel().getSelectedItem();
+			if (RecommendationLogic.getInstance().addRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
+				labelSuccess.setText("New Recommendation was added succesfully!");
+				dateCreate.valueProperty().set(null);
+				userSig.setText("");
+				publicAdd.setText("");
+				amountTax.setText("");
+				chanceChos.setText("");
+				labelSuccess.setText("");
 
-
-			if (cl == null) {
-				throw new ListNotSelectedException();
 			} else {
-					if (RecommendationLogic.getInstance().addRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), cl.toString(), addrs, signt)) {
-						labelSuccess.setText("New Recommendation was added succesfully!");
-						dateCreate.valueProperty().set(null);
-						userSig.setText("");
-						publicAdd.setText("");
-						amountTax.setText("");
-						chanceChos.setText("");
-						lvlComboBox.valueProperty().set(null);
-						labelSuccess.setText("");
-						
-					} else {
-							alert.setHeaderText("Unable to add Recommendation.");
-							alert.setContentText("Recommendation wasn't added.");
-							alert.show();
-						}
-						
-				}
+				alert.setHeaderText("Unable to add Recommendation.");
+				alert.setContentText("Recommendation wasn't added.");
+				alert.show();
+			}
+
 
 		} catch (MissingInputException e) {
-
-		} catch (ListNotSelectedException e) {
-
 		}
 	}
 
@@ -140,7 +126,6 @@ public class addRecomController {
 	 */
 	public void initialize() {
 
-		lvlComboBox.getItems().addAll(E_Levels.values());
 		chanceChos.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {
 				chanceChos.setText(newValue.replaceAll("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$", ""));
@@ -174,7 +159,6 @@ public class addRecomController {
 		publicAdd.setText("");
 		amountTax.setText("");
 		chanceChos.setText("");
-		lvlComboBox.valueProperty().set(null);
 		labelSuccess.setText("");
 	}
 
