@@ -1,6 +1,10 @@
 package Model;
 
+import java.io.File;
 import java.net.URLDecoder;
+import java.sql.DriverManager;
+
+import Control.DBManager;
 
 /**
  * http://www.javapractices.com/topic/TopicAction.do?Id=2
@@ -11,9 +15,8 @@ public final class Consts {
 	}
 
 	protected static final String DB_FILEPATH = getDBPath();
-	public static final String CONN_STR = "jdbc:ucanaccess://" + DB_FILEPATH + ";COLUMNORDER=DISPLAY";
-	
-	
+	public static final String CONN_STR = "jdbc:ucanaccess://" + DB_FILEPATH;
+
 	/*----------------------------------------- USER QUERIES -----------------------------------------*/
 	public static final String SQL_SEL_USERS = "SELECT * FROM TblUser";
 	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
@@ -36,22 +39,12 @@ public final class Consts {
      * @return the path of the DB file (from eclipse or with runnable file)
 	 */
 	private static String getDBPath() {
-		try {
-			String path = Consts.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-			String decoded = URLDecoder.decode(path, "UTF-8");
-			// System.out.println(decoded) - Can help to check the returned path
-			if (decoded.contains(".jar")) {
-				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
-				System.out.println(decoded);
-
-				return decoded + "/database/database.accdb";
-			} else {
-				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
-				return decoded + "/sources/database.accdb";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		File f = new File("src/sources/database.accdb");
+		if(f.exists())
+		{
+			return f.getAbsolutePath();
 		}
+		
+		return new File("sources/database.accdb").getAbsolutePath();
 	}
 }

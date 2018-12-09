@@ -1,8 +1,13 @@
 package Control;
 	
 import javafx.application.Application;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import Control.Logger;
 import Control.SysData;
+import Model.Consts;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
