@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransactionsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5bc099d-9c78-474a-b49f-f4b47d9c4798">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT allTransactions.dateCreated, allTransactions.currentStatus, Min(allTransactions.taxAmount) AS ["Minimum Tax"], Max(allTransactions.taxAmount) AS ["Maximum Tax"], Count(*) AS ["Transactions Per Day"], Count(*)*100/TblSystem.NumOfTransactions AS ["Precentage"]
+FROM allTransactions, TblSystem
+GROUP BY allTransactions.dateCreated, allTransactions.currentStatus, TblSystem.NumOfTransactions]]>
+	</queryString>
+	<field name="DATECREATED" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="DATECREATED"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
+	</field>
+	<field name="CURRENTSTATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CURRENTSTATUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
+	</field>
+	<field name="&quot;Minimum Tax&quot;" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA["Minimum Tax"]]>
+		</property>
+	</field>
+	<field name="&quot;Maximum Tax&quot;" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA["Maximum Tax"]]>
+		</property>
+	</field>
+	<field name="&quot;Transactions Per Day&quot;" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA["Transactions Per Day"]]>
+		</property>
+	</field>
+	<field name="&quot;Precentage&quot;" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label">
+			<![CDATA["Precentage"]]>
+		</property>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="-20" width="594" height="130" uuid="40314d42-b678-4ff6-be1e-040a0502f535"/>
+				<imageExpression><![CDATA["http://www.ilhitrec.org/ilhitrec/images/header-tech-img.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="98" y="53" width="380" height="50" uuid="c17bfe99-7e24-4a80-bb5a-662d2349d6ec"/>
+				<textElement>
+					<font fontName="Script MT Bold" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Daily Transaction Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="-2" y="10" width="82" height="30" uuid="e60e1a45-ae61-45a8-9cd5-50180a38e109"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="10" width="100" height="30" uuid="24d34ae5-6ee3-4769-95fb-6ee48ce193ed"/>
+				<text><![CDATA[Status:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="10" width="100" height="30" uuid="fa12d5ea-6e21-49c0-bc0d-0c407064b484"/>
+				<text><![CDATA[Minimun Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="10" width="100" height="30" uuid="dbbc57e9-a2b3-456a-8602-e58b14d83e67"/>
+				<text><![CDATA[Maximum Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="10" width="100" height="30" uuid="6b683016-2163-4e0a-b1e8-916246ece403"/>
+				<text><![CDATA[Transactions Per Day]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="10" width="94" height="30" uuid="186e4d18-a6c2-4e4b-9bb5-1d45c30aeb84"/>
+				<text><![CDATA[Precentage]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="-2" y="0" width="82" height="30" uuid="81d4f9fc-2e85-4e01-91ed-1433f2dfb341"/>
+				<textFieldExpression><![CDATA[$F{DATECREATED}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="a61e89b7-1924-4425-a407-a93a782cd4b7"/>
+				<textFieldExpression><![CDATA[$F{CURRENTSTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="c1e7180e-7aaf-45e1-bfdb-9884999bdc0a"/>
+				<textFieldExpression><![CDATA[$F{"Minimum Tax"}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="7b290cd3-bef1-4dce-8634-62ccc009fc45"/>
+				<textFieldExpression><![CDATA[$F{"Maximum Tax"}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="16013b0e-fef3-4a20-ad5d-fcb1d88ba756"/>
+				<textFieldExpression><![CDATA[$F{"Transactions Per Day"}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="80" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
+				<textFieldExpression><![CDATA[$F{"Precentage"}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="118" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
