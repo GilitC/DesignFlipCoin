@@ -2,6 +2,9 @@ package Control;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,7 +36,7 @@ public abstract class ModifyXMLFile {
 
 				// loop the staff child node
 				NodeList list = rootNode.getChildNodes();
-
+				List<Node> toRemove = new ArrayList<>();
 				for (int i = 0; i < list.getLength(); i++) {
 
 					Node node = list.item(i);
@@ -46,11 +49,15 @@ public abstract class ModifyXMLFile {
 
 					// Remove all classpath nodes
 					if ("classpath".equals(node.getNodeName())) {
-						rootNode.removeChild(node);
+						toRemove.add(node);
 					}
 
 				}
 				
+				for(Node n : toRemove)
+				{
+					rootNode.removeChild(n);
+				}
 				
 				// Add classpath for ucanaccess
 				
@@ -73,7 +80,6 @@ public abstract class ModifyXMLFile {
 				StreamResult result = new StreamResult(new File(filepath));
 				transformer.transform(source, result);
 
-				System.out.println("Done");
 
 			} catch (ParserConfigurationException pce) {
 				pce.printStackTrace();
