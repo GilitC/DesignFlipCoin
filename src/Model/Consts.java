@@ -16,6 +16,13 @@ public final class Consts {
 
 	protected static final String DB_FILEPATH = getDBPath();
 	public static final String CONN_STR = "jdbc:ucanaccess://" + DB_FILEPATH;
+	public static final String[] UCA_LIB = {
+			"ucanaccess-3.0.7.jar",
+			"lib\\commons-lang-2.6.jar",
+			"lib\\commons-logging-1.1.1.jar",
+			"lib\\hsqldb.jar",
+			"lib\\jackcess-2.1.10.jar"
+	};
 
 	/*----------------------------------------- USER QUERIES -----------------------------------------*/
 	public static final String SQL_SEL_USERS = "SELECT * FROM TblUser";

@@ -2,6 +2,7 @@ package Control;
 	
 import javafx.application.Application;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -10,6 +11,9 @@ import Control.SysData;
 import Model.Consts;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperReport;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
+			// Modify classpath and resolve dependencies
+			ModifyXMLFile.modify();
+		        
 			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/View/login.fxml"));
 			Scene scene = new Scene(root,800,600);
 			

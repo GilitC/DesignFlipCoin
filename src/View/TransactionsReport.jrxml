@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransactionsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5bc099d-9c78-474a-b49f-f4b47d9c4798">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="src\utils\UCA.xml"/>
 	<queryString>
 		<![CDATA[SELECT allTransactions.dateCreated, allTransactions.currentStatus, Min(allTransactions.taxAmount) AS ["Minimum Tax"], Max(allTransactions.taxAmount) AS ["Maximum Tax"], Count(*) AS ["Transactions Per Day"], Count(*)*100/TblSystem.NumOfTransactions AS ["Precentage"]
 FROM allTransactions, TblSystem
