@@ -4,11 +4,7 @@
 	<username/><password>
 	</password>
 	<savePassword>true</savePassword>
-<<<<<<< HEAD
-	<url>jdbc:ucanaccess://C:\Users\nisan\ceclipse\FlipCoin\src\sources\database.accdb</url>
-=======
 	<url>jdbc:ucanaccess://C:\Users\Nisan\Desktop\DesignFlipCoin\src\sources\database.accdb</url>
->>>>>>> Fixed
 	<database/>
 	<serverAddress/>
 	
@@ -23,8 +19,4 @@
 
 
 
-<<<<<<< HEAD
-</jdbcDataAdapter>
-=======
 <classpath>C:\Users\Nisan\Desktop\DesignFlipCoin\lib\UCanAccess-3.0.7-bin\ucanaccess-3.0.7.jar</classpath><classpath>C:\Users\Nisan\Desktop\DesignFlipCoin\lib\UCanAccess-3.0.7-bin\lib\commons-lang-2.6.jar</classpath><classpath>C:\Users\Nisan\Desktop\DesignFlipCoin\lib\UCanAccess-3.0.7-bin\lib\commons-logging-1.1.1.jar</classpath><classpath>C:\Users\Nisan\Desktop\DesignFlipCoin\lib\UCanAccess-3.0.7-bin\lib\hsqldb.jar</classpath><classpath>C:\Users\Nisan\Desktop\DesignFlipCoin\lib\UCanAccess-3.0.7-bin\lib\jackcess-2.1.10.jar</classpath></jdbcDataAdapter>
->>>>>>> Fixed

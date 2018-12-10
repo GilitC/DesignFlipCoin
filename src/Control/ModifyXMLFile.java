@@ -81,11 +81,6 @@ public abstract class ModifyXMLFile {
 				StreamResult result = new StreamResult(new File(filepath));
 				transformer.transform(source, result);
 
-<<<<<<< HEAD
-=======
-				System.out.println("Done");
->>>>>>> Fixed
-
 			} catch (ParserConfigurationException pce) {
 				pce.printStackTrace();
 			} catch (TransformerException tfe) {

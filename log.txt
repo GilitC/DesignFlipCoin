@@ -1,13 +1,1 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-06:52:31	Welcome
-=======
-06:43:49	Welcome
->>>>>>> Stashed changes
-=======
-06:43:49	Welcome
->>>>>>> Stashed changes
-=======
-06:43:49	Welcome
->>>>>>> Stashed changes
+07:21:04	Welcome
