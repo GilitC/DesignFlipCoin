@@ -47,7 +47,7 @@ public class AdminMenuController implements Initializable{
 
 	@FXML
 	void GoToCreateReports(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
+		loadUI(NameToWindow.MENU_REPORTS);
 	}
 
 	@FXML
@@ -80,18 +80,12 @@ public class AdminMenuController implements Initializable{
 		loadUI(NameToWindow.WELCOMESCREEN);
 	}
 
-	@FXML
-	void goToQueries(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
 
 	@FXML
 	void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();
-		//		
-		//		SysData.getInstance().setUserCoach(null);
+
 		//		SysData.getInstance().setUserCustomer(null);
-		//		SysData.getInstance().setUserRecep(null);
 
 		stage.close();
 		FXMLLoader load = new FXMLLoader(getClass().getResource("/view/login.fxml"));

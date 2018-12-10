@@ -17,7 +17,7 @@ public enum NameToWindow {
 	SEND_EMAIL("View/add/sendEmail"),
 	
 	/*------------MENUS-------------------------------------------------*/
-	MENU_REPORTS("menus/reports"),
+	MENU_REPORTS("menus/reportsMenu"),
 	MENU_PRODUCT("menus/products"),
 	MENU_USER("menus/users"),
 	MENU_TRANSACTIONS("menus/users"),

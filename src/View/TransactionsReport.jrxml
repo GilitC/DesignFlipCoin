@@ -84,7 +84,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<textField>
 				<reportElement x="-2" y="0" width="82" height="30" uuid="81d4f9fc-2e85-4e01-91ed-1433f2dfb341"/>
 				<textFieldExpression><![CDATA[$F{DATECREATED}]]></textFieldExpression>
@@ -106,13 +106,30 @@
 				<textFieldExpression><![CDATA[$F{"Transactions Per Day"}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="480" y="0" width="80" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
+				<reportElement x="490" y="0" width="70" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
 				<textFieldExpression><![CDATA[$F{"Precentage"}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="118" splitType="Stretch"/>
+		<band height="280" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="44" y="7" width="470" height="270" uuid="583190eb-f6e6-4b1e-b2f7-5e21a0a80933"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{CURRENTSTATUS}]]></keyExpression>
+					<valueExpression><![CDATA[$F{"Precentage"}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
 	</columnFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

@@ -55,10 +55,10 @@ public abstract class ModifyXMLFile {
 
 				}
 				
-				for(Node n : toRemove)
-				{
-					rootNode.removeChild(n);
-				}
+//				for(Node n : toRemove)
+//				{
+//					rootNode.removeChild(n);
+//				}
 				
 				// Add classpath for ucanaccess
 				
