@@ -16,7 +16,8 @@ import Control.Logic.*;
 
 	    @FXML
 	    void goToProduceTransRPT(ActionEvent event) {
-	    	TransactionLogic.getInstance().compileTransactionsReport();
+	    	java.sql.Date d = new java.sql.Date(2018-1900, 10, 1);
+	    	TransactionLogic.getInstance().compileTransactionsReport(d).setVisible(true);;
 	    }
 
 	

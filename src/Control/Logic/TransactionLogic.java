@@ -1,6 +1,8 @@
 package Control.Logic;
 
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -34,13 +36,16 @@ public class TransactionLogic {
      * outputs report at runtime.
      * @return
      */
-	public JFrame compileTransactionsReport() {
+	public JFrame compileTransactionsReport(Date givenDate) {
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+            	HashMap<String, Object> toSend = new HashMap<>();
+            	toSend.put("myDate", givenDate);
+            	
             	JasperPrint print = JasperFillManager.fillReport(
-            			getClass().getResourceAsStream("../View/TransactionsReport.jasper"),
-                        new HashMap<String, Object>(), conn);
+            			getClass().getResourceAsStream("../../View/TransactionsReport.jasper"),
+                        toSend, conn);
                 JFrame frame = new JFrame("Transactions Report");
                 frame.getContentPane().add(new JRViewer(print));
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

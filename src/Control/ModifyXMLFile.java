@@ -13,6 +13,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import org.apache.xmlbeans.impl.inst2xsd.util.Attribute;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -30,10 +32,15 @@ public abstract class ModifyXMLFile {
 				String filepath = "src/utils/UCA.xml";
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-				Document doc = docBuilder.parse(filepath);
+				
+				Document newDoc = docBuilder.newDocument();
+				newDoc.setDocumentURI(filepath);
+				Element rootNode = newDoc.createElement("jdbcDataAdapter");
+				rootNode.setAttribute("class", "net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl");
+				
 
-				Node rootNode = doc.getElementsByTagName("jdbcDataAdapter").item(0);
-
+				newDoc.appendChild(newDoc.createComment("\\n"));
+				newDoc.appendChild(rootNode);
 				// loop the staff child node
 				NodeList list = rootNode.getChildNodes();
 				List<Node> toRemove = new ArrayList<>();
@@ -49,16 +56,18 @@ public abstract class ModifyXMLFile {
 
 					// Remove all classpath nodes
 					if ("classpath".equals(node.getNodeName())) {
+						System.out.println("Found classpath node : " + node.getTextContent());
 						toRemove.add(node);
 						rootNode.removeChild(node);
 					}
 
 				}
-				
-//				for(Node n : toRemove)
-//				{
-//					rootNode.removeChild(n);
-//				}
+				/*
+				for(Node n : toRemove)
+				{
+					System.out.println("Deleting " + n.getTextContent());
+					rootNode.removeChild(n);
+				}*/
 				
 				// Add classpath for ucanaccess
 				
@@ -66,7 +75,7 @@ public abstract class ModifyXMLFile {
 				
 				for(String s : Consts.UCA_LIB)
 				{
-					Element n = doc.createElement("classpath");
+					Element n = newDoc.createElement("classpath");
 					n.setTextContent(f.getAbsolutePath() + "\\" + s);
 					rootNode.appendChild(n);
 				}
@@ -77,7 +86,8 @@ public abstract class ModifyXMLFile {
 				
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
-				DOMSource source = new DOMSource(doc);
+
+				DOMSource source = new DOMSource(newDoc);
 				StreamResult result = new StreamResult(new File(filepath));
 				transformer.transform(source, result);
 
@@ -85,10 +95,6 @@ public abstract class ModifyXMLFile {
 				pce.printStackTrace();
 			} catch (TransformerException tfe) {
 				tfe.printStackTrace();
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			} catch (SAXException sae) {
-				sae.printStackTrace();
 			}
 		}
 }

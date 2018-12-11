@@ -1,7 +1,6 @@
 package View.update;
 
 import Control.Logic.RecommendationLogic;
-import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
 import Model.Recommendation;
@@ -89,7 +88,7 @@ public class updateRecomController {
 
 			java.sql.Date datecreat = java.sql.Date.valueOf(dateCreate.getValue());
 
-			if (RecommendationLogic.getInstance().updateRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
+			if (RecommendationLogic.getInstance().updateRecommendation(idRec, datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
 				labelSuccess.setText("Updated Recommendation succesfully!");
 
 			} else {

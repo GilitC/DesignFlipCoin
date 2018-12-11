@@ -93,7 +93,7 @@ public class RecommendationLogic {
 	 * return true if the update was successful, else - return false
      * @return 
 	 */
-	public boolean editRecommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended,
+	public boolean updateRecommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended,
 			String publicAddress, String userSignature) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
