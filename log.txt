@@ -1,3 +1,0 @@
-09:30:39	Welcome
-09:30:41	Attempting to open welcome.fxml
-09:30:42	Attempting to open menus/reportsMenu.fxml

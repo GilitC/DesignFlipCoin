@@ -42,7 +42,6 @@ public class TransactionLogic {
             try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
             	HashMap<String, Object> toSend = new HashMap<>();
             	toSend.put("myDate", givenDate);
-            	
             	JasperPrint print = JasperFillManager.fillReport(
             			getClass().getResourceAsStream("../../View/TransactionsReport.jasper"),
                         toSend, conn);
