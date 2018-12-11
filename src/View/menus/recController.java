@@ -38,7 +38,7 @@ public class recController {
 	     */
 	    @FXML
 	    void goToSendToUsers(ActionEvent event) {
-	    	WindowManager.openWindow(NameToWindow.VIEW_RECOMMENDATIONS);
+	    	WindowManager.openWindow(NameToWindow.SEND_REC_TO_USER);
 	    }
 
 	    /**

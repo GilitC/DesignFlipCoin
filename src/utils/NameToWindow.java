@@ -28,7 +28,7 @@ public enum NameToWindow {
 	/*------------EMPLOYEE LOGIN SCREEN----------------------------------------------------------*/
 	VIEW_RECOMMENDATIONS("viewRecommendations"),
 	UPDATE_RECOMMENDATIONS("update/updateRecommendation"),
-	SEND_REC_TO_USER("sendRecommendations"),
+	SEND_REC_TO_USER("sendRecToUser"),
 	
 	/*------------ADD------------------------------------*/
 	ADD_USER("add/addUser"),
