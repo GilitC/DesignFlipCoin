@@ -47,7 +47,7 @@ public class recController {
 	     */
 	    @FXML
 	    void goToUpdRed(ActionEvent event) {
-	    	WindowManager.openWindow(NameToWindow.VIEW_RECOMMENDATIONS);
+	    	WindowManager.openWindow(NameToWindow.UPDATE_RECOMMENDATIONS);
 	    }
 
 	    /**

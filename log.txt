@@ -1,0 +1,7 @@
+11:47:58	Welcome
+11:48:02	Attempting to open welcome.fxml
+****************************************************************************
+11:48:12	Attempting to open menus/recMenu.fxml
+11:48:13	Attempting to open update/updateRecommendation.fxml
+****************************************************************************
+11:48:51	Attempting to open update/updateRecommendation.fxml

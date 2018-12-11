@@ -1,5 +1,7 @@
 package View.update;
 
+import java.util.Date;
+
 import Control.Logic.RecommendationLogic;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
@@ -9,12 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import utils.E_Levels;
 import View.WindowManager;
 
 public class updateRecomController {
@@ -35,7 +35,7 @@ public class updateRecomController {
     private Button addButton;
 
     @FXML
-    private DatePicker dateCreate;
+    private TextField dateCreated;
 
     @FXML
     private TextField userSig;
@@ -52,7 +52,21 @@ public class updateRecomController {
   //When a recommendation is chosen, fill the textfields with relevant data
     @FXML
     void chooseRec(ActionEvent event) {
+    	Recommendation selected = chooseRecCombo.getSelectionModel().getSelectedItem();
+    	//Show the Recommendation Selected and let the user edit their desired fields, except for id who stays the same
+    	publicAdd.setText(selected.getPublicAddress());
+    	userSig.setText(selected.getUserSignature());
+    	chanceChos.setText(String.valueOf(selected.getChanceChosen()));
+    	amountTax.setText(String.valueOf(selected.getAmountTaxRecommended()));
+    	dateCreated.setText(String.valueOf(selected.getDateCreated()));
     	
+    	publicAdd.setDisable(false);
+    	userSig.setDisable(false);
+    	chanceChos.setDisable(false);
+    	amountTax.setDisable(false);
+    	addButton.setDisable(false);
+    	dateCreated.setDisable(false);
+
     }
     
 	@FXML
@@ -67,7 +81,9 @@ public class updateRecomController {
 		String chancec = chanceChos.getText();
 		String taxreco = amountTax.getText();
 		try {
-
+			if( chooseRecCombo.getSelectionModel().isEmpty()) {
+				throw new ListNotSelectedException("Recommendation List selection");
+			}
 			if (chancec.isEmpty()) {
 				throw new MissingInputException("Chance Chosen");
 			}
@@ -82,13 +98,7 @@ public class updateRecomController {
 				throw new MissingInputException("User Signature");
 			}
 
-			if (dateCreate.getValue() == null) {
-				throw new MissingInputException("Date Created");
-			}
-
-			java.sql.Date datecreat = java.sql.Date.valueOf(dateCreate.getValue());
-
-			if (RecommendationLogic.getInstance().updateRecommendation(idRec, datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
+			if (RecommendationLogic.getInstance().updateRecommendation(idRec, chooseRecCombo.getSelectionModel().getSelectedItem().getDateCreated(), Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
 				labelSuccess.setText("Updated Recommendation succesfully!");
 
 			} else {
@@ -122,6 +132,13 @@ public class updateRecomController {
 		if(RecommendationLogic.getInstance().getRecommendation().size()>0) {
 			chooseRecCombo.getItems().addAll(RecommendationLogic.getInstance().getRecommendation());
     	}
+		
+		//unable to edit text fields
+    	publicAdd.setDisable(true);
+    	userSig.setDisable(true);
+    	chanceChos.setDisable(true);
+    	amountTax.setDisable(true);
+    	addButton.setDisable(true);
 		
 		chanceChos.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {

@@ -1,10 +1,6 @@
 package Model;
 
 import java.io.File;
-import java.net.URLDecoder;
-import java.sql.DriverManager;
-
-import Control.DBManager;
 
 /**
  * http://www.javapractices.com/topic/TopicAction.do?Id=2
