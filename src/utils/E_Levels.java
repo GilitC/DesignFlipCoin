@@ -5,7 +5,7 @@ package utils;
  */
 public enum E_Levels {
 	// -------------------------------------------------------------Values---------------------------------------------------------------------
-	LOW_LEVEL(1), MIDDLE(2), TOP_PRIORITY(3);
+	LOWLEVEL(1), MIDDLE(2), TOPPRIORITY(3);
 	
 	// -------------------------------------------------------------Class Members----------------------------------------------------------------
 	private final int level;
@@ -23,15 +23,15 @@ public enum E_Levels {
 	public static E_Levels returnLevel(int val) {
 		switch (val) {
 		case 0:
-			return E_Levels.LOW_LEVEL;
+			return E_Levels.LOWLEVEL;
 		case 1:
-			return E_Levels.LOW_LEVEL;
+			return E_Levels.LOWLEVEL;
 		case 2:
 			return E_Levels.MIDDLE;
 		case 3:
-			return E_Levels.TOP_PRIORITY;
+			return E_Levels.TOPPRIORITY;
 		default:
-			return E_Levels.LOW_LEVEL;
+			return E_Levels.LOWLEVEL;
 		}
 	}
 	

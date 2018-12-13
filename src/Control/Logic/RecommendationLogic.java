@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import Model.Consts;
 import Model.Recommendation;
+import Model.RecommendationToCustomer;
+import Model.User;
 
 
 public class RecommendationLogic {
@@ -39,6 +41,31 @@ public class RecommendationLogic {
 					int i = 1;
 					results.add(new Recommendation(rs.getInt(i++), rs.getDate(i++), rs.getDouble(i++), rs.getDouble(i++),
 							rs.getString(i++), rs.getString(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/**
+	 * fetches all Users with levels of importance, sent a given recommendation ID using an SQL query
+	 * @return ArrayList of Customers.
+	 */
+	public ArrayList<RecommendationToCustomer> getCustomerListByRecID(Integer recID) {
+		ArrayList<RecommendationToCustomer> results = new ArrayList<RecommendationToCustomer>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);					
+					PreparedStatement stmt = conn.prepareStatement(Consts.usersByRecc(recID));
+					ResultSet rs = stmt.executeQuery()) {
+				while (rs.next()) {
+					int i = 1;
+					results.add(new RecommendationToCustomer(rs.getString(i++), rs.getString(i++),rs.getString(i++),
+							recID));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

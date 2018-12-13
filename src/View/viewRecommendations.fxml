@@ -25,7 +25,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <ListView fx:id="listRecommendations" layoutX="53.0" layoutY="87.0" onMouseClicked="#showRowDetails" prefHeight="284.0" prefWidth="599.0" style="-fx-opacity: 0.71;" />
+      <ListView fx:id="listRecommendations" layoutX="53.0" layoutY="87.0" onEditStart="#showRowDetails" onMouseClicked="#showRowDetails" prefHeight="284.0" prefWidth="599.0" style="-fx-opacity: 0.71;" />
       <ListView fx:id="listofSentUsers" layoutX="53.0" layoutY="411.0" prefHeight="160.0" prefWidth="599.0" style="-fx-opacity: .7;" />
       <Label layoutX="57.0" layoutY="389.0" style="-fx-opacity: 0.8;" text="Sent To Users:">
          <font>

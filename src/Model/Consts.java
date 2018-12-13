@@ -28,6 +28,13 @@ public final class Consts {
 
 	/*----------------------------------------- RECOMMENDATION QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_RECOMMENDATION = "SELECT * FROM TblRecommendation";
+	
+	public static String usersByRecc(int recID) {
+		String SQL_SEL_USERSBYRECID = "SELECT TblUserGetRecommendation.levelOfImportance, TblUserGetRecommendation.publicAddress, TblUserGetRecommendation.userSignature, TblUserGetRecommendation.recommendId\r\n" + 
+				"FROM TblUserGetRecommendation Where recommendId =" + recID;
+		return SQL_SEL_USERSBYRECID;
+	}
+	
 	public static final String SQL_UPD_RECOMMENDATION = "{ call qryUpdRecommend(?,?,?,?,?,?,?) }";
 	public static final String SQL_ADD_RECOMMENDATION = "{ call qryInsRecommend(?,?,?,?,?,?) }";
 

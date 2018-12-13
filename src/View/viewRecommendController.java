@@ -2,6 +2,7 @@ package View;
 
 import Control.Logic.RecommendationLogic;
 import Model.Recommendation;
+import Model.RecommendationToCustomer;
 import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +17,7 @@ import View.WindowManager;
 public class viewRecommendController {
 
 		@FXML
-	    private ListView<User> listofSentUsers;
+	    private ListView<RecommendationToCustomer> listofSentUsers;
 
 	    @FXML
 	    private ListView<Recommendation> listRecommendations;
@@ -30,15 +31,15 @@ public class viewRecommendController {
 	    //Action Event when team is selected in listView
 	    @FXML
 	    void showRowDetails(MouseEvent event) {
-//	    	Subscription clicked = listSubs.getSelectionModel().getSelectedItem();
-//	    	showDetails(clicked);
+	    	Recommendation clicked = listRecommendations.getSelectionModel().getSelectedItem();
+	    	showDetails(clicked);
 	    }
 	    
-	    private void showDetails(User item) {
-//	        ObservableList<Match> matchess = FXCollections.observableArrayList(item.getMatches());
-//	        
-//	        if(!matchess.isEmpty())
-//	        	matchlist.setItems(matchess);
+	    private void showDetails(Recommendation clicked) {
+	        ObservableList<RecommendationToCustomer> listsent = FXCollections.observableArrayList(RecommendationLogic.getInstance().getCustomerListByRecID(clicked.getRecommedID()));
+	        
+	        if(!listsent.isEmpty())
+	        	listofSentUsers.setItems(listsent);
 	    }
 	    
 	    public void initialize() {
