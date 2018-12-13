@@ -37,6 +37,7 @@ public final class Consts {
 	
 	public static final String SQL_UPD_RECOMMENDATION = "{ call qryUpdRecommend(?,?,?,?,?,?,?) }";
 	public static final String SQL_ADD_RECOMMENDATION = "{ call qryInsRecommend(?,?,?,?,?,?) }";
+	public static final String SQL_SENDRECTOUSER = "{ call qryInsRecToUser(?,?,?,?) }";
 
 	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";

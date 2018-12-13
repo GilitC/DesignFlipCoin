@@ -35,4 +35,17 @@ public enum E_Levels {
 		}
 	}
 	
+	public String returnLevel(E_Levels val) {
+		switch (val) {
+		case LOWLEVEL:
+			return "LOWLEVEL";
+		case MIDDLE:
+			return "MIDDLE";
+		case TOPPRIORITY:
+			return "TOPPRIORITY";
+		default:
+			return "LOWLEVEL";
+		}
+	}
+	
 }// ~ END OF Enum Class Levels

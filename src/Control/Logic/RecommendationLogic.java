@@ -113,6 +113,35 @@ public class RecommendationLogic {
 		}
 		return false;
 	}
+	
+	/**
+	 * Adding a new Recommendation sent to user with the parameters received from the form.
+	 * return true if the insertion was successful, else - return false
+     * @return 
+	 */
+	public boolean addRecommendationToUser(String level, String publicAddress, String userSignature, int recommedID) {
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_SENDRECTOUSER)) {
+				
+				int i = 1;
+				stmt.setString(i++, level); // can't be null
+				stmt.setString(i++, publicAddress); // can't be null
+				stmt.setString(i++, userSignature); // can't be null
+				stmt.setInt(i++, recommedID);// can't be null
+				
+				stmt.executeUpdate();
+				return true;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	
 	/**
