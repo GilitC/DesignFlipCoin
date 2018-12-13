@@ -1,5 +1,5 @@
-10:49:52	Welcome
+11:16:09	Welcome
 ****************************************************************************
-10:50:02	Attempting to open welcome.fxml
-10:50:05	Attempting to open menus/recMenu.fxml
-10:50:07	Attempting to open sendRecToUser.fxml
+11:16:14	Attempting to open welcome.fxml
+11:16:15	Attempting to open menus/recMenu.fxml
+11:16:15	Attempting to open add/addRecommendation.fxml

@@ -91,6 +91,7 @@ public class addRecomController {
 			java.sql.Date datecreat = java.sql.Date.valueOf(dateCreate.getValue());
 
 			if (RecommendationLogic.getInstance().addRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
+				System.out.println("success");
 				labelSuccess.setText("New Recommendation was added succesfully!");
 				dateCreate.valueProperty().set(null);
 				userSig.setText("");
@@ -100,6 +101,7 @@ public class addRecomController {
 				labelSuccess.setText("");
 
 			} else {
+				System.out.println("failed");
 				alert.setHeaderText("Unable to add Recommendation.");
 				alert.setContentText("Recommendation wasn't added.");
 				alert.show();

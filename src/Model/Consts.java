@@ -35,9 +35,10 @@ public final class Consts {
 		return SQL_SEL_USERSBYRECID;
 	}
 	
-	public static final String SQL_UPD_RECOMMENDATION = "{ call qryUpdRecommend(?,?,?,?,?,?,?) }";
-	public static final String SQL_ADD_RECOMMENDATION = "{ call qryInsRecommend(?,?,?,?,?,?) }";
-	public static final String SQL_SENDRECTOUSER = "{ call qryInsRecToUser(?,?,?,?) }";
+	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ?, TblRecommendation.levelImportance = ?, TblRecommendation.publicAddress = ?, TblRecommendation.userSignature = ? WHERE TblRecommendation.recommendId=?" ;			
+	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? )";
+	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblUserGetRecommendation ( levelOfImportance, publicAddress, userSignature, recommendId ) VALUES ( ? , ? , ? , ? )";
+
 
 	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";

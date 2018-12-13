@@ -122,6 +122,7 @@ public class RecommendationLogic {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_SENDRECTOUSER)) {
 				
 				int i = 1;
