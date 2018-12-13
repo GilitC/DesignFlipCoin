@@ -1,6 +1,5 @@
 package Control.Logic;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;

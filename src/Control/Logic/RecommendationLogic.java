@@ -11,7 +11,6 @@ import java.util.Date;
 import Model.Consts;
 import Model.Recommendation;
 import Model.RecommendationToCustomer;
-import Model.User;
 
 
 public class RecommendationLogic {
