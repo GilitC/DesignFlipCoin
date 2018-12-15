@@ -33,8 +33,8 @@
       <TextField fx:id="amountTax" alignment="CENTER" layoutX="267.0" layoutY="277.0" prefHeight="25.0" prefWidth="181.0" promptText="Amount Tax Recommended" />
       <TextField fx:id="publicAdd" alignment="CENTER" layoutX="269.0" layoutY="324.0" prefHeight="25.0" prefWidth="181.0" promptText="Public Address" />
       <TextField fx:id="userSig" alignment="CENTER" layoutX="269.0" layoutY="372.0" prefHeight="25.0" prefWidth="181.0" promptText="User Signature" />
-      <Button fx:id="addButton" layoutX="248.0" layoutY="467.0" mnemonicParsing="false" onAction="#updateRecommend" prefHeight="39.0" prefWidth="217.0" text="Update Recommendation" />
-      <Label fx:id="labelSuccess" layoutX="225.0" layoutY="456.0" prefHeight="33.0" prefWidth="267.0" textFill="#017c87">
+      <Button fx:id="addButton" layoutX="248.0" layoutY="467.0" mnemonicParsing="false" onAction="#updateRecommend" prefHeight="70.0" prefWidth="217.0" text="Update Recommendation" />
+      <Label fx:id="labelSuccess" layoutX="176.0" layoutY="426.0" prefHeight="33.0" prefWidth="368.0" textFill="#461d28">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

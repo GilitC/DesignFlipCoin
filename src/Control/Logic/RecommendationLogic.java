@@ -156,9 +156,7 @@ public class RecommendationLogic {
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_RECOMMENDATION)) {
 				int i = 1;
-
-				stmt.setInt(i++, recommedID); // can't be null
-				
+			
 				if (dateCreated != null)
 					stmt.setDate(i++, new java.sql.Date(dateCreated.getTime()));
 				else
@@ -170,6 +168,7 @@ public class RecommendationLogic {
 				stmt.setString(i++, publicAddress); // can't be null
 				stmt.setString(i++, userSignature); // can't be null
 				
+				stmt.setInt(i++, recommedID); // can't be null
 				stmt.executeUpdate();
 				return true;
 				
