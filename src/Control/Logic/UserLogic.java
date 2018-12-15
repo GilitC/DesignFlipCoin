@@ -26,7 +26,7 @@ public class UserLogic {
 	 * fetches all users from DB file.
 	 * @return ArrayList of users.
 	 */
-	public ArrayList<User> getEmployees() {
+	public ArrayList<User> getALLUsers() {
 		ArrayList<User> results = new ArrayList<User>();
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

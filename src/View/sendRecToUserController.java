@@ -90,7 +90,7 @@ public class sendRecToUserController {
 	        ObservableList<Recommendation> recs = FXCollections.observableArrayList(RecommendationLogic.getInstance().getRecommendation());
 	        listRecommendations.setItems(recs);
 	        
-	        ObservableList<User> userLst = FXCollections.observableArrayList(UserLogic.getInstance().getEmployees());
+	        ObservableList<User> userLst = FXCollections.observableArrayList(UserLogic.getInstance().getALLUsers());
 	        listUsers.setItems(userLst);
 	        
 	        comboBoxLevl.getItems().setAll(E_Levels.values());
