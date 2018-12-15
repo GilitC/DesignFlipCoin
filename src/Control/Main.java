@@ -25,9 +25,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			// Modify classpath and resolve dependencies
-			ModifyXMLFile.modify();
-		        
 			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/View/login.fxml"));
 			Scene scene = new Scene(root,800,600);
 			

@@ -28,8 +28,8 @@ import Control.Logic.*;
 	    	else
 	    		d = java.sql.Date.valueOf(datepick.getValue());
 	    	
-	    	
-	    	TransactionLogic.getInstance().compileTransactionsReport(d).setVisible(true);
+	    	System.out.println("ProductTrans - Trying to open report");
+	    	TransactionLogic.compileTransactionsReport(d).setVisible(true);
 	    }
 
 	

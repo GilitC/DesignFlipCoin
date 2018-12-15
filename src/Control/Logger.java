@@ -25,7 +25,10 @@ public final class Logger{
 	public static void initializeMyFileWriter(){
 		outputLogFile = new File("log.txt");
 		try {
+			
 			writer = new PrintStream(outputLogFile);
+			System.setErr(writer);
+			System.setOut(writer);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -39,7 +42,7 @@ public final class Logger{
 	 */
 	
 	public static void log(String message){
-		Logger.log(message, false);
+		System.out.println(message);
 	}
 	
 	protected static void log(String message, boolean isSeparatorNeeded){

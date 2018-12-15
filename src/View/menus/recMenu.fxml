@@ -19,14 +19,14 @@
             <Image url="@../../../bin/bg.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addRec" layoutX="233.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddRec" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Add Recommendation" />
-      <Button fx:id="sendToUsers" layoutX="233.0" layoutY="253.0" mnemonicParsing="false" onAction="#goToSendToUsers" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Send To Users" />
-      <Button fx:id="updRed" layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToUpdRed" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Update Recommendation" />
+      <Button fx:id="addRec" layoutX="233.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddRec" prefHeight="48.0" prefWidth="221.0" text="Add Recommendation" />
+      <Button fx:id="sendToUsers" layoutX="233.0" layoutY="253.0" mnemonicParsing="false" onAction="#goToSendToUsers" prefHeight="48.0" prefWidth="221.0" text="Send To Users" />
+      <Button fx:id="updRed" layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToUpdRed" prefHeight="48.0" prefWidth="221.0" text="Update Recommendation" />
       <Label layoutX="222.0" layoutY="37.0" style="-fx-opacity: 0.7;" text="Recommendation Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewRecs" layoutX="233.0" layoutY="337.0" mnemonicParsing="false" onAction="#goToViewRecs" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="View Recommendations" />
+      <Button fx:id="viewRecs" layoutX="233.0" layoutY="337.0" mnemonicParsing="false" onAction="#goToViewRecs" prefHeight="48.0" prefWidth="221.0" text="View Recommendations" />
    </children>
 </AnchorPane>
