@@ -10,8 +10,8 @@ public class Recommendation {
 	private Date dateCreated;
 	private double chanceChosen;
 	private double amountTaxRecommended;
-	private String publicAddress;
-	private String userSignature;	
+	private String publicAddress; // Remove this after checking the craeted recommendation pages
+	private String userSignature;	//Remove this
 	
 	// -------------------------------Constructor------------------------------
 	

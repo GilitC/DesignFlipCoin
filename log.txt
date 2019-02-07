@@ -1,14 +1,28 @@
 Welcome
-Dec 15, 2018 4:24:33 PM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
+Feb 06, 2019 11:05:29 AM javafx.fxml.FXMLLoader$ValueElement processValue
+WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.161
 Attempting to open welcome.fxml
-Attempting to open menus/reportsMenu.fxml
-ProductTrans - Trying to open report
-Defining class.forName
-log4j:WARN No appenders could be found for logger (com.healthmarketscience.jackcess.impl.DatabaseImpl).
-log4j:WARN Please initialize the log4j system properly.
-Connection initiated
-Attempting to open jasper: file:/C:/Users/Nisan/Desktop/DesignFlipCoin/jar/View/TransactionsReport.jasper
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
 Attempting to open welcome.fxml
 Attempting to open menus/recMenu.fxml
+Attempting to open add/addRecommendation.fxml
+Feb 06, 2019 11:05:40 AM javafx.fxml.FXMLLoader$ValueElement processValue
+WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.161
+Attempting to open update/updateRecommendation.fxml
+log4j:WARN No appenders could be found for logger (com.healthmarketscience.jackcess.impl.DatabaseImpl).
+log4j:WARN Please initialize the log4j system properly.
+Attempting to open update/updateRecommendation.fxml
+Attempting to open sendRecToUser.fxml
 Attempting to open viewRecommendations.fxml
+Attempting to open menus/reportsMenu.fxml
+Attempting to open menus/recMenu.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml
