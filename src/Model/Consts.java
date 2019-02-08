@@ -24,6 +24,8 @@ public final class Consts {
 	public static final String SQL_SEL_USERS = "SELECT * FROM TblUser";
 	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
 	public static final String SQL_INS_USER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
+	
+	public static final String SQL_ADD_NEWUSER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
 	public static final String SQL_UPD_USER = "{ call qryUpdUser(?,?,?,?,?,?,?) }";
 
 	/*----------------------------------------- RECOMMENDATION QUERIES --------------------------------------------*/
@@ -37,14 +39,23 @@ public final class Consts {
 	
 	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ?, TblRecommendation.publicAddress = ?, TblRecommendation.userSignature = ? WHERE TblRecommendation.recommendId=?" ;			
 	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? )";
-	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblUserGetRecommendation ( levelOfImportance, publicAddress, userSignature, recommendId ) VALUES ( ? , ? , ? , ? )";
+	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblRecommendedFor ( UserAddress, UserSignature, Recommendation , CommitimentLevel ) VALUES ( ? , ? , ? , ? )";
 
-
-	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
-	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
-	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblTransactionConfirm";
+	/*----------------------------------------- PRODUCT QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_PRODUCTS = "SELECT TblProduct.* FROM TblProduct;";
-	public static final String SQL_SEL_ORDERS = "SELECT * FROM TblOrder";
+	public static final String SQL_ADD_PRODUCT = "INSERT INTO TblItem ( productName, picture, description, pricePerUnit, quantityInStock, categoryID, sellerAddress, sellerSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )";
+	
+	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
+	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
+	
+	
+	/*----------------------------------------- CONFIRM TX QUERIES --------------------------------------------*/
+	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblTransactionConfirm";
+	
+	
+	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
+
+	//public static final String SQL_SEL_ORDERS = "SELECT * FROM TblOrder";
 
 	/**
 	 * find the correct path of the DB file
