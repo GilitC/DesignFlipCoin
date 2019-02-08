@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminMenuController">
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserMenuController">
 
    <children>
       <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
@@ -38,32 +38,47 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToCreateReports" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Generate Reports">
+            <Button mnemonicParsing="false" onAction="#goToWalletsMenu" styleClass="menuButton" text="My Info">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToRecommendmenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Recommendations">
+            <Button mnemonicParsing="false" onAction="#goToWalletsMenu" styleClass="menuButton" text="Search Products">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Transactions">
+            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Create Pay Transaction">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToManageUsers" styleClass="menuButton" text="Manage Categories">
+            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Create Confirm Transaction">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToManageUsers" styleClass="menuButton" text="Manage System Parameter">
+            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Recieved TXs">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToManageUsers" styleClass="menuButton" text="Send Emails?">
+            <Button mnemonicParsing="false" onAction="#GoToProdMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Add Products">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToProdMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Manage Products For Sale">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToManageOrders" styleClass="menuButton" text="View Recommendations">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToWalletsMenu" styleClass="menuButton" text="Manage My Wallets">
                <effect>
                   <Glow />
                </effect>

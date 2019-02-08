@@ -23,6 +23,11 @@ public class User {
 			this.email = email;
 		}
 
+		//used for login page - UserName is unique
+		public User(String username) {
+			this.username = username;
+		}
+
 
 		// -------------------------------Getters And Setters------------------------------
 		public String getUsername() {

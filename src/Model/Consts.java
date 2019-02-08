@@ -44,6 +44,7 @@ public final class Consts {
 	/*----------------------------------------- PRODUCT QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_PRODUCTS = "SELECT TblProduct.* FROM TblProduct;";
 	public static final String SQL_ADD_PRODUCT = "INSERT INTO TblItem ( productName, picture, description, pricePerUnit, quantityInStock, categoryID, sellerAddress, sellerSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )";
+	public static final String SQL_UPD_PRODUCT = "UPDATE TblItem SET TblItem.ItemName = ?, TblItem.Image = ?, TblItem.Description = ?, TblItem.Price = ?, TblItem.Quantity = ?, TblItem.Category = ? WHERE TblItem.CatalogNumber=?" ;
 	
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
@@ -51,6 +52,12 @@ public final class Consts {
 	
 	/*----------------------------------------- CONFIRM TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblTransactionConfirm";
+	
+	
+	/*----------------------------------------- CATEGORY QUERIES ----------------------------------------------*/
+	public static final String SQL_SEL_CATEGORIES = "SELECT * FROM TblCategory";
+	public static final String SQL_ADD_CATEGORY = "INSERT INTO TblCategory ( CategoryName ) VALUES ( ? )";
+	public static final String SQL_UPD_CATEGORY= "UPDATE TblCategory SET TblCategory.CategoryName = ? WHERE TblCategory.SerialNumber=?" ;			
 	
 	
 	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/

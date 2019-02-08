@@ -33,7 +33,7 @@ public class ProductCategory {
 
 	@Override
 	public String toString() {
-		return "ProductCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + "]";
+		return " + categoryName + ";
 	}
 	
 	

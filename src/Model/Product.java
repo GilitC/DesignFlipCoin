@@ -1,7 +1,7 @@
 package Model;
 
 
-import javafx.scene.control.Hyperlink;
+import java.net.URL;
 
 public class Product {
 	
@@ -10,7 +10,7 @@ public class Product {
 	
 	private int productID; // CatalogNumer in MS ACCESS
 	private String productName;
-	private Hyperlink picture;
+	private URL picture;
 	private String description;
 	private double pricePerUnit;
 	private int quantityInStock;
@@ -20,7 +20,7 @@ public class Product {
 	
 	// -------------------------------Constructor------------------------------
 	
-	public Product(int productID, String productName, Hyperlink picture, String description, double pricePerUnit,
+	public Product(int productID, String productName, URL picture, String description, double pricePerUnit,
 			int quantityInStock, int categoryID, String sellerAddress, String sellerSignature) {
 		super();
 		this.productID = productID;
@@ -52,11 +52,11 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public Hyperlink getPicture() {
+	public URL getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Hyperlink picture) {
+	public void setPicture(URL picture) {
 		this.picture = picture;
 	}
 

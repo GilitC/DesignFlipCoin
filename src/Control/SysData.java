@@ -22,6 +22,8 @@ public class SysData {
 	private Connection _connection;
 	private static DBManager DB;
 	
+	private static User loggedInUser;
+	
 	private SysData()
 	{
         try {
@@ -43,6 +45,7 @@ public class SysData {
 		if(_instance == null)
 		{
 			_instance = new SysData();
+			loggedInUser = null;
 		}
 		return _instance;
 	}
@@ -51,6 +54,15 @@ public class SysData {
 	{
 		return _connection;
 	}
+
+	public static User getLoggedInUser() {
+		return loggedInUser;
+	}
+
+	public static void setLoggedInUser(User loggedInUser) {
+		SysData.loggedInUser = loggedInUser;
+	}
+	
 	
 	
 //	public List<BKWallet> getBKWallets(String uid)

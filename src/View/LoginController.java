@@ -3,7 +3,9 @@ package View;
 import java.io.IOException;
 import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
+import Model.User;
 import Control.SysData;
+import Control.Logic.UserLogic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,7 +48,7 @@ public class LoginController {
 
 	@FXML
 	/**
-	 * Confirms that user actually wants to exit program if clicks on x.exists if sure.
+	 * Confirms that user actually wants to exit program if clicks on x. exists if sure.
 	 * @param event when clicked on x button
 	 */
 	void ExitProgram(MouseEvent event) {
@@ -95,73 +97,35 @@ public class LoginController {
 				Scene scene = new Scene(root);
 				primaryStage.setScene(scene);
 				primaryStage.show();
-//			} else if (SysData.getInstance().getCustomers() != null && user.length() == Constants.ID_NUMBER_SIZE) {//if customer entered, open menu accordingly
-//				if (SysData.getInstance().getCustomers().get(user) != null) {
-//					if (SysData.getInstance().getCustomers().get(user).getPassword() != null) {
-//						if (SysData.getInstance().getCustomers().get(user).getPassword().equals(pass)) {
-//							SysData.getInstance().setUserCustomer(user);
-//							Stage stage = (Stage) login.getScene().getWindow();
-//							stage.close();
-//							FXMLLoader load = new FXMLLoader(getClass().getResource("/view/CustomerMenuSidebar.fxml"));
-//							Stage primaryStage = new Stage();
-//							Parent root = load.load();
-//							Scene scene = new Scene(root);
-//
-//							primaryStage.setScene(scene);
-//							primaryStage.show();
-//						}
-//						throw new InvalidInputException("Wrong password");
-//					}
-//				}
-//
-//			} else if (SysData.getInstance().getCoachs() != null
-//					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)) != null
-//					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword() != null
-//					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword().equals(pass)) {//if coach entered, open menu accordingly
-//				SysData.getInstance().setUserCoach(user);
-//				Stage stage = (Stage) login.getScene().getWindow();
-//				stage.close();
-//				FXMLLoader load = new FXMLLoader(getClass().getResource("/view/CoachMenuSidebar.fxml"));
-//				System.out.println("Want to load css -> "
-//						+ trophyMenuController.class.getResource("/view/application.css").toString());
-//
-//				Stage primaryStage = new Stage();
-//				Parent root = load.load();
-//				Scene scene = new Scene(root);
-//
-//				scene.getStylesheets()
-//						.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
-//
-//				primaryStage.setScene(scene);
-//				primaryStage.show();
-//			} else if (SysData.getInstance().getReceptionists() != null//if receptionist entered, open menu accordingly
-//					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)) != null
-//					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword() != null
-//					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword()
-//							.equals(pass)) {
-//				SysData.getInstance().setUserRecep(user);
-//				Stage stage = (Stage) login.getScene().getWindow();
-//				stage.close();
-//				FXMLLoader load = new FXMLLoader(getClass().getResource("/view/ReceptionistMenuSidebar.fxml"));
-//				System.out.println("Want to load css -> "
-//						+ trophyMenuController.class.getResource("/view/application.css").toString());
-//
-//				Stage primaryStage = new Stage();
-//				Parent root = load.load();
-//				Scene scene = new Scene(root);
-//
-//				scene.getStylesheets()
-//						.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
-//
-//				primaryStage.setScene(scene);
-//				primaryStage.show();
+			} else if (!UserLogic.getInstance().getALLUsers().isEmpty()) {//if users exist
+				User us = new User(user);
+				if (UserLogic.getInstance().getALLUsers().contains(us)) {
+					if (UserLogic.getInstance().getALLUsers().get(UserLogic.getInstance().getALLUsers().indexOf(us)).getPassword() != null) {
+						if (UserLogic.getInstance().getALLUsers().get(UserLogic.getInstance().getALLUsers().indexOf(us)).getPassword().equals(pass)) {
+							SysData.getInstance();
+							SysData.setLoggedInUser(UserLogic.getInstance().getALLUsers().get(UserLogic.getInstance().getALLUsers().indexOf(us)));
+										
+							Stage stage = (Stage) login.getScene().getWindow();
+							stage.close();
+							FXMLLoader load = new FXMLLoader(getClass().getResource("/View/UserMenuSidebar.fxml"));
+
+							Stage primaryStage = new Stage();
+							Parent root = load.load();
+							Scene scene = new Scene(root);
+							primaryStage.setScene(scene);
+							primaryStage.show();
+						}
+						else
+							throw new InvalidInputException("Wrong password. Please try again.");
+					}
+			}
 			} else {//if no active user has entered, popup wrong username and password.
-				alert.setHeaderText("failed to login.");
-				alert.setContentText("wrong username/password");
+				alert.setHeaderText("Failed to login.");
+				alert.setContentText("Wrong username/password");
 				alert.show();
 			}
 		}catch(NumberFormatException e) {//catch exception if trying to convert string to integer
-			new InvalidInputException("numbers only in this field please");
+			new InvalidInputException("Numbers only in this field please.");
 		}catch(InvalidInputException e) {
 			
 		}catch(MissingInputException e) {
