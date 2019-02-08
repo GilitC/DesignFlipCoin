@@ -36,7 +36,7 @@ public class UserLogic {
 				while (rs.next()) {
 					int i = 1;
 					results.add(new User(rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
-							rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
+							rs.getString(i++),rs.getString(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -55,7 +55,7 @@ public class UserLogic {
      * @return 
 	 */
 	public boolean addUser(String publicAddress, String userSignature,String username, String password,
-	String email, String phone, int type) {
+	String email, String phone) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -76,7 +76,6 @@ public class UserLogic {
 				else
 					stmt.setNull(i++, java.sql.Types.VARCHAR);
 				
-				stmt.setInt(i++, type); // can't be null
 				stmt.executeUpdate();
 				return true;
 				

@@ -8,22 +8,19 @@ public class User {
 		private String userSignature;	
 		private String username;
 		private String password;
-		private String email;
 		private String phone;
-		private int type; //Type 0 for Regular User, type 1 for Employee
-
+		private String email;
 
 		// -------------------------------Constructor------------------------------
 		
 		public User(String publicAddress, String userSignature,String username, String password,
-				String email, String phone, int type) {
+				 String phone, String email) {
 			this.username = username;
 			this.password = password;
 			this.publicAddress = publicAddress;
 			this.userSignature = userSignature;
-			this.email = email;
 			this.phone = phone;
-			this.type = type;
+			this.email = email;
 		}
 
 
@@ -85,16 +82,6 @@ public class User {
 
 		public void setPhone(String phone) {
 			this.phone = phone;
-		}
-
-
-		public int getType() {
-			return type;
-		}
-
-
-		public void setType(int type) {
-			this.type = type;
 		}
 
 

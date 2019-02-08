@@ -1,57 +1,87 @@
 package Model;
 
-import java.io.File;
+
+import javafx.scene.control.Hyperlink;
 
 public class Product {
 	
+	//This class is named Item in MS access
 	// -------------------------------Class  Members------------------------------
 	
-	private int productID;
+	private int productID; // CatalogNumer in MS ACCESS
 	private String productName;
+	private Hyperlink picture;
 	private String description;
-	private File picture;
-	private int amountInStock;
 	private double pricePerUnit;
-	private String publicAddress;
-	private String userSignature;
+	private int quantityInStock;
 	private int categoryID;
+	private String sellerAddress;
+	private String sellerSignature;
 	
-
 	// -------------------------------Constructor------------------------------
 	
-	public Product(int productID, String productName, String description, File picture, int amountInStock,
-			double pricePerUnit, String publicAddress, String userSignature, int categoryID) {
+	public Product(int productID, String productName, Hyperlink picture, String description, double pricePerUnit,
+			int quantityInStock, int categoryID, String sellerAddress, String sellerSignature) {
 		super();
 		this.productID = productID;
 		this.productName = productName;
-		this.description = description;
 		this.picture = picture;
-		this.amountInStock = amountInStock;
+		this.description = description;
 		this.pricePerUnit = pricePerUnit;
-		this.publicAddress = publicAddress;
-		this.userSignature = userSignature;
+		this.quantityInStock = quantityInStock;
 		this.categoryID = categoryID;
+		this.sellerAddress = sellerAddress;
+		this.sellerSignature = sellerSignature;
 	}
-	
+
 	// -------------------------------Getters And Setters------------------------------
+	
 	public int getProductID() {
 		return productID;
 	}
-	
-	public String getPublicAddress() {
-		return publicAddress;
+
+	public void setProductID(int productID) {
+		this.productID = productID;
 	}
 
-	public void setPublicAddress(String publicAddress) {
-		this.publicAddress = publicAddress;
+	public String getProductName() {
+		return productName;
 	}
 
-	public String getUserSignature() {
-		return userSignature;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public void setUserSignature(String userSignature) {
-		this.userSignature = userSignature;
+	public Hyperlink getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Hyperlink picture) {
+		this.picture = picture;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPricePerUnit() {
+		return pricePerUnit;
+	}
+
+	public void setPricePerUnit(double pricePerUnit) {
+		this.pricePerUnit = pricePerUnit;
+	}
+
+	public int getQuantityInStock() {
+		return quantityInStock;
+	}
+
+	public void setQuantityInStock(int quantityInStock) {
+		this.quantityInStock = quantityInStock;
 	}
 
 	public int getCategoryID() {
@@ -62,57 +92,53 @@ public class Product {
 		this.categoryID = categoryID;
 	}
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public String getSellerAddress() {
+		return sellerAddress;
 	}
-	
-	public String getProductName() {
-		return productName;
+
+	public void setSellerAddress(String sellerAddress) {
+		this.sellerAddress = sellerAddress;
 	}
-	
-	public void setProductName(String productName) {
-		this.productName = productName;
+
+	public String getSellerSignature() {
+		return sellerSignature;
 	}
-	
-	public String getDescription() {
-		return description;
+
+	public void setSellerSignature(String sellerSignature) {
+		this.sellerSignature = sellerSignature;
 	}
-	
-	public void setDescription(String description) {
-		this.description = description;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + productID;
+		return result;
 	}
-	
-	public File getPicture() {
-		return picture;
-	}
-	
-	public void setPicture(File picture) {
-		this.picture = picture;
-	}
-	
-	public int getAmountInStock() {
-		return amountInStock;
-	}
-	
-	public void setAmountInStock(int amountInStock) {
-		this.amountInStock = amountInStock;
-	}
-	
-	public double getPricePerUnit() {
-		return pricePerUnit;
-	}
-	
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (productID != other.productID)
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [productID=" + productID + ", productName=" + productName + ", description=" + description
-				+ ", picture=" + picture + ", amountInStock=" + amountInStock + ", pricePerUnit=" + pricePerUnit
-				+ ", publicAddress=" + publicAddress + ", userSignature=" + userSignature + ", categoryID=" + categoryID
-				+ "]";
+		return "Product [productID=" + productID + ", productName=" + productName + ", picture=" + picture
+				+ ", description=" + description + ", pricePerUnit=" + pricePerUnit + ", quantityInStock="
+				+ quantityInStock + ", categoryID=" + categoryID + ", sellerAddress=" + sellerAddress
+				+ ", sellerSignature=" + sellerSignature + "]";
 	}
+	
+
 	
 	
 	
