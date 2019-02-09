@@ -34,7 +34,7 @@ public enum NameToWindow {
 	ADD_RECOMMENDATION("add/addRecommendation"),
 	
 	/*------------USER LOGIN SCREEN---------------------------------------------------------------------*/
-	VIEW_PRODUCTS("View/viewProducts"),
+	VIEW_PRODUCTS_FORSALE("user/viewItemsForSale"),
 	PUBLISH_PRODUCT("add/addProduct"),
 	UPDATE_PRODUCT("update/editProduct"),
 	VIEW_MY_RECOMMENDATIONS("user/viewMyRecommendations"),

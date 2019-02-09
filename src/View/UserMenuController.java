@@ -3,6 +3,8 @@ package View;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Control.SysData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,7 +84,7 @@ public class UserMenuController implements Initializable{
 
     @FXML
     void goToSearchProd(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
+    	loadUI(NameToWindow.VIEW_PRODUCTS_FORSALE);
     }
 
     
@@ -95,10 +97,11 @@ public class UserMenuController implements Initializable{
 	@FXML
 	void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();
-
-		//		SysData.getInstance().setUserCustomer(null);
-
+		// logout user
+        SysData.getInstance();
+		SysData.setLoggedInUser(null);
 		stage.close();
+		
 		FXMLLoader load = new FXMLLoader(getClass().getResource("/view/login.fxml"));
 		Stage primaryStage = new Stage();
 		Parent root = load.load();

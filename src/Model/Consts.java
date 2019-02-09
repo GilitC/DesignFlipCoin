@@ -2,9 +2,6 @@ package Model;
 
 import java.io.File;
 
-/**
- * http://www.javapractices.com/topic/TopicAction.do?Id=2
- */
 public final class Consts {
 	private Consts() {
 		throw new AssertionError();
