@@ -18,7 +18,7 @@ public class TransactionPay{
 	private String creatingSignature;
 	private String destinationAddress;
 	private String destinationSignature;
-	private String walletAddress;
+	private String walletAddress; //of the creator
 
 	// -------------------------------Constructor------------------------------
 	

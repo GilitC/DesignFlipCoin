@@ -78,6 +78,33 @@ public class ProductLogic {
 		return results;
 	}
 	
+	/**
+	 * @return ArrayList of Products.
+	 */
+	public ArrayList<Product> getProdListWITHOUTSellingUser(String userAdd, String userSig) {
+		ArrayList<Product> results = new ArrayList<Product>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);					
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PRODSwithoutME);
+					) {
+				stmt.setString(1, userAdd);
+				stmt.setString(2, userSig);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Product(rs.getInt(i++), rs.getString(i++), rs.getURL(i++), rs.getString(i++), rs.getDouble(i++)
+							,rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getString(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
 	/*----------------------------------------- ADD / REMOVE / UPDATE USER METHODS --------------------------------------------*/
 
 	/**

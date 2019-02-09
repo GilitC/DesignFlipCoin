@@ -5,8 +5,6 @@ package utils;
 public enum NameToWindow {
 
 	WELCOMESCREEN("welcome"),
-
-	
 	/*------------LOGIN-------------------------------------------------*/
 	SIGN_UP("View/add/addUser"),
 	
@@ -17,7 +15,6 @@ public enum NameToWindow {
 	/*------------CREATE-------------------------------------------------*/
 	CREATE_PAYTRANS("View/add/addTeam"),
 	CREATE_CONFIRMTRANS("View/add/addTeam"),
-	SEND_EMAIL("View/add/sendEmail"),
 	
 	/*------------MENUS-------------------------------------------------*/
 	MENU_REPORTS("menus/reportsMenu"),
@@ -36,16 +33,11 @@ public enum NameToWindow {
 	/*------------ADD ADMIN PAGES------------------------------------*/
 	ADD_RECOMMENDATION("add/addRecommendation"),
 	
-	/*------------REMOVE---------------------------------*/
-	DELETE_USER("View/delete/deleteuser"),
-	DELETE_PRODUCT("View/delete/deleteProduct"),
-	
 	/*------------USER LOGIN SCREEN---------------------------------------------------------------------*/
 	VIEW_PRODUCTS("View/viewProducts"),
 	PUBLISH_PRODUCT("add/addProduct"),
-	
-	/*------------UPDATE---------------------------------*/
 	UPDATE_PRODUCT("update/editProduct"),
+	VIEW_MY_RECOMMENDATIONS("user/viewMyRecommendations"),
 	
 	/*------------QUERIES-------------------------------*/
 	QUERY_GETSPM("queries/getSPM");	

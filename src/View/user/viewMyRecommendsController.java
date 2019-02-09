@@ -32,8 +32,9 @@ public class viewMyRecommendsController {
 		private String signt = loggedIn.getUserSignature();
 	    
 	    public void initialize() {
-	        ObservableList<Recommendation> recs = FXCollections.observableArrayList(RecommendationLogic.getInstance().getRecommendation());
-	        listRecommendations.setItems(recs);
+	    	System.out.println("Opened MyRecommendations");
+	        ObservableList<Recommendation> recs = FXCollections.observableArrayList(RecommendationLogic.getInstance().getMyRecommendationsList(addrs, signt));
+	        listOfRecos.setItems(recs);
 	    }
 	    
 	    @FXML

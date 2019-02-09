@@ -3,7 +3,6 @@ package View;
 import Control.Logic.RecommendationLogic;
 import Control.Logic.UserLogic;
 import Exceptions.ListNotSelectedException;
-import Exceptions.MissingInputException;
 import Model.Recommendation;
 import Model.User;
 import javafx.collections.FXCollections;
@@ -15,10 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import View.WindowManager;
-import utils.E_Levels;
+import utils.commitment;
 
 public class sendRecToUserController {
 
@@ -32,7 +30,7 @@ public class sendRecToUserController {
 	    private ListView<User> listUsers;
 
 	    @FXML
-	    private ComboBox<E_Levels> comboBoxLevl;
+	    private ComboBox<commitment> comboBoxLevl;
 
 	    @FXML
 	    private Button back;
@@ -93,7 +91,7 @@ public class sendRecToUserController {
 	        ObservableList<User> userLst = FXCollections.observableArrayList(UserLogic.getInstance().getALLUsers());
 	        listUsers.setItems(userLst);
 	        
-	        comboBoxLevl.getItems().setAll(E_Levels.values());
+	        comboBoxLevl.getItems().setAll(commitment.values());
 	    }
 	    
 	    @FXML

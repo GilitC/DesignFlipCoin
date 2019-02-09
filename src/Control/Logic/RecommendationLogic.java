@@ -51,6 +51,33 @@ public class RecommendationLogic {
 	}
 	
 	/**
+	 * fetches all Recommendations from DB file belonging to a specific user
+	 * @return ArrayList of Recommendations.
+	 */
+	public ArrayList<Recommendation> getMyRecommendationsList(String userAdd, String userSig) {
+		ArrayList<Recommendation> results = new ArrayList<Recommendation>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_RECS_BY_USER);
+					) {
+				stmt.setString(1, userAdd);
+				stmt.setString(2, userSig);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					results.add(new Recommendation(rs.getInt("recommendId"), rs.getDate("dateCreated"), rs.getDouble("chanceChosen"), rs.getDouble("amountTaxRecommended"),
+							rs.getString("CommitmentLevel")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/**
 	 * fetches all Users with levels of importance, sent a given recommendation ID using an SQL query
 	 * @return ArrayList of Customers.
 	 */

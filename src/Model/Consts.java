@@ -43,7 +43,10 @@ public final class Consts {
 	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ?, TblRecommendation.publicAddress = ?, TblRecommendation.userSignature = ? WHERE TblRecommendation.recommendId=?" ;			
 	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? )";
 	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblRecommendedFor ( UserAddress, UserSignature, Recommendation , CommitimentLevel ) VALUES ( ? , ? , ? , ? )";
-	public static final String SQL_RECS_BY_USER = "{ call qryMyRecommends(?,?) }";
+	public static final String SQL_RECS_BY_USER = "SELECT TblRecommendation.recommendId, TblRecommendation.dateCreated, TblRecommendation.chanceChosen, TblRecommendation.amountTaxRecommended, TblRecommendedFor.CommitmentLevel " + 
+			"FROM TblRecommendation INNER JOIN TblRecommendedFor ON TblRecommendation.recommendId = TblRecommendedFor.Recommendation " + 
+			"WHERE (((TblRecommendedFor.UserAddress)=?) AND ((TblRecommendedFor.UserSignature)=?)) " + 
+			"GROUP BY TblRecommendation.recommendId, TblRecommendation.dateCreated, TblRecommendation.chanceChosen, TblRecommendation.amountTaxRecommended, TblRecommendedFor.CommitmentLevel";
 	/*----------------------------------------- PRODUCT QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_PRODUCTS = "SELECT * FROM TblItem;";
 	public static final String SQL_ADD_PRODUCT = "INSERT INTO TblItem ( productName, picture, description, pricePerUnit, quantityInStock, categoryID, sellerAddress, sellerSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )";
@@ -51,6 +54,8 @@ public final class Consts {
 	
 	public static final String SQL_SEL_prodByUserID = "SELECT TblItem.productID, TblItem.ItemName, TblItem.Description, TblItem.Price, TblItem.Quantity FROM TblItem Where TblItem.SellerAddress=? AND TblItem.SellerSignature=?";
 	
+	public static final String SQL_SEL_PRODSwithoutME = "SELECT TblItem.productID, TblItem.ItemName, TblItem.Image, TblItem.Description, TblItem.Price, TblItem.Quantity, TblItem.Category, TblItem.SellerAddress, TblItem.SellerSignature FROM TblItem WHERE ((Not (TblItem.SellerAddress)=?) AND (Not (TblItem.SellerSignature)=?))";
+
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
 	
