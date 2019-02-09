@@ -33,6 +33,16 @@ public class Product {
 		this.sellerAddress = sellerAddress;
 		this.sellerSignature = sellerSignature;
 	}
+	
+	public Product(int productID, String productName, String description, double pricePerUnit,
+			int quantityInStock) {
+		super();
+		this.productID = productID;
+		this.productName = productName;
+		this.description = description;
+		this.pricePerUnit = pricePerUnit;
+		this.quantityInStock = quantityInStock;
+	}
 
 	// -------------------------------Getters And Setters------------------------------
 	

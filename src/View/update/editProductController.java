@@ -75,7 +75,7 @@ public class editProductController {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Update Product");
 		alert.setHeaderText("");
-		
+		Product p = comboProducts.getSelectionModel().getSelectedItem();
 		String prodName = name.getText();
 		String decsription = desc.getText();
 		ProductCategory c = category.getSelectionModel().getSelectedItem();
@@ -98,18 +98,18 @@ public class editProductController {
 			}
 			
 			if (price.getText().isEmpty()) {
-				throw new MissingInputException("decsription");
+				throw new MissingInputException("price");
 			}
 			
 			if (quantity.getText().isEmpty()) {
-				throw new MissingInputException("decsription");
+				throw new MissingInputException("quantity");
 			}
 
 			URL pic = new URL(link.getText());
 			Double itemPrice = Double.parseDouble(price.getText());
 			int amount = Integer.parseInt(quantity.getText());
 			
-			if (ProductLogic.getInstance().addProduct(prodName, pic, decsription, itemPrice, amount, c.getCategoryID(), addrs, signt)) {
+			if (ProductLogic.getInstance().updateProduct(p.getProductID(), prodName, pic, decsription, itemPrice, amount, c.getCategoryID())) {
 				alert.setHeaderText("Success");
 				alert.setContentText("Added Product succesfully!");
 				alert.show();			
@@ -130,13 +130,19 @@ public class editProductController {
 
     }
 
+    
     @FXML
     void showProdDetails(ActionEvent event) {
-    	name.setText("");
-    	link.setText("");
-    	desc.setText("");
-    	price.setText("");
-    	quantity.setText("");
+    	Product myProd = comboProducts.getSelectionModel().getSelectedItem();
+    	
+    	int prod = ProductLogic.getInstance().getALLProducts().indexOf(myProd);
+    	Product p = ProductLogic.getInstance().getALLProducts().get(prod);
+ 
+    	name.setText(p.getProductName());
+    	link.setText(p.getPicture().toString());
+    	desc.setText(p.getDescription());
+    	price.setText(String.valueOf(p.getPricePerUnit()));
+    	quantity.setText(String.valueOf(p.getQuantityInStock()));
     	category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
     	
 		name.setVisible(true);
@@ -150,7 +156,9 @@ public class editProductController {
 
     //Initialize the combobox with the available categories
     public void initialize() {
-        category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
+    	comboProducts.getItems().setAll(ProductLogic.getInstance().getProdListBySellingUser(addrs, signt));
+    	
+    	category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
         
 		price.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {

@@ -95,11 +95,11 @@ public class addProductController {
 			}
 			
 			if (price.getText().isEmpty()) {
-				throw new MissingInputException("decsription");
+				throw new MissingInputException("price");
 			}
 			
 			if (quantity.getText().isEmpty()) {
-				throw new MissingInputException("decsription");
+				throw new MissingInputException("quantity");
 			}
 
 			URL pic = new URL(link.getText());

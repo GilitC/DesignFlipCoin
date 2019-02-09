@@ -13,6 +13,7 @@ import java.util.Date;
 import Model.User;
 import Model.Consts;
 import Model.Product;
+import Model.RecommendationToCustomer;
 
 public class ProductLogic {
 	private static ProductLogic _instance;
@@ -41,6 +42,32 @@ public class ProductLogic {
 					int i = 1;
 					results.add(new Product(rs.getInt(i++), rs.getString(i++), rs.getURL(i++), rs.getString(i++),
 							rs.getInt(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++),rs.getString(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/**
+	 * @return ArrayList of Products.
+	 */
+	public ArrayList<Product> getProdListBySellingUser(String userAdd, String userSig) {
+		ArrayList<Product> results = new ArrayList<Product>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);					
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_prodByUserID);
+					) {
+				stmt.setString(1, userAdd);
+				stmt.setString(2, userSig);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Product(rs.getInt(i++), rs.getString(i++), rs.getString(i++),rs.getInt(i++), rs.getInt(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

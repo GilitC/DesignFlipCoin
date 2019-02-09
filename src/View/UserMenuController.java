@@ -57,7 +57,7 @@ public class UserMenuController implements Initializable{
 
     @FXML
     void GoToEditProd(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
+    	loadUI(NameToWindow.UPDATE_PRODUCT);
     }
 
 

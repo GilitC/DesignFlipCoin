@@ -43,11 +43,13 @@ public final class Consts {
 	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ?, TblRecommendation.publicAddress = ?, TblRecommendation.userSignature = ? WHERE TblRecommendation.recommendId=?" ;			
 	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? )";
 	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblRecommendedFor ( UserAddress, UserSignature, Recommendation , CommitimentLevel ) VALUES ( ? , ? , ? , ? )";
-
+	public static final String SQL_RECS_BY_USER = "{ call qryMyRecommends(?,?) }";
 	/*----------------------------------------- PRODUCT QUERIES --------------------------------------------*/
-	public static final String SQL_SEL_PRODUCTS = "SELECT TblProduct.* FROM TblProduct;";
+	public static final String SQL_SEL_PRODUCTS = "SELECT * FROM TblItem;";
 	public static final String SQL_ADD_PRODUCT = "INSERT INTO TblItem ( productName, picture, description, pricePerUnit, quantityInStock, categoryID, sellerAddress, sellerSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )";
 	public static final String SQL_UPD_PRODUCT = "UPDATE TblItem SET TblItem.ItemName = ?, TblItem.Image = ?, TblItem.Description = ?, TblItem.Price = ?, TblItem.Quantity = ?, TblItem.Category = ? WHERE TblItem.CatalogNumber=?" ;
+	
+	public static final String SQL_SEL_prodByUserID = "SELECT TblItem.productID, TblItem.ItemName, TblItem.Description, TblItem.Price, TblItem.Quantity FROM TblItem Where TblItem.SellerAddress=? AND TblItem.SellerSignature=?";
 	
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";

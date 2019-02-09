@@ -1,12 +1,14 @@
 Welcome
-Feb 09, 2019 1:18:13 PM javafx.fxml.FXMLLoader$ValueElement processValue
+Feb 09, 2019 2:20:37 PM javafx.fxml.FXMLLoader$ValueElement processValue
 WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
-Feb 09, 2019 1:18:14 PM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
-Generating user signature
-Generated signature: 76U
 log4j:WARN No appenders could be found for logger (com.healthmarketscience.jackcess.impl.DatabaseImpl).
 log4j:WARN Please initialize the log4j system properly.
-Received count: 0
-Didn't find an existing user signature
-Successful sign up
+Attempting to connect MS Access DB
+DB File: C:\Users\Nisan\Desktop\git\DesignFlipCoin\sources\database.accdb
+CONNECTING DB TO: jdbc:ucanaccess://C:\Users\Nisan\Desktop\git\DesignFlipCoin\sources\database.accdb
+Using second URL: jdbc:ucanaccess://C:\Users\Nisan\Desktop\git\DesignFlipCoin\src\sources\database.accdb
+Connection to MS Access DB was successful!
+Feb 09, 2019 2:20:45 PM javafx.fxml.FXMLLoader$ValueElement processValue
+WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
+Attempting to open welcome.fxml
+Attempting to open welcome.fxml

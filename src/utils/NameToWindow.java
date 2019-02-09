@@ -45,18 +45,9 @@ public enum NameToWindow {
 	PUBLISH_PRODUCT("add/addProduct"),
 	
 	/*------------UPDATE---------------------------------*/
-	UPDATE_USER("View/update/UpdateUser"),
-	UPDATE_PRODUCT("View/update/UpdateProduct"),
+	UPDATE_PRODUCT("update/editProduct"),
 	
 	/*------------QUERIES-------------------------------*/
-	QUERY_GETMAC("View/queries/getMAC"),
-	QUERY_GETALLSPM("View/queries/getALLSPM"),
-	QUERY_GETMPP("View/queries/getMPP"),
-	QUERY_MFT("queries/getMFT"),
-	QUERY_GETCSOOT("queries/getCSOOT"),
-	QUERY_GETEWMT("queries/getEWMT"),
-	QUERY_GETFPOBHT("queries/getFPOBHT"),
-	QUERY_GETTWLHC("queries/getTWLHC"),
 	QUERY_GETSPM("queries/getSPM");	
 	
 	
