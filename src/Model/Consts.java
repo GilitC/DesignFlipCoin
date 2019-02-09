@@ -25,7 +25,8 @@ public final class Consts {
 	public static final String SQL_CHECK_SIGNATURE = "SELECT count(*) as count from tblUser where Signature = ?";
 	public static final String SQL_CHECK_ADDRESS = "SELECT count(*) as count from tblUser where PublicAddress = ?";
 	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
-	public static final String SQL_INS_USER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
+	public static final String SQL_INS_USER = "INSERT INTO TblUser ( PublicAddress, Signature, UserName, Password, Phone, Email ) VALUES ( ? , ? , ? , ? , ? , ? )";
+
 	
 	public static final String SQL_ADD_NEWUSER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
 	public static final String SQL_UPD_USER = "{ call qryUpdUser(?,?,?,?,?,?,?) }";

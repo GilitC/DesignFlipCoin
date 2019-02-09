@@ -1,10 +1,10 @@
 package View.add;
 
 import Control.Logger;
-import Control.Logic.RecommendationLogic;
 import Control.Logic.UserLogic;
 import Exceptions.EmailNotValidException;
 import Exceptions.MissingInputException;
+import Model.User;
 import View.WindowManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -109,14 +109,22 @@ public class addUserController {
 			
 			if (UserLogic.getInstance().addUser(user, psw, emailAdd, cell)) {
 				Logger.log("Successful sign up");
-				initialize();
-				labelSuccess.setText("Thank you for signing up! Your public Address and Signature are:");
-
-				//EDIT THIS to show generated values+++++++++++++++++
-				userSig.setText("");
-				publicAdd.setText("");	
-				userSig.setVisible(true);
-				publicAdd.setVisible(true);
+				phone.setText("");
+				pass.setText("");
+				email.setText("");
+				username.setText("");
+				
+				labelSuccess.setText("Thank you for signing up! Your Public Address and Signature are:");
+				User newuser = new User(user);
+				if(!UserLogic.getInstance().getALLUsers().isEmpty()) //Makes sure user was added to database
+				{
+					int u = UserLogic.getInstance().getALLUsers().indexOf(newuser);
+					User us = UserLogic.getInstance().getALLUsers().get(u);
+					userSig.setText(us.getUserSignature());
+					publicAdd.setText(us.getPublicAddress());	
+					userSig.setVisible(true);
+					publicAdd.setVisible(true);
+				}
 				
 			} else {
 				Logger.log("Error signing up user");

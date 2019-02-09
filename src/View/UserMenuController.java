@@ -45,38 +45,50 @@ public class UserMenuController implements Initializable{
 		loadUI(NameToWindow.WELCOMESCREEN);
 	}
 
-	@FXML
-	void GoToCreateReports(ActionEvent event) {
-		loadUI(NameToWindow.MENU_REPORTS);
-	}
+    @FXML
+    void GoToAddProd(ActionEvent event) {
+    	loadUI(NameToWindow.PUBLISH_PRODUCT);
+    }
 
-	@FXML
-	void GoToTransactions(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+    @FXML
+    void GoToConfirmTrans(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
 
-	@FXML
-	void GoToProdMenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+    @FXML
+    void GoToEditProd(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
 
-	@FXML
-	void GoToRecommendmenu(ActionEvent event) {
-		loadUI(NameToWindow.MENU_RECOMMENDATIONS);
-	}
 
-	@FXML
-	void goToManageOrders(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+    @FXML
+    void GoToPayTrans(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
 
+    @FXML
+    void GoToTransactions(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+
+    @FXML
+    void GoToViewRecommendations(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+
+    @FXML
+    void goToMyInfo(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+
+    @FXML
+    void goToSearchProd(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+
+    
 	@FXML
 	void goToWalletsMenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
-
-	@FXML
-	void goToManageUsers(ActionEvent event) {
 		loadUI(NameToWindow.WELCOMESCREEN);
 	}
 

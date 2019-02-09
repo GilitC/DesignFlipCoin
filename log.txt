@@ -1,28 +1,12 @@
 Welcome
-Feb 06, 2019 11:05:29 AM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.161
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open menus/recMenu.fxml
-Attempting to open add/addRecommendation.fxml
-Feb 06, 2019 11:05:40 AM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.161
-Attempting to open update/updateRecommendation.fxml
+Feb 09, 2019 1:18:13 PM javafx.fxml.FXMLLoader$ValueElement processValue
+WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
+Feb 09, 2019 1:18:14 PM javafx.fxml.FXMLLoader$ValueElement processValue
+WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
+Generating user signature
+Generated signature: 76U
 log4j:WARN No appenders could be found for logger (com.healthmarketscience.jackcess.impl.DatabaseImpl).
 log4j:WARN Please initialize the log4j system properly.
-Attempting to open update/updateRecommendation.fxml
-Attempting to open sendRecToUser.fxml
-Attempting to open viewRecommendations.fxml
-Attempting to open menus/reportsMenu.fxml
-Attempting to open menus/recMenu.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
-Attempting to open welcome.fxml
+Received count: 0
+Didn't find an existing user signature
+Successful sign up

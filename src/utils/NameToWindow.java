@@ -7,6 +7,9 @@ public enum NameToWindow {
 	WELCOMESCREEN("welcome"),
 
 	
+	/*------------LOGIN-------------------------------------------------*/
+	SIGN_UP("View/add/addUser"),
+	
 	/*------------BUY-------------------------------------------------*/
 	BUY_WALLET("View/buy/buyWallet"),
 	CHARGE_WALLET("View/buy/chargeWallet"),
@@ -30,16 +33,16 @@ public enum NameToWindow {
 	UPDATE_RECOMMENDATIONS("update/updateRecommendation"),
 	SEND_REC_TO_USER("sendRecToUser"),
 	
-	/*------------ADD------------------------------------*/
-	ADD_USER("add/addUser"),
+	/*------------ADD ADMIN PAGES------------------------------------*/
 	ADD_RECOMMENDATION("add/addRecommendation"),
+	
 	/*------------REMOVE---------------------------------*/
 	DELETE_USER("View/delete/deleteuser"),
 	DELETE_PRODUCT("View/delete/deleteProduct"),
 	
 	/*------------USER LOGIN SCREEN---------------------------------------------------------------------*/
 	VIEW_PRODUCTS("View/viewProducts"),
-	PUBLISH_PRODUCT("View/add/addProduct"),
+	PUBLISH_PRODUCT("add/addProduct"),
 	
 	/*------------UPDATE---------------------------------*/
 	UPDATE_USER("View/update/UpdateUser"),
