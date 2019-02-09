@@ -1,4 +1,4 @@
-package View.add;
+package View.update;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,6 +9,7 @@ import Control.Logic.CategoryLogic;
 import Control.Logic.ProductLogic;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Model.Product;
 import Model.ProductCategory;
 import Model.User;
 import View.WindowManager;
@@ -22,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class addProductController {
+public class editProductController {
 
     @FXML
     private TextField quantity;
@@ -46,7 +47,7 @@ public class addProductController {
     private Button back;
 
     @FXML
-    private Button addButton;
+    private Button saveButton;
 
     @FXML
     private ComboBox<ProductCategory> category;
@@ -58,20 +59,22 @@ public class addProductController {
     private TextField desc;
 
     @FXML
+    private ComboBox<Product> comboProducts;
+    
+	User loggedIn = SysData.getLoggedInUser(); // Get the logged In User
+	private String addrs = loggedIn.getPublicAddress();
+	private String signt = loggedIn.getUserSignature();
+	
+    @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();
     }
 
     @FXML
-    void addProduct(ActionEvent event) throws MissingInputException, ListNotSelectedException, MalformedURLException{
+    void saveProduct(ActionEvent event) throws MissingInputException, ListNotSelectedException, MalformedURLException{
     	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Add Product");
+		alert.setTitle("Update Product");
 		alert.setHeaderText("");
-
-		SysData.getInstance();
-		User loggedIn = SysData.getLoggedInUser(); // Get the logged In User
-		String addrs = loggedIn.getPublicAddress();
-		String signt = loggedIn.getUserSignature();
 		
 		String prodName = name.getText();
 		String decsription = desc.getText();
@@ -128,13 +131,21 @@ public class addProductController {
     }
 
     @FXML
-    void clearForm(ActionEvent event) {
+    void showProdDetails(ActionEvent event) {
     	name.setText("");
     	link.setText("");
     	desc.setText("");
     	price.setText("");
     	quantity.setText("");
     	category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
+    	
+		name.setVisible(true);
+    	link.setVisible(true);
+    	desc.setVisible(true);
+    	price.setVisible(true);
+    	quantity.setVisible(true);
+    	category.setVisible(true);
+    	saveButton.setVisible(true);
     }
 
     //Initialize the combobox with the available categories
@@ -153,6 +164,13 @@ public class addProductController {
 			}
 		});
 		
+		name.setVisible(false);
+    	link.setVisible(false);
+    	desc.setVisible(false);
+    	price.setVisible(false);
+    	quantity.setVisible(false);
+    	category.setVisible(false);
+    	saveButton.setVisible(false);
     }
 
 }
