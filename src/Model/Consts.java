@@ -22,6 +22,8 @@ public final class Consts {
 
 	/*----------------------------------------- USER QUERIES -----------------------------------------*/
 	public static final String SQL_SEL_USERS = "SELECT * FROM TblUser";
+	public static final String SQL_CHECK_SIGNATURE = "SELECT count(*) as count from tblUser where Signature = ?";
+	public static final String SQL_CHECK_ADDRESS = "SELECT count(*) as count from tblUser where PublicAddress = ?";
 	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
 	public static final String SQL_INS_USER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
 	

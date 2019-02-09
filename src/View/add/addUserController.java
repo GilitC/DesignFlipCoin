@@ -107,7 +107,7 @@ public class addUserController {
 			//Generate a random and not taken userSig and userAdd
 			//then call this if below
 			
-			if (UserLogic.getInstance().addUser(publicAddress, userSignature, user, psw, emailAdd, cell))) {
+			if (UserLogic.getInstance().addUser(user, psw, emailAdd, cell)) {
 				Logger.log("Successful sign up");
 				initialize();
 				labelSuccess.setText("Thank you for signing up! Your public Address and Signature are:");

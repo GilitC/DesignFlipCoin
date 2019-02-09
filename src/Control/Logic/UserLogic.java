@@ -7,13 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
+
 import Model.User;
 import Model.Consts;
 
 public class UserLogic {
 	private static UserLogic _instance;
-
+	private Random _random;
 	private UserLogic() {
+		_random = new Random();
 	}
 
 	public static UserLogic getInstance() {
@@ -54,9 +57,14 @@ public class UserLogic {
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addUser(String publicAddress, String userSignature,String username, String password,
+	public boolean addUser(String username, String password,
 	String email, String phone) {
 		try {
+			
+			
+			String publicAddress = generatePublicAddress();
+			String userSignature = generateUserSignature();
+			
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_USER)) {
@@ -86,6 +94,81 @@ public class UserLogic {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	private String generateUserSignature() {
+		String charPool = "abcdefghijklmnopqrstuvwxyz";
+		charPool = charPool.toUpperCase();
+		String toReturn = "";
+		Boolean finished = false;
+		
+		while(!finished)
+		{
+			// X
+			toReturn = String.valueOf(_random.nextInt(9)+1);
+			// Y
+			toReturn += String.valueOf(_random.nextInt(10));
+			// Z
+			toReturn += String.valueOf(charPool.charAt(_random.nextInt(charPool.length())));
+
+			// validate
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_CHECK_SIGNATURE);
+						ResultSet rs = stmt.executeQuery()) {
+					
+					stmt.setString(1, toReturn);
+					rs.first();
+					if (rs.getInt("count") <= 0)
+					{
+						// There is no duplicate Public Address
+						finished = true;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return toReturn;
+	}
+
+	private String generatePublicAddress() {
+		String charPool = "abcdefghijklmnopqrstuvwxyz0123456789";
+		charPool = charPool.toUpperCase();
+		Boolean finished = false;
+		String toReturn = "";
+		while(!finished)
+		{
+			for(int i = 0; i < 14; i++)
+			{
+				toReturn += String.valueOf(charPool.charAt(_random.nextInt(charPool.length())));
+			}
+			// validate
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_CHECK_ADDRESS);
+						ResultSet rs = stmt.executeQuery()) {
+					
+					stmt.setString(1, toReturn);
+					rs.first();
+					if (rs.getInt("count") <= 0)
+					{
+						// There is no duplicate Public Address
+						finished = true;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return toReturn;
 	}
 
 	/**
