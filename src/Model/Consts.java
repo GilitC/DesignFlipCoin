@@ -67,9 +67,15 @@ public final class Consts {
 	public static final String SQL_UPD_CATEGORY= "UPDATE TblCategory SET TblCategory.CategoryName = ? WHERE TblCategory.SerialNumber=?" ;			
 	
 	
-	/*----------------------------------------- MORE QUERIES ----------------------------------------------*/
-
-	//public static final String SQL_SEL_ORDERS = "SELECT * FROM TblOrder";
+	/*----------------------------------------- WALLET QUERIES ----------------------------------------------*/
+    public static final String SQL_ADD_WALLET = "INSERT INTO TblWallet ( uniqueaddress, price, installedOnComputer, installedOnSmartphone, installedOnTablet, cashFlow, pendingAmount, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+	public static final String SQL_UPD_WALLET_Profit = "UPDATE TblWallet SET TblWallet.Amount = ?, TblWallet.PendingAmount = ? WHERE TblWallet.uniqueaddress=?" ;
+	
+	public static final String SQL_CHECK_WALLETADDRESS = "SELECT count(*) as count from tblWallet where Uniqueaddress = ?";
+	
+    public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinSpace ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
+    public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinKnots ( WalletUuniqueAddress, TransactionSize ) VALUES ( ? , ? )";
+	
 
 	/**
 	 * find the correct path of the DB file

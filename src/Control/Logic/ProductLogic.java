@@ -102,7 +102,7 @@ public class ProductLogic {
 		return results;
 	}
 	
-	/*----------------------------------------- ADD / REMOVE / UPDATE USER METHODS --------------------------------------------*/
+	/*----------------------------------------- ADD / REMOVE / UPDATE  METHODS --------------------------------------------*/
 
 	/**
 	 * Adding a new Recommendation with the parameters received from the form.
