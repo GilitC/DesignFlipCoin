@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TransactionConfirm{
 
-	private String TXID;
+	private int TXID;
 	private String description;
 	private int sizeInBytes;
 	private Date dtCreated; //Date and time field in MS Access
@@ -24,12 +24,11 @@ public class TransactionConfirm{
     
 	// -------------------------------Constructor------------------------------
 	
-	public TransactionConfirm(String tXID, String description, int sizeInBytes, Date dtCreated, Date executionTimeDate,
+	public TransactionConfirm(int tXID, String description, int sizeInBytes, Date dtCreated, Date executionTimeDate,
 			double fee, String state, double payValue, String creatingAddress, String creatingSignature,
 			String destinationAddress, String destinationSignature, String walletAddress, boolean confirmed,
 			Date shipmentTime) {
-		super();
-		TXID = tXID;
+		this.TXID = tXID;
 		this.description = description;
 		this.sizeInBytes = sizeInBytes;
 		this.dtCreated = dtCreated;
@@ -47,12 +46,12 @@ public class TransactionConfirm{
 	}
 
 	// -------------------------------Getters And Setters------------------------------
-	public String getTXID() {
+	public int getTXID() {
 		return TXID;
 	}
 
 
-	public void setTXID(String tXID) {
+	public void setTXID(int tXID) {
 		TXID = tXID;
 	}
 
@@ -201,10 +200,9 @@ public class TransactionConfirm{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((TXID == null) ? 0 : TXID.hashCode());
+		result = prime * result + TXID;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -215,14 +213,10 @@ public class TransactionConfirm{
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionConfirm other = (TransactionConfirm) obj;
-		if (TXID == null) {
-			if (other.TXID != null)
-				return false;
-		} else if (!TXID.equals(other.TXID))
+		if (TXID != other.TXID)
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {

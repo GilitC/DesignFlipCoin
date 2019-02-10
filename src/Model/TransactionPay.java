@@ -6,13 +6,13 @@ public class TransactionPay{
 
 	// -------------------------------Class  Members------------------------------
 	
-	private String transactionID;
+	private int transactionID;
 	private String description;
 	private int sizeInBytes;
 	private Date dtCreated; //Date and time field in MS Access
 	private Date executionTimeDate;
 	private double fee;
-	private String state; //STATUS [awaiting approval= default, confirmed, closed, irrelevant]
+	private String state; //STATUS [Enum TXState]
 	private double payValue; // amount payed
 	private String creatingAddress;
 	private String creatingSignature;
@@ -23,7 +23,7 @@ public class TransactionPay{
 	// -------------------------------Constructor------------------------------
 	
 	
-	public TransactionPay(String transactionID, String description, int sizeInBytes, Date dtCreated,
+	public TransactionPay(int transactionID, String description, int sizeInBytes, Date dtCreated,
 			Date executionTimeDate, double fee, String state, double payValue, String creatingAddress,
 			String creatingSignature, String destinationAddress, String destinationSignature, String walletAddress) {
 		super();
@@ -44,11 +44,11 @@ public class TransactionPay{
 
 	// -------------------------------Getters and Setters------------------------------
 	
-	public String getTransactionID() {
+	public int getTransactionID() {
 		return transactionID;
 	}
 
-	public void setTransactionID(String transactionID) {
+	public void setTransactionID(int transactionID) {
 		this.transactionID = transactionID;
 	}
 
@@ -152,7 +152,7 @@ public class TransactionPay{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((transactionID == null) ? 0 : transactionID.hashCode());
+		result = prime * result + transactionID;
 		return result;
 	}
 
@@ -165,10 +165,7 @@ public class TransactionPay{
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionPay other = (TransactionPay) obj;
-		if (transactionID == null) {
-			if (other.transactionID != null)
-				return false;
-		} else if (!transactionID.equals(other.transactionID))
+		if (transactionID != other.transactionID)
 			return false;
 		return true;
 	}

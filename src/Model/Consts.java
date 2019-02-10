@@ -54,11 +54,13 @@ public final class Consts {
 	public static final String SQL_SEL_PRODSwithoutME = "SELECT TblItem.productID, TblItem.ItemName, TblItem.Image, TblItem.Description, TblItem.Price, TblItem.Quantity, TblItem.Category, TblItem.SellerAddress, TblItem.SellerSignature FROM TblItem WHERE ((Not (TblItem.SellerAddress)=?) AND (Not (TblItem.SellerSignature)=?))";
 
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
-	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblTransactionPay";
+	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblPayTransaction";
+    public static final String SQL_ADD_TRANSPAY = "INSERT INTO TblPayTransaction ( Description, Size, CreationTime, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
 	/*----------------------------------------- CONFIRM TX QUERIES --------------------------------------------*/
-	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblTransactionConfirm";
+	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblConfirmTransaction";
+    public static final String SQL_ADD_TRANSCORNFIM = "INSERT INTO TblConfirmTransaction ( Description, Size, CreationTime, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, confirmed, shipmentTime ) VALUES ( ?, ?, ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
 	/*----------------------------------------- CATEGORY QUERIES ----------------------------------------------*/
