@@ -94,11 +94,11 @@ public class Recommendation {
 	@Override
 	public String toString() {
 		if(this.commitLevel==null)
-			return "Recommendation [recommedID=" + recommedID + ", dateCreated=" + dateCreated + ", chanceChosen="
-			+ chanceChosen + ", amountTaxRecommended=" + amountTaxRecommended + ", publicAddress=" + publicAddress
-			+ ", userSignature=" + userSignature + "]";
-		return "Recommendation [recommedID=" + recommedID + ", dateCreated=" + dateCreated + ", chanceChosen="
-				+ chanceChosen + ", amountTaxRecommended=" + amountTaxRecommended + ", commitLevel=" + commitLevel + "]";
+			return "Recommendation:" + recommedID + ", Created On " + dateCreated + ", chance Chosen:"
+			+ chanceChosen + ", amount Tax Recommended: " + amountTaxRecommended + ", publicAddress:" + publicAddress
+			+ ", userSignature:" + userSignature + "";
+		return "Recommendation: " + recommedID + ", Created On " + dateCreated + ", chance Chosen:"
+				+ chanceChosen + ", amount Tax Recommended: " + amountTaxRecommended + ", Commitment Level:" + commitLevel + "";
 	}	
 	
 	

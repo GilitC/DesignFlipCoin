@@ -1,5 +1,5 @@
 Welcome
-Feb 09, 2019 7:32:33 PM javafx.fxml.FXMLLoader$ValueElement processValue
+Feb 10, 2019 10:38:53 AM javafx.fxml.FXMLLoader$ValueElement processValue
 WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
 log4j:WARN No appenders could be found for logger (com.healthmarketscience.jackcess.impl.DatabaseImpl).
 log4j:WARN Please initialize the log4j system properly.
@@ -8,20 +8,10 @@ DB File: C:\Users\Nisan\Desktop\git\DesignFlipCoin\sources\database.accdb
 CONNECTING DB TO: jdbc:ucanaccess://C:\Users\Nisan\Desktop\git\DesignFlipCoin\sources\database.accdb
 Using second URL: jdbc:ucanaccess://C:\Users\Nisan\Desktop\git\DesignFlipCoin\src\sources\database.accdb
 Connection to MS Access DB was successful!
-Feb 09, 2019 7:32:41 PM javafx.fxml.FXMLLoader$ValueElement processValue
+Feb 10, 2019 10:39:00 AM javafx.fxml.FXMLLoader$ValueElement processValue
 WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
 Attempting to open welcome.fxml
 Attempting to open user/viewMyRecommendations.fxml
-Feb 09, 2019 7:32:43 PM javafx.fxml.FXMLLoader$ValueElement processValue
+Feb 10, 2019 10:39:01 AM javafx.fxml.FXMLLoader$ValueElement processValue
 WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
 Opened MyRecommendations
-Attempting to open user/viewMyRecommendations.fxml
-Feb 09, 2019 7:33:36 PM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
-Opened MyRecommendations
-Attempting to open welcome.fxml
-Attempting to open user/viewMyRecommendations.fxml
-Feb 09, 2019 7:33:40 PM javafx.fxml.FXMLLoader$ValueElement processValue
-WARNING: Loading FXML document with JavaFX API of version 10.0.1 by JavaFX runtime of version 8.0.172
-Opened MyRecommendations
-Attempting to open welcome.fxml
