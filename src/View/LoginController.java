@@ -119,10 +119,11 @@ public class LoginController {
 							throw new InvalidInputException("Wrong password. Please try again.");
 					}
 			}
-			} else {//if no active user has entered, popup wrong username and password.
+			 else {//if no active user has entered, popup wrong username and password.
 				alert.setHeaderText("Failed to login.");
 				alert.setContentText("Wrong username/password");
 				alert.show();
+			}
 			}
 		}catch(NumberFormatException e) {//catch exception if trying to convert string to integer
 			new InvalidInputException("Numbers only in this field please.");
