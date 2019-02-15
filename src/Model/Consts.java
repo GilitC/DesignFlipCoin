@@ -70,13 +70,14 @@ public final class Consts {
 	
 	
 	/*----------------------------------------- WALLET QUERIES ----------------------------------------------*/
-    public static final String SQL_ADD_WALLET = "INSERT INTO TblWallet ( uniqueaddress, price, installedOnComputer, installedOnSmartphone, installedOnTablet, cashFlow, pendingAmount, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+    public static final String SQL_ADD_WALLET = "INSERT INTO TblWallet ( Uniqueaddress, Price, installedOnComputer, installedOnSmartphone, installedOnTablet, Amount, pendingAmount, UserAddress, UserSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	public static final String SQL_UPD_WALLET_Profit = "UPDATE TblWallet SET TblWallet.Amount = ?, TblWallet.PendingAmount = ? WHERE TblWallet.uniqueaddress=?" ;
+	public static final String SQL_GET_FREETRANSSIZE = "SELECT TblSystem.TransactionSizeFree FROM TblSystem";
 	
-	public static final String SQL_CHECK_WALLETADDRESS = "SELECT count(*) as count from tblWallet where Uniqueaddress = ?";
+	public static final String SQL_CHECK_WALLETADDRESS = "SELECT count(*) as count from TblWallet where Uniqueaddress = ?";
 	
-    public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinSpace ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
-    public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinKnots ( WalletUuniqueAddress, TransactionSize ) VALUES ( ? , ? )";
+    public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinKnots ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
+    public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinSpace ( WalletUniqueAddress, TransactionSize ) VALUES ( ? , ? )";
 	
 
 	/**

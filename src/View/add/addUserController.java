@@ -2,6 +2,7 @@ package View.add;
 
 import Control.Logger;
 import Control.Logic.UserLogic;
+import Control.Logic.WalletLogic;
 import Exceptions.EmailNotValidException;
 import Exceptions.MissingInputException;
 import Model.User;
@@ -121,7 +122,18 @@ public class addUserController {
 					int u = UserLogic.getInstance().getALLUsers().indexOf(newuser);
 					User us = UserLogic.getInstance().getALLUsers().get(u);
 					userSig.setText(us.getUserSignature());
-					publicAdd.setText(us.getPublicAddress());	
+					publicAdd.setText(us.getPublicAddress());
+					
+					//New User that signs up gets a wallet (Type: BitCoinSpace) automatically
+					//Create the wallet and add to users wallets:
+					String myWallet = WalletLogic.getInstance().addWallet(0, true, true, true, 0, 0, us.getPublicAddress(), us.getUserSignature());
+					if(myWallet!=null)
+					{
+						//if regular wallet was added then make it the default one: BS wallet
+						WalletLogic.getInstance().addBSWallet(myWallet, WalletLogic.getInstance().getFreeTranSize());	
+					}
+					
+					//Show user the new generated values: Address and Signature
 					userSig.setVisible(true);
 					publicAdd.setVisible(true);
 				}
