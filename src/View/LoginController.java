@@ -78,7 +78,14 @@ public class LoginController {
 		alert.setTitle("Login");
 		alert.setHeaderText("");
 		String user = email.getText();
-		String pass = password.getText();	
+		String pass = password.getText();
+		
+		if(override)
+		{
+			user = "Nisan";
+			pass = "admin";
+		}
+		
 		try {
 			if(user.isEmpty()) {
 				throw new MissingInputException("Please enter a username");

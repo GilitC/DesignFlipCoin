@@ -3,6 +3,8 @@ package Model;
 
 import java.net.URL;
 
+
+
 public class Product {
 	
 	//This class is named Item in MS access
@@ -147,6 +149,7 @@ public class Product {
 				+ quantityInStock + ", categoryID=" + categoryID + ", sellerAddress=" + sellerAddress
 				+ ", sellerSignature=" + sellerSignature + "]";
 	}
+
 	
 
 	

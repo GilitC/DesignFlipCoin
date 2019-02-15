@@ -79,6 +79,7 @@ public class ProductLogic {
 	 * @return ArrayList of Products.
 	 */
 	public ArrayList<Product> getProdListWITHOUTSellingUser(String userAdd, String userSig) {
+		System.out.println("Discluding user address: " + userAdd + " userSig: " + userSig);
 		ArrayList<Product> results = new ArrayList<Product>();
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

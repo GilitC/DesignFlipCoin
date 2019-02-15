@@ -27,8 +27,8 @@ public final class Logger{
 		try {
 			
 			writer = new PrintStream(outputLogFile);
-			System.setErr(writer);
-			System.setOut(writer);
+//			System.setErr(writer);
+//			System.setOut(writer);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
