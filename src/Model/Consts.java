@@ -88,6 +88,20 @@ public final class Consts {
     		+ " AND Price > ? AND Price < ? AND itemName like ? AND Category = ?";
     
 
+    public static final String SQL_GET_USER_BALANCE = "SELECT sum(Amount) as totalBalance from TblWallet WHERE UserAddress = ? AND USerSignature = ? group by UserAddress, UserSignature ";
+    public static final String SQL_ADD_ITEM_TO_ORDER = "INSERT INTO tblItemsInOrder VALUES (?, ?)";
+    public static final String SQL_ADD_ORDER	=	"INSERT INTO tblOrders (totalSum, userAddr, userSig) VALUES (?, ?, ?)";
+    
+    
+    public static final String SQL_GET_ORDERS	=	"SELECT O.ID, O.totalSum, O.status, Count(I.orderID) AS items, O.paid \r\n" + 
+    		"FROM tblorders AS O INNER JOIN tblItemsInOrder AS I ON O.ID = I.orderID\r\n" + 
+    		"WHERE (((O.[userAddr]) = ?) AND ((O.[userSig]) = ?))\r\n" + 
+    		"GROUP BY O.ID, O.totalSum, O.status, O.paid \r\n" + 
+    		"ORDER BY O.ID DESC;\r\n" + 
+    		"";
+    
+    public static final String SQL_GET_ORDER_UNPAID_AMOUNT = "SELECT sum(payValue) as unpaid from TblPayTransaction where orderID = ? AND not State = \"Success\"";
+    
 	/**
 	 * find the correct path of the DB file
      * @return the path of the DB file (from eclipse or with runnable file)

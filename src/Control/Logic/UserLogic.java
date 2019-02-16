@@ -50,6 +50,33 @@ public class UserLogic {
 		return results;
 	}
 	
+	/**
+	 * fetches all users from DB file.
+	 * @return ArrayList of users.
+	 */
+	public Double getUserBalance(String userAddress, String userSig) {
+		Double result = null;
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					
+					) {
+				PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_USER_BALANCE);
+				stmt.setString(1, userAddress);
+				stmt.setString(2,  userSig);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					result = rs.getDouble(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	/*----------------------------------------- ADD / REMOVE / UPDATE USER METHODS --------------------------------------------*/
 
 	/**
@@ -246,4 +273,7 @@ public class UserLogic {
 		}
 		return false;
 	}
+	
+	
+	
 }

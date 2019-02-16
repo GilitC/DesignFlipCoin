@@ -38,9 +38,11 @@ public enum NameToWindow {
 	PUBLISH_PRODUCT("add/addProduct"),
 	UPDATE_PRODUCT("update/editProduct"),
 	VIEW_MY_RECOMMENDATIONS("user/viewMyRecommendations"),
+	MANAGE_ORDERS("Orders/viewOrders"),
 	
 	/*------------QUERIES-------------------------------*/
 	QUERY_GETSPM("queries/getSPM");	
+	
 	
 	
 	NameToWindow(String s)

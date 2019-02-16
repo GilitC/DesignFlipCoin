@@ -64,7 +64,7 @@ public class UserMenuController implements Initializable{
 
     @FXML
     void GoToPayTrans(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
+    	loadUI(NameToWindow.MANAGE_ORDERS);
     }
 
     @FXML

@@ -41,7 +41,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToPayTrans" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Create Pay Transaction">
+            <Button mnemonicParsing="false" onAction="#GoToPayTrans" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Manage Orders">
                <effect>
                   <Glow />
                </effect>

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,6 +56,9 @@ public class viewItemsForSaleContoller {
 
 	@FXML
 	private Button back;
+	
+	@FXML
+	private Button btnPurchase;
 
 	@FXML
 	public Text totalAmount;
@@ -75,14 +80,7 @@ public class viewItemsForSaleContoller {
 	private String signt = loggedIn.getUserSignature();
 
 	public void initialize() {
-
-		     /*ColumnConstraints col1 = new ColumnConstraints();
-		     col1.setPercentWidth(25);
-		     ColumnConstraints col2 = new ColumnConstraints();
-		     col2.setPercentWidth(50);
-		     ColumnConstraints col3 = new ColumnConstraints();
-		     col3.setPercentWidth(25);
-		     gridPane.getColumnConstraints().addAll(col1,col2,col3);*/
+		btnPurchase.setVisible(false);
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
 		scp.setBackground(Background.EMPTY);
 		_selectedItems = new HashSet<>();
@@ -97,6 +95,35 @@ public class viewItemsForSaleContoller {
 
 	}
 
+	@FXML
+	void doPurchase(ActionEvent event)
+	{
+		if(_selectedItems.size() == 0)
+			return;
+		
+		payController._products = new ArrayList<>();
+		for(Integer i : _selectedItems)
+		{
+			HBox theBox = (HBox) gridPane.getChildren().get(i);
+			Product p = (Product) theBox.getChildren().get(0).getUserData();
+			payController._products.add(p);
+		}
+		try {
+		    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pay.fxml"));
+		    Parent root1 = (Parent) fxmlLoader.load();
+		    Stage stage = new Stage();
+		    stage.initModality(Modality.APPLICATION_MODAL);
+		    stage.initStyle(StageStyle.UNDECORATED);
+		    stage.setTitle("New Order");
+		    stage.setScene(new Scene(root1));  
+		    stage.show();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println("Purchasing");
+	}
 	@FXML
 	void openSearch(ActionEvent event) {
 //		WindowManager.goBack();
@@ -135,7 +162,7 @@ public class viewItemsForSaleContoller {
 		int row = 0;
 		gridPane.getChildren().removeAll();
 		id = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 
 			for (Product p : productsList) {
 				ImageLoader task = new ImageLoader(p);
@@ -241,5 +268,12 @@ public class viewItemsForSaleContoller {
 		}
 		totalAmount.setText("" + _selectedItems.size());
 		totalPrice.setText("$" + sumPrice.toString());
+		
+		if(sumPrice > 0)
+		{
+			btnPurchase.setVisible(true);
+		} else {
+			btnPurchase.setVisible(false);
+		}
 	}
 }
