@@ -18,9 +18,12 @@ import Model.User;
 import View.WindowManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.CacheHint;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorAdjust;
@@ -34,11 +37,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class viewItemsForSaleContoller {
 
+	public static List<Product> productList;
+	
 	private static final Object GRID_LOCK = new Object();
-	private static Integer id = 0;
+	private Integer id = 0;
 	@FXML
 	public FlowPane flowPane;
 
@@ -80,13 +88,34 @@ public class viewItemsForSaleContoller {
 		_selectedItems = new HashSet<>();
 		scp.setFitToHeight(true);
 
-		updateProducts(ProductLogic.getInstance().getProdListWITHOUTSellingUser(addrs, signt));
+		if(productList == null)
+		{
+			productList = ProductLogic.getInstance().getProdListWITHOUTSellingUser(addrs, signt);
+		}
+		
+		updateProducts(productList);
 
 	}
 
 	@FXML
-	void goBack(ActionEvent event) {
-		WindowManager.goBack();
+	void openSearch(ActionEvent event) {
+//		WindowManager.goBack();
+		// Open a popup with search
+		
+		try {
+		    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("search.fxml"));
+		    Parent root1 = (Parent) fxmlLoader.load();
+		    Stage stage = new Stage();
+		    stage.initModality(Modality.APPLICATION_MODAL);
+		    stage.initStyle(StageStyle.UNDECORATED);
+		    stage.setTitle("Search Products");
+		    stage.setScene(new Scene(root1));  
+		    stage.show();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 
 	private ImageView getLoadingImage() {
@@ -105,6 +134,7 @@ public class viewItemsForSaleContoller {
 	private void updateProducts(List<Product> productsList) {
 		int row = 0;
 		gridPane.getChildren().removeAll();
+		id = 0;
 		for (int i = 0; i < 10; i++) {
 
 			for (Product p : productsList) {

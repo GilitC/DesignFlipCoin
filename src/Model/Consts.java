@@ -79,6 +79,14 @@ public final class Consts {
     public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinKnots ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
     public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinSpace ( WalletUniqueAddress, TransactionSize ) VALUES ( ? , ? )";
 	
+    public static final String SQL_SEL_PROD_FILTERED = "SELECT * FROM tblItem WHERE "
+    		+ " sellerAddress != ? AND SellerSignature != ?"
+    		+ " AND Price > ? AND Price < ? AND itemName like ?";
+    
+    public static final String SQL_SEL_PROD_FILTERED_CATEGORY = "SELECT * FROM tblItem WHERE "
+    		+ " sellerAddress != ? AND SellerSignature != ?"
+    		+ " AND Price > ? AND Price < ? AND itemName like ? AND Category = ?";
+    
 
 	/**
 	 * find the correct path of the DB file

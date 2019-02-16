@@ -21,7 +21,7 @@
             <Image url="@../../bin/bg.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Button fx:id="search" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#openSearch" text="Search" />
       <Label layoutX="275.0" layoutY="26.0" prefHeight="43.0" prefWidth="222.0" style="-fx-opacity: 0.8;" text="Item Catalog" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />

@@ -24,7 +24,7 @@ public abstract class WindowManager {
 			ex.printStackTrace();
 		}
 	}
-
+	
 	public static void openWindow(NameToWindow n2w) {
 		Logger.log("Attempting to open " + n2w + ".fxml");
 		try {
