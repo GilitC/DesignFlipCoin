@@ -24,9 +24,6 @@ public final class Consts {
 	public static final String SQL_DEL_USER = "{ call qryDelUser(?) }";
 	public static final String SQL_INS_USER = "INSERT INTO TblUser ( PublicAddress, Signature, UserName, Password, Phone, Email ) VALUES ( ? , ? , ? , ? , ? , ? )";
 
-	
-	public static final String SQL_ADD_NEWUSER = "{ call qryInsUser(?,?,?,?,?,?,?) }";
-	public static final String SQL_UPD_USER = "{ call qryUpdUser(?,?,?,?,?,?,?) }";
 
 	/*----------------------------------------- RECOMMENDATION QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_RECOMMENDATION = "SELECT * FROM TblRecommendation";
@@ -66,7 +63,10 @@ public final class Consts {
 	/*----------------------------------------- CATEGORY QUERIES ----------------------------------------------*/
 	public static final String SQL_SEL_CATEGORIES = "SELECT * FROM TblCategory";
 	public static final String SQL_ADD_CATEGORY = "INSERT INTO TblCategory ( CategoryName ) VALUES ( ? )";
-	public static final String SQL_UPD_CATEGORY= "UPDATE TblCategory SET TblCategory.CategoryName = ? WHERE TblCategory.SerialNumber=?" ;			
+	public static final String SQL_UPD_CATEGORY= "UPDATE TblCategory SET TblCategory.CategoryName = ? WHERE TblCategory.SerialNumber=?" ;	
+	
+	/*----------------------------------------- SYSTEM QUERIES ----------------------------------------------*/
+	//public static final String SQL_UPD_SYS_PARAMETERS= "UPDATE TblCategory SET TblCategory.CategoryName = ? WHERE TblCategory.SerialNumber=?" ;	
 	
 	
 	/*----------------------------------------- WALLET QUERIES ----------------------------------------------*/

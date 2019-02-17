@@ -234,45 +234,45 @@ public class UserLogic {
 		return false;
 	}
 	
-	/**
-	 * Editing a exist employee with the parameters received from the form.
-	 * return true if the update was successful, else - return false
-     * @return 
-	 */
-	public boolean editUser(String publicAddress, String userSignature,String username, String password,
-			String email, String phone, int type) {
-		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_USER)) {
-				int i = 1;
-
-				stmt.setString(i++, publicAddress); // can't be null
-				stmt.setString(i++, userSignature); // can't be null
-				stmt.setString(i++, username); // can't be null
-				stmt.setString(i++, password); // can't be null
-				if (email != null)
-					stmt.setString(i++, email);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				
-				if (phone != null)
-					stmt.setString(i++, phone);
-				else
-					stmt.setNull(i++, java.sql.Types.VARCHAR);
-				
-				stmt.setInt(i++, type); // can't be null
-				stmt.executeUpdate();
-				return true;
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+//	/**
+//	 * Editing a exist employee with the parameters received from the form.
+//	 * return true if the update was successful, else - return false
+//     * @return 
+//	 */
+//	public boolean editUser(String publicAddress, String userSignature,String username, String password,
+//			String email, String phone, int type) {
+//		try {
+//			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+//					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_USER)) {
+//				int i = 1;
+//
+//				stmt.setString(i++, publicAddress); // can't be null
+//				stmt.setString(i++, userSignature); // can't be null
+//				stmt.setString(i++, username); // can't be null
+//				stmt.setString(i++, password); // can't be null
+//				if (email != null)
+//					stmt.setString(i++, email);
+//				else
+//					stmt.setNull(i++, java.sql.Types.VARCHAR);
+//				
+//				if (phone != null)
+//					stmt.setString(i++, phone);
+//				else
+//					stmt.setNull(i++, java.sql.Types.VARCHAR);
+//				
+//				stmt.setInt(i++, type); // can't be null
+//				stmt.executeUpdate();
+//				return true;
+//				
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
 	
 	
 	

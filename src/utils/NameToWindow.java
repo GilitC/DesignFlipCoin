@@ -32,6 +32,8 @@ public enum NameToWindow {
 	
 	/*------------ADD ADMIN PAGES------------------------------------*/
 	ADD_RECOMMENDATION("add/addRecommendation"),
+	ADD_CATEGORY("add/addCategory"),
+	UPDATE_CATEGORY("update/updateCategory"),
 	
 	/*------------USER LOGIN SCREEN---------------------------------------------------------------------*/
 	VIEW_PRODUCTS_FORSALE("user/viewItemsForSale"),

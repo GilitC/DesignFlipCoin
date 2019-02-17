@@ -54,30 +54,27 @@ public class AdminMenuController implements Initializable{
 		loadUI(NameToWindow.WELCOMESCREEN);
 	}
 
-	@FXML
-	void GoToProdMenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
 
 	@FXML
 	void GoToRecommendmenu(ActionEvent event) {
 		loadUI(NameToWindow.MENU_RECOMMENDATIONS);
 	}
 
-	@FXML
-	void goToManageOrders(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
 
-	@FXML
-	void goToWalletsMenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+    @FXML
+    void goToAddCategory(ActionEvent event) {
+    	loadUI(NameToWindow.ADD_CATEGORY);
+    }
 
-	@FXML
-	void goToManageUsers(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+    @FXML
+    void goToEditCategory(ActionEvent event) {
+    	loadUI(NameToWindow.UPDATE_CATEGORY);
+    }
+
+    @FXML
+    void goToManageSystemPar(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
 
 
 	@FXML
