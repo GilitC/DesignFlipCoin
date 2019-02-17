@@ -27,7 +27,7 @@ public class WalletMenuController {
 	     */
 	    @FXML
 	    void goToBuyBCKW(ActionEvent event) {
-	    	WindowManager.openWindow(NameToWindow.ADD_RECOMMENDATION);
+	    	WindowManager.openWindow(NameToWindow.BUY_BKN_WALLET);
 	    }
 
 	    /**
@@ -36,7 +36,7 @@ public class WalletMenuController {
 	     */
 	    @FXML
 	    void goToBuyBTSW(ActionEvent event) {
-	    	WindowManager.openWindow(NameToWindow.ADD_RECOMMENDATION);
+	    	WindowManager.openWindow(NameToWindow.BUY_BS_WALLET);
 	    }
 
 	    /**

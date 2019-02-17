@@ -88,7 +88,7 @@ public final class Consts {
 	
 	public static final String SQL_CHECK_WALLETADDRESS = "SELECT count(*) as count from TblWallet where Uniqueaddress = ?";
 	
-    public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinKnots ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
+    public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinKnots ( WalletUniqueAddress, discountPercent ) VALUES ( ? , ? )";
     public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinSpace ( WalletUniqueAddress, TransactionSize ) VALUES ( ? , ? )";
     
     public static final String SQL_VIEW_BKWALLET_BYUSER = "SELECT TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature, TblBitCoinKnots.discountPercent\r\n" + 

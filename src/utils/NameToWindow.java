@@ -40,7 +40,8 @@ public enum NameToWindow {
 	VIEW_MY_RECOMMENDATIONS("user/viewMyRecommendations"),
 	WALLETS_MENU("menus/WalletMenu"),
 	VIEW_MY_WALLETS("user/viewMyWallets"),
-	BUY_BS_WALLET("user/addBSWallet"),
+	BUY_BS_WALLET("add/addBSWallet"),
+	BUY_BKN_WALLET("add/addBKNWallet"),
 	MANAGE_ORDERS("Orders/viewOrders"),
 	
 	

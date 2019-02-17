@@ -1,7 +1,5 @@
 package View.update;
 
-import java.util.Date;
-
 import Control.Logic.RecommendationLogic;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;

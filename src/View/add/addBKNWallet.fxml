@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addReco" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.add.addBSWalletController">
+<AnchorPane fx:id="addReco" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.add.addBKNWalletController">
    <children>
       <ImageView fx:id="btcAmount" fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
@@ -18,7 +18,7 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="253.0" layoutY="36.0" style="-fx-opacity: 0.8;" text="Purchase BS Wallet  " textFill="WHITE">
+      <Label layoutX="253.0" layoutY="36.0" style="-fx-opacity: 0.8;" text="Purchase BK Wallet  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -39,7 +39,7 @@
          </font>
       </CheckBox>
       <TextField fx:id="amount" alignment="CENTER" layoutX="260.0" layoutY="192.0" prefHeight="25.0" prefWidth="181.0" promptText="Amount to move in BTC" />
-      <ComboBox fx:id="category" layoutX="260.0" layoutY="237.0" onAction="#calculatePrice" prefHeight="26.0" prefWidth="181.0" promptText="Transaction Size" />
+      <ComboBox fx:id="category" layoutX="260.0" layoutY="237.0" onAction="#calculatePrice" prefHeight="26.0" prefWidth="181.0" promptText="Discount Precent Chosen" />
       <TextField fx:id="generatedPrice" editable="false" layoutX="260.0" layoutY="283.0" prefHeight="25.0" prefWidth="181.0" promptText="Generated Price" style="-fx-opacity: 0.7;" />
       <Button fx:id="addButton" layoutX="159.0" layoutY="475.0" mnemonicParsing="false" onAction="#addBSWallet" prefHeight="33.0" prefWidth="181.0" text="Add" />
       <Button fx:id="clearButton" layoutX="383.0" layoutY="475.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
@@ -48,7 +48,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="140.0" layoutY="410.0" text="Note: Each 5 bytes cost 10 Satoshi and will be deducted from the wallet cash flow.">
+      <Label layoutX="140.0" layoutY="410.0" text="Note: The price of the wallet will be deducted from the amount to move in BTC.">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

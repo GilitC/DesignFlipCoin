@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class addBSWalletController {
+public class addBKNWalletController {
 
 	@FXML
 	private AnchorPane addReco;
@@ -62,11 +62,11 @@ public class addBSWalletController {
 	void calculatePrice(ActionEvent event) {
 		if (!category.getSelectionModel().isEmpty()) {
 			double calculated = 0.0;
-			calculated = ((category.getSelectionModel().getSelectedItem().intValue())*(WalletLogic.getInstance().getPriceForExpansion()))/100; //convert satoshi to btc(dividing by 100 instead of 100mil so numbers show up.)
+			calculated = (((category.getSelectionModel().getSelectedItem().intValue())/WalletLogic.getInstance().getDiscountPercentPerFee()) * WalletLogic.getInstance().getPriceForDiscount())/100; //convert satoshi to btc
 			generatedPrice.setText(String.valueOf(calculated));
 		}
 	}
-
+	
 	@FXML
 	void addBSWallet(ActionEvent event) throws MissingInputException, ListNotSelectedException{
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -82,10 +82,10 @@ public class addBSWalletController {
 		try {
 			double calculated = 0.0;
 			if (category.getSelectionModel().isEmpty()) {
-				throw new ListNotSelectedException("Transaction Size");
+				throw new ListNotSelectedException("Discount Precent");
 			}
 			else {
-				calculated = ((category.getSelectionModel().getSelectedItem().intValue())*(WalletLogic.getInstance().getPriceForExpansion()))/100; //convert satoshi to btc(dividing by 100 instead of 100mil so numbers show up.)
+				calculated = (((category.getSelectionModel().getSelectedItem().intValue())/WalletLogic.getInstance().getDiscountPercentPerFee()) * WalletLogic.getInstance().getPriceForDiscount())/100; //convert satoshi to btc
 				generatedPrice.setText(String.valueOf(calculated));
 			}
 
@@ -98,14 +98,14 @@ public class addBSWalletController {
 			Boolean cbOnCompCheck = cbOnComp.isSelected();
 			Boolean cbOnSmartPhoneCheck = cbOnSmartPhone.isSelected();
 			Boolean cbOnTabletCheck = cbOnTablet.isSelected();
-
-			calculated = ((category.getSelectionModel().getSelectedItem().intValue())*(WalletLogic.getInstance().getPriceForExpansion()))/100; //convert satoshi to btc(dividing by 100 instead of 100mil so numbers show up.)
 			
+			calculated = (((category.getSelectionModel().getSelectedItem().doubleValue())/WalletLogic.getInstance().getDiscountPercentPerFee()) * WalletLogic.getInstance().getPriceForDiscount())/100; //convert satoshi to btc
 			String newWalletAddress = WalletLogic.getInstance().addWallet(finalPrice, cbOnCompCheck, cbOnSmartPhoneCheck, cbOnTabletCheck, newAmount-calculated, 0, addrs, signt);
+			
 			if (newWalletAddress!=null && newAmount-calculated>=0) {
-				if( WalletLogic.getInstance().addBSWallet(newWalletAddress, category.getSelectionModel().getSelectedItem())){
+				if( WalletLogic.getInstance().addBKWallet(newWalletAddress, category.getSelectionModel().getSelectedItem().doubleValue())){
 					alert.setHeaderText("Success");
-					alert.setContentText("You have purchased a new BS Wallet. Generated Address: " + newWalletAddress);
+					alert.setContentText("You have purchased a new BK Wallet. Generated Address: " + newWalletAddress);
 					alert.show();			
 					initialize();
 					category.getSelectionModel().selectFirst();
@@ -132,7 +132,6 @@ public class addBSWalletController {
 	void clearForm(ActionEvent event) {
 		initialize();
 		category.getSelectionModel().selectFirst();
-
 	}
 
 	//Initialize the combobox and fields
@@ -145,13 +144,13 @@ public class addBSWalletController {
 		labelSuccess.setText("");
 
 		ArrayList<Integer> sizes = new ArrayList<Integer>();
-		for(int i=WalletLogic.getInstance().getTransactionMinSize(); i<=WalletLogic.getInstance().getTransactionMaxSize(); i+=5)
+		for(int i=1; i<=50; i++)
 			sizes.add(i);
 
 		category.getItems().setAll(sizes);
 
 		amount.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.matches("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {
+			if (!newValue.matches("\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {
 				amount.setText(newValue.replaceAll("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$", ""));
 			}
 		});
