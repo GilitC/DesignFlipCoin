@@ -52,7 +52,7 @@ public final class Consts {
 
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblPayTransaction";
-    public static final String SQL_ADD_TRANSPAY = "INSERT INTO TblPayTransaction ( Description, Size, CreationTime, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+    public static final String SQL_ADD_TRANSPAY = "INSERT INTO TblPayTransaction ( Description, Size, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, orderID ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
 	/*----------------------------------------- CONFIRM TX QUERIES --------------------------------------------*/
@@ -123,7 +123,9 @@ public final class Consts {
     		"ORDER BY O.ID DESC;\r\n" + 
     		"";
     
-    public static final String SQL_GET_ORDER_UNPAID_AMOUNT = "SELECT sum(payValue) as unpaid from TblPayTransaction where orderID = ? AND not State = \"Success\"";
+    public static final String SQL_GET_ORDER_UNPAID_AMOUNT = "SELECT sum(payValue) as unpaid from TblPayTransaction where orderID = ? AND State in (\"Pending\", \"Executed\")";
+    public static final String SQL_GATHER_ORDERS_BY_ID = "select sum(ITEM.Price) as totalPrice, SellerAddress, SellerSignature FROM tblItemsInOrder as ITEMS inner join TblItem as ITEM on ITEM.productID = ITEMS.itemID where ITEMS.orderID = ? GROUP BY ITEM.SellerAddress, SellerSignature";
+    
     
 	/**
 	 * find the correct path of the DB file

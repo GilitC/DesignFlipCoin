@@ -20,13 +20,13 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <TableView fx:id="tblOrders" layoutY="78.0" prefHeight="192.0" prefWidth="701.0" />
-      <TableView fx:id="tblDetails" layoutY="306.0" prefHeight="192.0" prefWidth="701.0" visible="false" />
-      <Label layoutX="197.0" layoutY="270.0" prefHeight="43.0" prefWidth="316.0" style="-fx-opacity: 0.8;" text="Choose an order from the table">
+      <TableView fx:id="tblOrders" layoutY="78.0" onMouseClicked="#openTXes" prefHeight="192.0" prefWidth="701.0" />
+      <TableView fx:id="tblTX" layoutY="306.0" prefHeight="192.0" prefWidth="701.0" visible="false" />
+      <Label fx:id="lblChooseOrder" layoutX="166.0" layoutY="274.0" prefHeight="43.0" prefWidth="370.0" style="-fx-opacity: 0.8;" text="Choose a transaction from the table">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="btnPay" layoutX="572.0" layoutY="535.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Pay Now" visible="false" />
+      <Button fx:id="btnPay" layoutX="572.0" layoutY="535.0" mnemonicParsing="false" onAction="#openPayWindow" prefHeight="25.0" prefWidth="97.0" text="Pay Now" visible="false" />
    </children>
 </AnchorPane>

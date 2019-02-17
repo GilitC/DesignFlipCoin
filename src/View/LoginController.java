@@ -80,11 +80,11 @@ public class LoginController {
 		String user = email.getText();
 		String pass = password.getText();
 		
-//		if(override)
-//		{
-//			user = "Nisan";
-//			pass = "admin";
-//		}
+		if(override)
+		{
+		/*	user = "Nisan";
+			pass = "admin";*/
+		}
 		
 		try {
 			if(user.isEmpty()) {

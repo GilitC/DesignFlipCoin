@@ -18,34 +18,56 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class viewOrders {
-	private static Integer od_id = 0;
+	private static Integer od_id = 1;
+	private static Integer tx_id = 1;
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
 
+	@FXML
+	private Label lblDisplay;
+	
 	@FXML // fx:id="viewRecommend"
 	private AnchorPane viewRecommend; // Value injected by FXMLLoader
 
 	@FXML
 	private TableView<Order> tblOrders;
+	
+	@FXML
+	private Button btnPay;
+	
+	@FXML
+	private TableView<TX> tblTX;
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		assert viewRecommend != null : "fx:id=\"viewRecommend\" was not injected: check your FXML file 'viewOrders.fxml'.";
-
+		od_id = 1;
 		List<TableColumn<Order, ?>> colList = new ArrayList<>();
 		colList.add(new TableColumn<Order, Integer>("ID"));
 		colList.get(0).setCellValueFactory(new PropertyValueFactory<>("counterID"));
-		colList.add(new TableColumn<Order, Double>("Price"));
+		colList.add(new TableColumn<Order, Double>("Sum"));
 		colList.get(1).setCellValueFactory(new PropertyValueFactory<>("orderSum"));
 		colList.add(new TableColumn<Order, Double>("Paid (Confirmed)"));
 		colList.get(2).setCellValueFactory(new PropertyValueFactory<>("paidSum"));
@@ -69,11 +91,149 @@ public class viewOrders {
 		tblOrders.getColumns().addAll(colList);
 
 		ObservableList<Order> data = FXCollections.observableArrayList(ordersList);
-
+		
 		tblOrders.setItems(data);
+		
+		
+		/**
+		 * Initiate tblTX
+		 */
+		List<TableColumn<TX, ?>> txColList = new ArrayList<>();
+		txColList.add(new TableColumn<TX, Integer>("ID"));
+		txColList.get(0).setCellValueFactory(new PropertyValueFactory<>("txId"));
+		txColList.add(new TableColumn<TX, Double>("Amount Required"));
+		txColList.get(1).setCellValueFactory(new PropertyValueFactory<>("txPrice"));
+		txColList.add(new TableColumn<TX, String>("Seller Address"));
+		txColList.get(2).setCellValueFactory(new PropertyValueFactory<>("sellerAddress"));
+		txColList.add(new TableColumn<TX, String>("Seller Signature"));
+		txColList.get(3).setCellValueFactory(new PropertyValueFactory<>("sellerSignature"));
+		
+		if(tblTX == null)
+		{
+			System.err.println("HELP ME ITS NULL");
+		} else {
+			tblTX.getColumns().addAll(txColList);
+		}
+		
+		
+		
+		
 	}
-
 	
+    @FXML
+    void openPayWindow(ActionEvent event) {
+
+    	if(tblTX.getSelectionModel().getSelectedItem() == null)
+    	{
+    		Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Oops!");
+			alert.setHeaderText("You didn't choose an item to pay.");
+			alert.setContentText("Please choose first!");
+			alert.showAndWait();
+    	}
+    	
+    	payController.orderObject = tblOrders.getSelectionModel().getSelectedItem();
+    	payController.orderTX = tblTX.getSelectionModel().getSelectedItem();
+    	
+    	
+    	try {
+		    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pay.fxml"));
+		    Parent root1 = (Parent) fxmlLoader.load();
+		    Stage stage = new Stage();
+		    stage.initModality(Modality.APPLICATION_MODAL);
+		    stage.initStyle(StageStyle.UNDECORATED);
+		    stage.setTitle("Pay Order #"+payController.orderObject.getOrderID());
+		    stage.setScene(new Scene(root1));  
+		    stage.show();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    }
+	
+	private void displayTransactions(Order order)
+	{
+		tx_id = 1;
+		ResultSet gatheredTransactions = OrderLogic.gatherTransactions(order.getOrderID());
+		if(gatheredTransactions == null)
+		{
+			return;
+		}
+		
+		try {
+			tblTX.getItems().removeAll();
+			List<TX> txList = new ArrayList<>();
+			while(gatheredTransactions.next())
+			{
+				// Generate TX
+				Double price = gatheredTransactions.getDouble("totalPrice");
+				String sellerAddress = gatheredTransactions.getString("sellerAddress");
+				String sellerSignature = gatheredTransactions.getString("sellerSignature");
+				
+				txList.add(new TX(price, sellerAddress, sellerSignature));
+			}
+			
+			if(txList.size() > 0)
+			{
+				ObservableList<TX> txData = FXCollections.observableArrayList(txList);
+				
+				tblTX.setItems(txData);
+				
+				tblTX.setVisible(true);
+				btnPay.setVisible(true);
+				
+			} else {
+				tblTX.setVisible(false);
+				btnPay.setVisible(false);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+    @FXML
+    void openTXes(MouseEvent event) {
+    
+    	Order orderChosen = tblOrders.getSelectionModel().getSelectedItem();
+    	if(orderChosen == null)
+    	{
+    		return;
+    	}
+    	System.out.println("Chosen item: " + orderChosen);
+    	displayTransactions(orderChosen);
+    }
+	
+    public static class TX {
+    	private final SimpleIntegerProperty txId;
+    	private final SimpleDoubleProperty txPrice;
+    	private final SimpleStringProperty sellerAddress;
+    	private final SimpleStringProperty sellerSignature;
+    	
+    	private TX(Double txPrice, String sellerAddress, String sellerSignature) {
+    		this.txId = new SimpleIntegerProperty(tx_id++);
+    		this.txPrice = new SimpleDoubleProperty(txPrice);
+    		this.sellerAddress = new SimpleStringProperty(sellerAddress);
+    		this.sellerSignature = new SimpleStringProperty(sellerSignature);
+    		
+    	}
+    	
+    	public Integer getTxId() {
+    		return this.txId.get();
+    	}
+    	public Double getTxPrice() {
+    		return this.txPrice.get();
+    	}
+    	public String getSellerAddress() {
+    		return this.sellerAddress.get();
+    	}
+    	public String getSellerSignature() {
+    		return this.sellerSignature.get();
+    	}
+    }
+    
 	public static class Order {
 
 		private final SimpleIntegerProperty orderID;
@@ -100,7 +260,7 @@ public class viewOrders {
 			return orderID.get();
 		}
 
-		public Double getProductName() {
+		public Double getOrderSum() {
 			return orderSum.get();
 		}
 
@@ -135,6 +295,13 @@ public class viewOrders {
 		public void setOrderStatus(String orderStatus) {
 			this.orderStatus.set(orderStatus);
 		}
+		
+		@Override
+		public String toString() {
+			return "#"+this.orderID.get();
+		}
+		
+		
 	}
 	
 }

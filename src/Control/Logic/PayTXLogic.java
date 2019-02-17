@@ -58,9 +58,9 @@ public class PayTXLogic {
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addPayTransaction( String description, int sizeInBytes, Date dtCreated,
+	public boolean addPayTransaction( String description, int sizeInBytes, 
 			Date executionTimeDate, double fee, String state, double payValue, String creatingAddress,
-			String creatingSignature, String destinationAddress, String destinationSignature, String walletAddress) {
+			String creatingSignature, String destinationAddress, String destinationSignature, String walletAddress, Integer orderID) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -68,7 +68,6 @@ public class PayTXLogic {
 				int i = 1;
 				stmt.setString(i++, description); // can't be null
 				stmt.setInt(i++, sizeInBytes); // can't be null
-				stmt.setDate(i++, (java.sql.Date) dtCreated); // can't be null
 				stmt.setDate(i++, (java.sql.Date) executionTimeDate); // can't be null
 				stmt.setDouble(i++, fee); // can't be null
 				stmt.setString(i++, state); // can't be null
@@ -78,6 +77,7 @@ public class PayTXLogic {
 				stmt.setString(i++, destinationAddress); // can't be null
 				stmt.setString(i++, destinationSignature); // can't be null
 				stmt.setString(i++, walletAddress); // can't be null
+				stmt.setInt(i++, orderID); // can't be null
 				
 				stmt.executeUpdate();
 				return true;

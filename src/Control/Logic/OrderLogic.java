@@ -121,6 +121,30 @@ public abstract class OrderLogic {
 		return toReturn;
 		
 	}
+
+	public static ResultSet gatherTransactions(Integer orderID) {
+		ResultSet toReturn = null;
+		
+		try {
+
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GATHER_ORDERS_BY_ID)) {
+
+				int i = 1;
+				stmt.setInt(i++, orderID);
+				toReturn = stmt.executeQuery();
+				return toReturn;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
