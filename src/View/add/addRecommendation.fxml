@@ -25,13 +25,11 @@
       <TextField fx:id="chanceChos" alignment="CENTER" layoutX="266.0" layoutY="133.0" prefHeight="25.0" prefWidth="181.0" promptText="Chance Chosen" />
       <TextField fx:id="amountTax" alignment="CENTER" layoutX="266.0" layoutY="175.0" prefHeight="25.0" prefWidth="181.0" promptText="Amount Tax Recommended" />
       <DatePicker fx:id="dateCreate" layoutX="268.0" layoutY="91.0" prefHeight="25.0" prefWidth="181.0" promptText="Date Created" />
-      <TextField fx:id="publicAdd" alignment="CENTER" layoutX="268.0" layoutY="222.0" prefHeight="25.0" prefWidth="181.0" promptText="Public Address" />
-      <TextField fx:id="userSig" alignment="CENTER" layoutX="268.0" layoutY="270.0" prefHeight="25.0" prefWidth="181.0" promptText="User Signature" />
       <Button fx:id="addButton" layoutX="173.0" layoutY="500.0" mnemonicParsing="false" onAction="#addRecommend" prefHeight="33.0" prefWidth="181.0" text="Add Recommendation" />
       <Button fx:id="clearButton" layoutX="389.0" layoutY="500.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
-      <Label fx:id="labelSuccess" layoutX="225.0" layoutY="456.0" prefHeight="33.0" prefWidth="267.0" textFill="#017c87">
+      <Label fx:id="labelSuccess" layoutX="132.0" layoutY="456.0" prefHeight="33.0" prefWidth="482.0" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
    </children>

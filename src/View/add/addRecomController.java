@@ -20,9 +20,6 @@ public class addRecomController {
     private Button clearButton;
 
     @FXML
-    private TextField publicAdd;
-
-    @FXML
     private AnchorPane addReco;
 
     @FXML
@@ -33,9 +30,6 @@ public class addRecomController {
 
     @FXML
     private DatePicker dateCreate;
-
-    @FXML
-    private TextField userSig;
 
     @FXML
     private Label labelSuccess;
@@ -61,9 +55,7 @@ public class addRecomController {
 		alert.setTitle("Add Recomendation");
 		alert.setHeaderText("");
 
- //REVIEW
-		String addrs = publicAdd.getText();
-		String signt = userSig.getText();
+
 		String chancec = chanceChos.getText();
 		String taxreco = amountTax.getText();
 		try {
@@ -74,13 +66,7 @@ public class addRecomController {
 			if (taxreco.isEmpty()) {
 				throw new MissingInputException("Amount of Tax Recommended");
 			}
-			
-			if (addrs.isEmpty()) {
-				throw new MissingInputException("Public Address");
-			}
-			if (signt.isEmpty()) {
-				throw new MissingInputException("User Signature");
-			}
+
 
 			if (dateCreate.getValue() == null) {
 				throw new MissingInputException("Date Created");
@@ -88,18 +74,16 @@ public class addRecomController {
 
 			java.sql.Date datecreat = java.sql.Date.valueOf(dateCreate.getValue());
 
-			if (RecommendationLogic.getInstance().addRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
-				System.out.println("success");
-				labelSuccess.setText("New Recommendation was added succesfully!");
+			if (RecommendationLogic.getInstance().addRecommendation(datecreat, Double.parseDouble(chancec), Double.parseDouble(taxreco))) {
+				
 				dateCreate.valueProperty().set(null);
-				userSig.setText("");
-				publicAdd.setText("");
 				amountTax.setText("");
 				chanceChos.setText("");
 				labelSuccess.setText("");
+				labelSuccess.setText("New Recommendation was added succesfully!");
 
 			} else {
-				System.out.println("failed");
+				System.out.println("Failed");
 				alert.setHeaderText("Unable to add Recommendation.");
 				alert.setContentText("Recommendation wasn't added.");
 				alert.show();
@@ -136,16 +120,7 @@ public class addRecomController {
 				amountTax.setText(newValue.replaceAll("^([0-9]+\\\\.?[0-9]*|[0-9]*\\\\.[0-9]+)$", ""));
 			}
 		});
-//		userSig.textProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue.matches("\\sa-zA-Z*")) {
-//				userSig.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-//			}
-//		});
-//		publicAdd.textProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue.matches("\\sa-zA-Z*")) {
-//				publicAdd.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-//			}
-//		});
+
 
 	}
 	/**
@@ -155,8 +130,6 @@ public class addRecomController {
 	@FXML
 	void clearForm(ActionEvent event) {
 		dateCreate.valueProperty().set(null);
-		userSig.setText("");
-		publicAdd.setText("");
 		amountTax.setText("");
 		chanceChos.setText("");
 		labelSuccess.setText("");

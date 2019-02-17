@@ -21,9 +21,6 @@ public class updateRecomController {
     private ComboBox<Recommendation> chooseRecCombo;
 
     @FXML
-    private TextField publicAdd;
-
-    @FXML
     private AnchorPane addReco;
 
     @FXML
@@ -35,8 +32,6 @@ public class updateRecomController {
     @FXML
     private TextField dateCreated;
 
-    @FXML
-    private TextField userSig;
 
     @FXML
     private Label labelSuccess;
@@ -52,14 +47,11 @@ public class updateRecomController {
     void chooseRec(ActionEvent event) {
     	Recommendation selected = chooseRecCombo.getSelectionModel().getSelectedItem();
     	//Show the Recommendation Selected and let the user edit their desired fields, except for id who stays the same
-    	publicAdd.setText(selected.getPublicAddress());
-    	userSig.setText(selected.getUserSignature());
     	chanceChos.setText(String.valueOf(selected.getChanceChosen()));
     	amountTax.setText(String.valueOf(selected.getAmountTaxRecommended()));
     	dateCreated.setText(String.valueOf(selected.getDateCreated()));
     	
-    	publicAdd.setDisable(false);
-    	userSig.setDisable(false);
+
     	chanceChos.setDisable(false);
     	amountTax.setDisable(false);
     	addButton.setDisable(false);
@@ -74,8 +66,7 @@ public class updateRecomController {
 		alert.setHeaderText("");
 
 		Integer idRec = chooseRecCombo.getSelectionModel().getSelectedItem().getRecommedID();
-		String addrs = publicAdd.getText();
-		String signt = userSig.getText();
+
 		String chancec = chanceChos.getText();
 		String taxreco = amountTax.getText();
 		try {
@@ -89,14 +80,8 @@ public class updateRecomController {
 				throw new MissingInputException("Amount of Tax Recommended");
 			}
 			
-			if (addrs.isEmpty()) {
-				throw new MissingInputException("Public Address");
-			}
-			if (signt.isEmpty()) {
-				throw new MissingInputException("User Signature");
-			}
 
-			if (RecommendationLogic.getInstance().updateRecommendation(idRec, chooseRecCombo.getSelectionModel().getSelectedItem().getDateCreated(), Double.parseDouble(chancec), Double.parseDouble(taxreco), addrs, signt)) {
+			if (RecommendationLogic.getInstance().updateRecommendation(idRec, chooseRecCombo.getSelectionModel().getSelectedItem().getDateCreated(), Double.parseDouble(chancec), Double.parseDouble(taxreco))) {
 				labelSuccess.setText("Updated Recommendation succesfully!");
 
 			} else {
@@ -132,8 +117,6 @@ public class updateRecomController {
     	}
 		
 		//unable to edit text fields
-    	publicAdd.setDisable(true);
-    	userSig.setDisable(true);
     	chanceChos.setDisable(true);
     	amountTax.setDisable(true);
     	addButton.setDisable(true);
@@ -148,16 +131,6 @@ public class updateRecomController {
 				amountTax.setText(newValue.replaceAll("^([0-9]+\\\\.?[0-9]*|[0-9]*\\\\.[0-9]+)$", ""));
 			}
 		});
-//		userSig.textProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue.matches("\\sa-zA-Z*")) {
-//				userSig.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-//			}
-//		});
-//		publicAdd.textProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue.matches("\\sa-zA-Z*")) {
-//				publicAdd.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-//			}
-//		});
 
 	}
 

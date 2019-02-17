@@ -32,14 +32,14 @@ public final class Consts {
 	public static final String SQL_SEL_RECOMMENDATION = "SELECT * FROM TblRecommendation";
 	
 	public static String usersByRecc(int recID) {
-		String SQL_SEL_USERSBYRECID = "SELECT TblUserGetRecommendation.levelOfImportance, TblUserGetRecommendation.publicAddress, TblUserGetRecommendation.userSignature, TblUserGetRecommendation.recommendId\r\n" + 
-				"FROM TblUserGetRecommendation Where recommendId =" + recID;
+		String SQL_SEL_USERSBYRECID = "SELECT TblRecommendedFor.UserAddress, TblRecommendedFor.UserSignature, TblRecommendedFor.Recommendation, TblRecommendedFor.CommitmentLevel\r\n" + 
+				"FROM TblRecommendedFor Where Recommendation =" + recID;
 		return SQL_SEL_USERSBYRECID;
 	}
 	
-	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ?, TblRecommendation.publicAddress = ?, TblRecommendation.userSignature = ? WHERE TblRecommendation.recommendId=?" ;			
-	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended, publicAddress, userSignature ) VALUES ( ? , ? , ? , ? , ? )";
-	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblRecommendedFor ( UserAddress, UserSignature, Recommendation , CommitimentLevel ) VALUES ( ? , ? , ? , ? )";
+	public static final String SQL_UPD_RECOMMENDATION = "UPDATE TblRecommendation SET TblRecommendation.dateCreated = ?, TblRecommendation.chanceChosen = ?, TblRecommendation.amountTaxRecommended = ? WHERE TblRecommendation.recommendId=?" ;			
+	public static final String SQL_ADD_RECOMMENDATION = "INSERT INTO TblRecommendation ( dateCreated, chanceChosen, amountTaxRecommended ) VALUES ( ? , ? , ? )";
+	public static final String SQL_SENDRECTOUSER = "INSERT INTO TblRecommendedFor ( UserAddress, UserSignature, Recommendation , CommitmentLevel ) VALUES ( ? , ? , ? , ? )";
 	public static final String SQL_RECS_BY_USER = "SELECT TblRecommendation.recommendId, TblRecommendation.dateCreated, TblRecommendation.chanceChosen, TblRecommendation.amountTaxRecommended, TblRecommendedFor.CommitmentLevel " + 
 			"FROM TblRecommendation INNER JOIN TblRecommendedFor ON TblRecommendation.recommendId = TblRecommendedFor.Recommendation " + 
 			"WHERE (((TblRecommendedFor.UserAddress)=?) AND ((TblRecommendedFor.UserSignature)=?)) " + 

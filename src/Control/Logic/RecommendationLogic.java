@@ -38,8 +38,7 @@ public class RecommendationLogic {
 					ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Recommendation(rs.getInt(i++), rs.getDate(i++), rs.getDouble(i++), rs.getDouble(i++),
-							rs.getString(i++), rs.getString(i++)));
+					results.add(new Recommendation(rs.getInt(i++), rs.getDate(i++), rs.getDouble(i++), rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -81,8 +80,8 @@ public class RecommendationLogic {
 	 * fetches all Users with levels of importance, sent a given recommendation ID using an SQL query
 	 * @return ArrayList of Customers.
 	 */
-	public ArrayList<RecommendationToCustomer> getCustomerListByRecID(Integer recID) {
 		ArrayList<RecommendationToCustomer> results = new ArrayList<RecommendationToCustomer>();
+		public ArrayList<RecommendationToCustomer> getCustomerListByRecID(Integer recID) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);					
@@ -90,8 +89,8 @@ public class RecommendationLogic {
 					ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					int i = 1;
-					results.add(new RecommendationToCustomer(rs.getString(i++), rs.getString(i++),rs.getString(i++),
-							recID));
+					results.add(new RecommendationToCustomer(rs.getString(i++), rs.getString(i++),
+							recID, rs.getString("CommitmentLevel")));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -109,8 +108,7 @@ public class RecommendationLogic {
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addRecommendation(Date dateCreated, double chanceChosen, double amountTaxRecommended,
-			String publicAddress, String userSignature) {
+	public boolean addRecommendation(Date dateCreated, double chanceChosen, double amountTaxRecommended) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -124,9 +122,6 @@ public class RecommendationLogic {
 				
 				stmt.setDouble(i++, chanceChosen); // can't be null
 				stmt.setDouble(i++, amountTaxRecommended); // can't be null
-
-				stmt.setString(i++, publicAddress); // can't be null
-				stmt.setString(i++, userSignature); // can't be null
 				
 				stmt.executeUpdate();
 				return true;
@@ -145,7 +140,7 @@ public class RecommendationLogic {
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addRecommendationToUser(String level, String publicAddress, String userSignature, int recommedID) {
+	public boolean addRecommendationToUser(String publicAddress, String userSignature, int recommedID, String level) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -153,10 +148,11 @@ public class RecommendationLogic {
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_SENDRECTOUSER)) {
 				
 				int i = 1;
-				stmt.setString(i++, level); // can't be null
+
 				stmt.setString(i++, publicAddress); // can't be null
 				stmt.setString(i++, userSignature); // can't be null
 				stmt.setInt(i++, recommedID);// can't be null
+				stmt.setString(i++, level); // can't be null
 				
 				stmt.executeUpdate();
 				return true;
@@ -176,8 +172,7 @@ public class RecommendationLogic {
 	 * return true if the update was successful, else - return false
      * @return 
 	 */
-	public boolean updateRecommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended,
-			String publicAddress, String userSignature) {
+	public boolean updateRecommendation(int recommedID, Date dateCreated, double chanceChosen, double amountTaxRecommended) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -191,9 +186,6 @@ public class RecommendationLogic {
 				
 				stmt.setDouble(i++, chanceChosen); // can't be null
 				stmt.setDouble(i++, amountTaxRecommended); // can't be null
-
-				stmt.setString(i++, publicAddress); // can't be null
-				stmt.setString(i++, userSignature); // can't be null
 				
 				stmt.setInt(i++, recommedID); // can't be null
 				stmt.executeUpdate();

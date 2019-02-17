@@ -47,7 +47,7 @@ public class sendRecToUserController {
 	    @FXML
 	    void goToSendToUser(ActionEvent event) throws ListNotSelectedException {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Send Recomendation");
+			alert.setTitle("Send Recommendation");
 			alert.setHeaderText("");
 
 			try {
@@ -67,7 +67,9 @@ public class sendRecToUserController {
 				String userSignature = listUsers.getSelectionModel().getSelectedItem().getUserSignature();
 				Integer recommedID = listRecommendations.getSelectionModel().getSelectedItem().getRecommedID();
 				
-				if (RecommendationLogic.getInstance().addRecommendationToUser(level, publicAddress, userSignature, recommedID)) {
+				
+				
+				if (RecommendationLogic.getInstance().addRecommendationToUser(publicAddress, userSignature, recommedID, level)) {
 					alert.setHeaderText("Success");
 					alert.setContentText("Sent Recommendation to User succesfully!");
 					alert.show();			

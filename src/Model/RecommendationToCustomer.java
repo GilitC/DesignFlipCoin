@@ -13,12 +13,11 @@ public class RecommendationToCustomer {
 	private String commitimentlevel; // The level of the Recommendation for the customer
 	
 	
-	public RecommendationToCustomer(String commitimentlevel, String publicAddress, String userSignature, int recommedID) {
-		super();
-		this.commitimentlevel = commitimentlevel;
+	public RecommendationToCustomer(String publicAddress, String userSignature, int recommedID, String commitimentlevel) {
 		this.publicAddress = publicAddress;
 		this.userSignature = userSignature;
 		this.recommedID = recommedID;
+		this.commitimentlevel = commitimentlevel;
 	}
 
 	public String getLevel() {
@@ -55,8 +54,8 @@ public class RecommendationToCustomer {
 
 	@Override
 	public String toString() {
-		return "RecommendationToCustomer [level=" + commitimentlevel + ", publicAddress=" + publicAddress + ", userSignature="
-				+ userSignature + ", recommedID=" + recommedID + "]";
+		return "Recommendation To Customer with public Address: " + publicAddress + ", User Signature: "
+				+ userSignature + "Commitment level: " + commitimentlevel + ", Recommedation: " + recommedID;
 	}
 	
 	
