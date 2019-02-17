@@ -30,12 +30,10 @@ public class BSWallet extends Wallet {
 
 	@Override
 	public String toString() {
-		return "BSWallet [maxTransSize=" + maxTransSize + ", getUniqueAddress()=" + getUniqueAddress() + ", getPrice()="
-				+ getPrice() + ", isInstalledOnComputer()=" + isInstalledOnComputer() + ", isInstalledOnSmartphone()="
-				+ isInstalledOnSmartphone() + ", isInstalledOnTablet()=" + isInstalledOnTablet() + ", getCashFlow()="
-				+ getCashFlow() + ", getPendingAmount()=" + getPendingAmount() + ", getPublicAddress()="
-				+ getPublicAddress() + ", getUserSignature()=" + getUserSignature() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
+		return "Wallet Unique Address:" + getUniqueAddress() + ",  max Trans Size: " + maxTransSize + ", Price: "
+				+ getPrice() + ", Cash Flow: " + getCashFlow() + "BTC , Pending Amount:" + getPendingAmount() + 
+				"BTC, Installed On Computer: " + isInstalledOnComputer() + ", Installed On Smartphone:  " + 
+				 isInstalledOnSmartphone() + ", Installed On Tablet: " + isInstalledOnTablet();
 	}
 
 	

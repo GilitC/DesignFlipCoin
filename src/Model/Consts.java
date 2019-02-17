@@ -72,12 +72,35 @@ public final class Consts {
 	/*----------------------------------------- WALLET QUERIES ----------------------------------------------*/
     public static final String SQL_ADD_WALLET = "INSERT INTO TblWallet ( Uniqueaddress, Price, installedOnComputer, installedOnSmartphone, installedOnTablet, Amount, pendingAmount, UserAddress, UserSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	public static final String SQL_UPD_WALLET_Profit = "UPDATE TblWallet SET TblWallet.Amount = ?, TblWallet.PendingAmount = ? WHERE TblWallet.uniqueaddress=?" ;
+	
+	public static final String SQL_GET_ALLMYWALLETS = "SELECT TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature\r\n" + 
+			"FROM TblWallet WHERE TblWallet.UserAddress=? AND TblWallet.UserSignature=?" + 
+			"GROUP BY TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature;\r\n" + 
+			"";
+	
 	public static final String SQL_GET_FREETRANSSIZE = "SELECT TblSystem.TransactionSizeFree FROM TblSystem";
+	public static final String SQL_GET_PRICEFOREXPANSION = "SELECT TblSystem.PriceForExpansion FROM TblSystem";
+	public static final String SQL_GET_PRICE4DISCOUNT = "SELECT TblSystem.PriceForDiscount FROM TblSystem";
+	public static final String SQL_GET_TRANSMINSIZE = "SELECT TblSystem.TransactionMinSize FROM TblSystem";
+	public static final String SQL_GET_TRANSMAXSIZE = "SELECT TblSystem.TransactionMaxSize FROM TblSystem";
+	public static final String SQL_GET_TRASSIZE4EXPANSION = "SELECT TblSystem.TransactionSizeForExpansion FROM TblSystem";
+	public static final String SQL_GET_DISCOUNTPRECENTPERFEE = "SELECT TblSystem.DiscountPercentPerFee FROM TblSystem";
 	
 	public static final String SQL_CHECK_WALLETADDRESS = "SELECT count(*) as count from TblWallet where Uniqueaddress = ?";
 	
     public static final String SQL_ADD_BKWALLET = "INSERT INTO TblBitcoinKnots ( WalletUniqueAddress, discountPrecent ) VALUES ( ? , ? )";
     public static final String SQL_ADD_BSWALLET = "INSERT INTO TblBitCoinSpace ( WalletUniqueAddress, TransactionSize ) VALUES ( ? , ? )";
+    
+    public static final String SQL_VIEW_BKWALLET_BYUSER = "SELECT TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature, TblBitCoinKnots.discountPercent\r\n" + 
+    		"FROM TblWallet INNER JOIN TblBitCoinKnots ON TblWallet.Uniqueaddress = TblBitCoinKnots.WalletUniqueAddress\r\n" + 
+    		"WHERE TblWallet.UserAddress=? AND TblWallet.UserSignature=?" + 
+    		"GROUP BY TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature, TblBitCoinKnots.discountPercent;\r\n" + 
+    		"";
+    public static final String SQL_VIEW_BSWALLET_BYUSER = "SELECT TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature, TblBitcoinSpace.TransactionSize\r\n" + 
+    		"FROM TblWallet INNER JOIN TblBitcoinSpace ON TblWallet.Uniqueaddress = TblBitcoinSpace.WalletUniqueAddress\r\n" + 
+    		"WHERE TblWallet.UserAddress=? AND TblWallet.UserSignature=?" + 
+    		"GROUP BY TblWallet.Uniqueaddress, TblWallet.Price, TblWallet.InstalledOnComputer, TblWallet.InstalledOnSmartphone, TblWallet.InstalledOnTablet, TblWallet.Amount, TblWallet.PendingAmount, TblWallet.UserAddress, TblWallet.UserSignature, TblBitcoinSpace.TransactionSize;\r\n" + 
+    		"";
 	
     public static final String SQL_SEL_PROD_FILTERED = "SELECT * FROM tblItem WHERE "
     		+ " sellerAddress != ? AND SellerSignature != ?"
@@ -88,7 +111,7 @@ public final class Consts {
     		+ " AND Price > ? AND Price < ? AND itemName like ? AND Category = ?";
     
 
-    public static final String SQL_GET_USER_BALANCE = "SELECT sum(Amount) as totalBalance from TblWallet WHERE UserAddress = ? AND USerSignature = ? group by UserAddress, UserSignature ";
+    public static final String SQL_GET_USER_BALANCE = "SELECT sum(Amount) as totalBalance from TblWallet WHERE UserAddress = ? AND UserSignature = ? group by UserAddress, UserSignature ";
     public static final String SQL_ADD_ITEM_TO_ORDER = "INSERT INTO tblItemsInOrder VALUES (?, ?)";
     public static final String SQL_ADD_ORDER	=	"INSERT INTO tblOrders (totalSum, userAddr, userSig) VALUES (?, ?, ?)";
     

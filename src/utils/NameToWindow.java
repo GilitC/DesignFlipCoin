@@ -38,7 +38,11 @@ public enum NameToWindow {
 	PUBLISH_PRODUCT("add/addProduct"),
 	UPDATE_PRODUCT("update/editProduct"),
 	VIEW_MY_RECOMMENDATIONS("user/viewMyRecommendations"),
+	WALLETS_MENU("menus/WalletMenu"),
+	VIEW_MY_WALLETS("user/viewMyWallets"),
+	BUY_BS_WALLET("user/addBSWallet"),
 	MANAGE_ORDERS("Orders/viewOrders"),
+	
 	
 	/*------------QUERIES-------------------------------*/
 	QUERY_GETSPM("queries/getSPM");	

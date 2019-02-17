@@ -90,7 +90,7 @@ public class UserMenuController implements Initializable{
     
 	@FXML
 	void goToWalletsMenu(ActionEvent event) {
-		loadUI(NameToWindow.WELCOMESCREEN);
+		loadUI(NameToWindow.WALLETS_MENU);
 	}
 
 

@@ -1,10 +1,12 @@
 package Model;
 
-public abstract class Wallet {
+public class Wallet {
 
 	// -------------------------------Class  Members------------------------------
 	
-	private String uniqueAddress; // The wallets unique adress
+	//Note: every wallet is either a bs wallet or bk wallet, wallet obj can be created for the ease of the queries and code, but not for a user
+	
+	private String uniqueAddress; // The wallets unique address - is generated automatically
 	private double price; // Calculated field
 	private boolean installedOnComputer;
 	private boolean installedOnSmartphone;
@@ -141,10 +143,7 @@ public abstract class Wallet {
 
 	@Override
 	public String toString() {
-		return "Wallet [uniqueAddress=" + uniqueAddress + ", price=" + price + ", installedOnComputer="
-				+ installedOnComputer + ", installedOnSmartphone=" + installedOnSmartphone + ", installedOnTablet="
-				+ installedOnTablet + ", cashFlow=" + cashFlow + ", pendingAmount=" + pendingAmount + ", publicAddress="
-				+ publicAddress + ", userSignature=" + userSignature + "]";
+		return "Wallet's Unique Address=" + uniqueAddress + ",  Cash Flow: " + cashFlow + ", Pending Amount: " + pendingAmount ;
 	}
 
 

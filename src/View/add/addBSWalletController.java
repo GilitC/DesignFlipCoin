@@ -1,70 +1,66 @@
 package View.add;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import Control.Logger;
+import java.util.ArrayList;
 import Control.SysData;
-import Control.Logic.CategoryLogic;
-import Control.Logic.ProductLogic;
+import Control.Logic.WalletLogic;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
-import Model.ProductCategory;
 import Model.User;
 import View.WindowManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class addBSWalletController {
 
-    @FXML
-    private TextField quantity;
+	@FXML
+	private AnchorPane addReco;
 
-    @FXML
-    private Button clearButton;
+	@FXML
+	private ImageView btcAmount;
 
-    @FXML
-    private TextField price;
+	@FXML
+	private Button back;
 
-    @FXML
-    private TextField name;
+	@FXML
+	private TextField amount;
 
-    @FXML
-    private TextField link;
+	@FXML
+	private ComboBox<Integer> category;
 
-    @FXML
-    private AnchorPane addReco;
+	@FXML
+	private Button addButton;
 
-    @FXML
-    private Button back;
+	@FXML
+	private Button clearButton;
 
-    @FXML
-    private Button addButton;
+	@FXML
+	private Label labelSuccess;
 
-    @FXML
-    private ComboBox<ProductCategory> category;
+	@FXML
+	private CheckBox cbOnComp;
 
-    @FXML
-    private Label labelSuccess;
+	@FXML
+	private CheckBox cbOnSmartPhone;
 
-    @FXML
-    private TextField desc;
+	@FXML
+	private CheckBox cbOnTablet;
 
-    @FXML
-    void goBack(ActionEvent event) {
-    	WindowManager.goBack();
-    }
+	@FXML
+	private TextField generatedPrice;
 
-    @FXML
-    void addProduct(ActionEvent event) throws MissingInputException, ListNotSelectedException, MalformedURLException{
-    	Alert alert = new Alert(AlertType.INFORMATION);
+	@FXML
+	void addBSWallet(ActionEvent event) throws MissingInputException, ListNotSelectedException{
+		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Product");
 		alert.setHeaderText("");
 
@@ -72,48 +68,39 @@ public class addBSWalletController {
 		User loggedIn = SysData.getLoggedInUser(); // Get the logged In User
 		String addrs = loggedIn.getPublicAddress();
 		String signt = loggedIn.getUserSignature();
-		
-		String prodName = name.getText();
-		String decsription = desc.getText();
-		ProductCategory c = category.getSelectionModel().getSelectedItem();
-		
+
+
 		try {
-
+			double calculated = 0.0;
 			if (category.getSelectionModel().isEmpty()) {
-				throw new ListNotSelectedException("Category");
+				throw new ListNotSelectedException("Transaction Size");
+			}
+			else {
+				calculated = category.getSelectionModel().getSelectedItem()*WalletLogic.getInstance().getPriceForExpansion()/100000000; //convert satoshi to btc
+				generatedPrice.setText(String.valueOf(calculated)+" BTC");
 			}
 
-			if (prodName.isEmpty()) {
-				throw new MissingInputException("Name");
-			}
-			if (link.getText().isEmpty()) {
-				throw new MissingInputException("Image");
+			if (amount.getText().isEmpty()) {
+				throw new MissingInputException("Amount");
 			}
 
-			if (decsription.isEmpty()) {
-				throw new MissingInputException("decsription");
-			}
-			
-			if (price.getText().isEmpty()) {
-				throw new MissingInputException("price");
-			}
-			
-			if (quantity.getText().isEmpty()) {
-				throw new MissingInputException("quantity");
-			}
+			double finalPrice = Double.parseDouble(generatedPrice.getText());
+			double newAmount = Double.parseDouble(amount.getText());
+			Boolean cbOnCompCheck = cbOnComp.isSelected();
+			Boolean cbOnSmartPhoneCheck = cbOnSmartPhone.isSelected();
+			Boolean cbOnTabletCheck = cbOnTablet.isSelected();
 
-			URL pic = new URL(link.getText());
-			Double itemPrice = Double.parseDouble(price.getText());
-			int amount = Integer.parseInt(quantity.getText());
-			
-			if (ProductLogic.getInstance().addProduct(prodName, pic, decsription, itemPrice, amount, c.getCategoryID(), addrs, signt)) {
-				alert.setHeaderText("Success");
-				alert.setContentText("Added Product succesfully!");
-				alert.show();			
-				initialize();
+			String newWalletAddress = WalletLogic.getInstance().addWallet(finalPrice, cbOnCompCheck, cbOnSmartPhoneCheck, cbOnTabletCheck, newAmount-calculated, 0, addrs, signt);
+			if (newWalletAddress!=null && newAmount-calculated>=0) {
+				if( WalletLogic.getInstance().addBSWallet(newWalletAddress, category.getSelectionModel().getSelectedItem())){
+					alert.setHeaderText("Success");
+					alert.setContentText("You have purchased a new BS Wallet. Generated Address: " + newWalletAddress);
+					alert.show();			
+					initialize();
+				}
 			} else {
-				alert.setHeaderText("Unable to add the Product.");
-				alert.setContentText("Item wasn't added.");
+				alert.setHeaderText("Error");
+				alert.setContentText("Unable to Make this Purchase");
 				alert.show();
 			}
 
@@ -121,38 +108,41 @@ public class addBSWalletController {
 		} catch (ListNotSelectedException e) {
 		} catch (MissingInputException e) {
 		}
-		catch (MalformedURLException e) {
-			Logger.log("Problem with url");
-		}
+	}
 
-    }
+	@FXML
+	void goBack(ActionEvent event) {
+		WindowManager.goBack();
+	}
 
-    @FXML
-    void clearForm(ActionEvent event) {
-    	name.setText("");
-    	link.setText("");
-    	desc.setText("");
-    	price.setText("");
-    	quantity.setText("");
-    	category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
-    }
 
-    //Initialize the combobox with the available categories
-    public void initialize() {
-        category.getItems().setAll(CategoryLogic.getInstance().getAllCategories());
-        
-		price.textProperty().addListener((observable, oldValue, newValue) -> {
+	@FXML
+	void clearForm(ActionEvent event) {
+		initialize();
+
+	}
+
+	//Initialize the combobox and fields
+	public void initialize() {
+		amount.setText("");
+		cbOnComp.setSelected(false);
+		cbOnSmartPhone.setSelected(false);
+		cbOnTablet.setSelected(false);
+		generatedPrice.setText("");
+		labelSuccess.setText("");
+
+		ArrayList<Integer> sizes = new ArrayList<Integer>();
+		for(int i=WalletLogic.getInstance().getTransactionMinSize(); i<=WalletLogic.getInstance().getTransactionMaxSize(); i+=5)
+			sizes.add(i);
+
+		category.getItems().setAll(sizes);
+
+		amount.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$")) {
-				price.setText(newValue.replaceAll("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$", ""));
+				amount.setText(newValue.replaceAll("^\\\\d*\\\\.\\\\d+|\\\\d+\\\\.\\\\d*$", ""));
 			}
 		});
-		
-		quantity.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.matches("^\\d+$")) {
-				quantity.setText(newValue.replaceAll("^\\d+$", ""));
-			}
-		});
-		
-    }
+
+	}
 
 }

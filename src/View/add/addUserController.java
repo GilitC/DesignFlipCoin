@@ -126,7 +126,7 @@ public class addUserController {
 					
 					//New User that signs up gets a wallet (Type: BitCoinSpace) automatically
 					//Create the wallet and add to users wallets:
-					String myWallet = WalletLogic.getInstance().addWallet(0, true, true, true, 0, 0, us.getPublicAddress(), us.getUserSignature());
+					String myWallet = WalletLogic.getInstance().addWallet(0, true, true, true, 100, 0, us.getPublicAddress(), us.getUserSignature());
 					if(myWallet!=null)
 					{
 						//if regular wallet was added then make it the default one: BS wallet

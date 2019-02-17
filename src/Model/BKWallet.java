@@ -36,17 +36,14 @@ public class BKWallet extends Wallet {
 	
 	// -------------------------------Methods------------------------------
 	
+
 	@Override
 	public String toString() {
-		return "BKWallet [discountPercent=" + discountPercent + ", getUniqueAddress()=" + getUniqueAddress()
-				+ ", getPrice()=" + getPrice() + ", isInstalledOnComputer()=" + isInstalledOnComputer()
-				+ ", isInstalledOnSmartphone()=" + isInstalledOnSmartphone() + ", isInstalledOnTablet()="
-				+ isInstalledOnTablet() + ", getCashFlow()=" + getCashFlow() + ", getPendingAmount()="
-				+ getPendingAmount() + ", getPublicAddress()=" + getPublicAddress() + ", getUserSignature()="
-				+ getUserSignature() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + "]";
+		return "Wallet Unique Address:" + getUniqueAddress() + ", Discount Percent: " + discountPercent + ", Price: "
+				+ getPrice() + ", Cash Flow: " + getCashFlow() + "BTC , Pending Amount:" + getPendingAmount() + 
+				"BTC, Installed On Computer: " + isInstalledOnComputer() + ", Installed On Smartphone:  " + 
+				 isInstalledOnSmartphone() + ", Installed On Tablet: " + isInstalledOnTablet();
 	}
-
 
 
 
