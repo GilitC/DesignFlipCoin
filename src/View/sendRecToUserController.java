@@ -1,5 +1,6 @@
 package View;
 
+import Control.Main;
 import Control.Logic.RecommendationLogic;
 import Control.Logic.UserLogic;
 import Exceptions.ListNotSelectedException;
@@ -66,12 +67,22 @@ public class sendRecToUserController {
 				String publicAddress = listUsers.getSelectionModel().getSelectedItem().getPublicAddress();
 				String userSignature = listUsers.getSelectionModel().getSelectedItem().getUserSignature();
 				Integer recommedID = listRecommendations.getSelectionModel().getSelectedItem().getRecommedID();
-				
+				String userEmail = listUsers.getSelectionModel().getSelectedItem().getEmail();
 				
 				
 				if (RecommendationLogic.getInstance().addRecommendationToUser(publicAddress, userSignature, recommedID, level)) {
+					
+					String from = Main.getUSER_NAME();
+					String pass = Main.getPASSWORD();
+					String[] to = { userEmail }; // list of recipient email addresses
+					String subject = "New Recommendation";
+					String body = "Hello " +  listUsers.getSelectionModel().getSelectedItem().getUsername() + ", You have recieved a new recommendation in FlipCoin Transfer. Please logon to view it. Thank you!";
+					
+					//When a new recommendation is added, we need to send the details to the user
+					Main.sendFromGMail(from, pass, to, subject, body);
+					
 					alert.setHeaderText("Success");
-					alert.setContentText("Sent Recommendation to User succesfully!");
+					alert.setContentText("Sent Recommendation Email to User succesfully!");
 					alert.show();			
 					initialize();
 				} else {
