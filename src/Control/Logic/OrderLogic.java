@@ -145,6 +145,74 @@ public abstract class OrderLogic {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static void updateOrder(Integer txID, Double amount) {
+		// TODO Auto-generated method stub
+		Integer orderID = TransactionLogic.getOrderID(txID);
+		if(orderID == -1)
+		{
+			return;
+		}
+		try {
+
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_UPDATE_ORDER_PAID)) {
+
+				int i = 1;
+				stmt.setDouble(i++, amount);
+				stmt.setInt(i++, orderID);
+				stmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	/**
+	 * This method is checking for open orders and closes them if needed
+	 */
+	public static void checkOrders()
+	{
+		try {
+
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_ORDERS_TO_CHANGE, CallableStatement.RETURN_GENERATED_KEYS)) {
+
+				int verified = stmt.executeUpdate();
+				if(verified == 0)
+				{
+					return;
+				}
+				
+				ResultSet rs = stmt.getGeneratedKeys();
+				
+				while(rs.next())
+				{
+					System.out.println("Updated order: " + rs.getInt(0));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void finishOrder(Integer orderID)
+	{
+		// SEND MAIL
+		
+		
+		
+	}
 	
 
 }

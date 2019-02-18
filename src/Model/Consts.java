@@ -125,8 +125,18 @@ public final class Consts {
     		"ORDER BY O.ID DESC;\r\n" + 
     		"";
     
-    public static final String SQL_GET_ORDER_UNPAID_AMOUNT = "SELECT sum(payValue) as unpaid from TblPayTransaction where orderID = ? AND State in (\"Pending\", \"Executed\")";
+    public static final String SQL_GET_ORDER_UNPAID_AMOUNT = "SELECT sum(payValue) as unpaid from TblPayTransaction where orderID = ? AND State in (\"Pending\")";
     public static final String SQL_GATHER_ORDERS_BY_ID = "select sum(ITEM.Price) as totalPrice, SellerAddress, SellerSignature FROM tblItemsInOrder as ITEMS inner join TblItem as ITEM on ITEM.productID = ITEMS.itemID where ITEMS.orderID = ? GROUP BY ITEM.SellerAddress, SellerSignature";
+    
+    public static final String SQL_UPDATE_TX_CONFIRMED = "UPDATE TblPayTransaction set ExecutionTime=Now(), State=\"Executed\" where TXID=? AND State in (\"Pending\")";
+    
+    public static final String SQL_GET_ORDER_ID_BY_TX = "select orderID from TblPayTransaction where TXID=?";
+    
+    public static final String SQL_UPDATE_ORDER_PAID = "update tblOrders set paid = paid + ? WHERE ID=?";
+    
+    public static final String SQL_GET_TX_AMOUNT = "select PayValue from TblPayTransaction WHERE TXID = ?";
+    
+    public static final String SQL_GET_ORDERS_TO_CHANGE = "update tblOrders set status=1 where totalSum = paid AND status = 0";
     
     
 	/**

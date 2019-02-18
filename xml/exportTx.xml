@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Transactions_info exportDate="2019-02-18T13:44:16.688584300">
+  <Transaction>
+    <transactionID>11</transactionID>
+    <size>2</size>
+    <type>confirm</type>
+    <fee>13.0</fee>
+    <additionTime>1899-12-30 13:00:00.0</additionTime>
+    <additionDate>2019-01-13 00:00:00.0</additionDate>
+    <blockID>1</blockID>
+  </Transaction>
+  <Transaction>
+    <transactionID>13</transactionID>
+    <size>1</size>
+    <type>pay</type>
+    <fee>12.0</fee>
+    <additionTime>1899-12-30 13:00:00.0</additionTime>
+    <additionDate>2019-01-13 00:00:00.0</additionDate>
+    <blockID>1</blockID>
+  </Transaction>
+</Transactions_info>

@@ -5,6 +5,8 @@ import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import Model.User;
 import Control.SysData;
+import Control.Logic.OrderLogic;
+import Control.Logic.TransactionLogic;
 import Control.Logic.UserLogic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -82,8 +84,8 @@ public class LoginController {
 		
 		if(override)
 		{
-		/*	user = "Nisan";
-			pass = "admin";*/
+			user = "Nisan";
+			pass = "admin";
 		}
 		
 		try {
@@ -142,6 +144,11 @@ public class LoginController {
 
 	}
 
+	@FXML
+	public void initialize() {
+		TransactionLogic.importConfirmedTransactions();
+		OrderLogic.checkOrders();
+	}
 	@FXML
 	void register(ActionEvent event) throws IOException {
 		//Stage stage = (Stage) login.getScene().getWindow();
