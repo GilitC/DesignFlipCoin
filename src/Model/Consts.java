@@ -52,6 +52,8 @@ public final class Consts {
 
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblPayTransaction";
+	public static final String SQL_SEL_TRANSPAY_PENDING_STATUS = "SELECT * FROM TblPayTransaction Where TblPayTransaction.State=\"Pending\"";
+	
     public static final String SQL_ADD_TRANSPAY = "INSERT INTO TblPayTransaction ( Description, Size, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, orderID ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
