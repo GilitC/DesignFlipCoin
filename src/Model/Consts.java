@@ -41,6 +41,7 @@ public final class Consts {
 			"FROM TblRecommendation INNER JOIN TblRecommendedFor ON TblRecommendation.recommendId = TblRecommendedFor.Recommendation " + 
 			"WHERE (((TblRecommendedFor.UserAddress)=?) AND ((TblRecommendedFor.UserSignature)=?)) " + 
 			"GROUP BY TblRecommendation.recommendId, TblRecommendation.dateCreated, TblRecommendation.chanceChosen, TblRecommendation.amountTaxRecommended, TblRecommendedFor.CommitmentLevel";
+	
 	/*----------------------------------------- PRODUCT QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_PRODUCTS = "SELECT * FROM TblItem;";
 	public static final String SQL_ADD_PRODUCT = "INSERT INTO TblItem ( productName, picture, description, pricePerUnit, quantityInStock, categoryID, sellerAddress, sellerSignature ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )";
@@ -50,10 +51,15 @@ public final class Consts {
 	
 	public static final String SQL_SEL_PRODSwithoutME = "SELECT TblItem.productID, TblItem.ItemName, TblItem.Image, TblItem.Description, TblItem.Price, TblItem.Quantity, TblItem.Category, TblItem.SellerAddress, TblItem.SellerSignature FROM TblItem WHERE ((Not (TblItem.SellerAddress)=?) AND (Not (TblItem.SellerSignature)=?))";
 
+	
+	/*----------------------------------------- SYSTEM QUERIES --------------------------------------------*/
+	public static final String SQL_SEL_SYSTEM_PARAMETERS = "SELECT * FROM TblSystem WHERE TblSystem.version=?";
+	public static final String SQL_UPDATE_SYSTEM_PARAMETERS = "UPDATE TblSystem SET TblSystem.TransactionMinSize = ?, TblSystem.TransactionMaxSize = ?, TblSystem.TransactionSizeForExpansion = ?, TblSystem.PriceForExpansion = ?, TblSystem.DiscountPercentPerFee = ?, TblSystem.PriceForDiscount = ? , TblSystem.TransactionSizeFree = ? WHERE TblSystem.version=?" ;
+	
+
 	/*----------------------------------------- PAY TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSPAY = "SELECT * FROM TblPayTransaction";
 	public static final String SQL_SEL_TRANSPAY_PENDING_STATUS = "SELECT * FROM TblPayTransaction Where TblPayTransaction.State=\"Pending\"";
-	
     public static final String SQL_ADD_TRANSPAY = "INSERT INTO TblPayTransaction ( Description, Size, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, orderID ) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
@@ -136,7 +142,13 @@ public final class Consts {
     
     public static final String SQL_GET_TX_AMOUNT = "select PayValue from TblPayTransaction WHERE TXID = ?";
     
-    public static final String SQL_GET_ORDERS_TO_CHANGE = "update tblOrders set status=1 where totalSum = paid AND status = 0";
+    public static final String SQL_GET_ORDERS_TO_CHANGE = "select ID from tblOrders where totalSum=paid AND status=0";
+    public static final String SQL_UPDATE_ORDER_STATUS = "update tblOrders set status = 1 WHERE ID = ?";
+    
+    
+    public static final String SQL_SELECT_BUYER_BY_ORDER = "select * FROM tblOrders INNER JOIN tblUser ON tblOrders.userAddr = tblUser.PublicAddress AND tblOrders.userSig = tblUser.Signature WHERE tblOrders.ID = ?";
+    
+    public static final String SQL_SELECT_SELLER_BY_ORDER = "Select * FROM tblPayTransaction inner join tblUser ON TblPayTransaction.DestinationAddress = tblUser.PublicAddress AND TblPayTransaction.DestinationSignature = tblUser.Signature Where tblPayTransaction.orderID=?";
     
     
 	/**

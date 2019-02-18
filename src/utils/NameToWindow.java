@@ -34,6 +34,8 @@ public enum NameToWindow {
 	ADD_RECOMMENDATION("add/addRecommendation"),
 	ADD_CATEGORY("add/addCategory"),
 	UPDATE_CATEGORY("update/updateCategory"),
+	MANAGE_SYSTEM_PARAMETERS("update/systemParameters"),
+	
 	
 	/*------------USER LOGIN SCREEN---------------------------------------------------------------------*/
 	VIEW_PRODUCTS_FORSALE("user/viewItemsForSale"),
@@ -45,6 +47,7 @@ public enum NameToWindow {
 	BUY_BS_WALLET("add/addBSWallet"),
 	BUY_BKN_WALLET("add/addBKNWallet"),
 	MANAGE_ORDERS("Orders/viewOrders"),
+	MY_INFO("myInfo"),
 	
 	
 	/*------------QUERIES-------------------------------*/

@@ -41,7 +41,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToPayTrans" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Manage Orders">
+            <Button mnemonicParsing="false" onAction="#GoToPayTrans" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Manage Pending Orders">
                <effect>
                   <Glow />
                </effect>
@@ -51,7 +51,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Recieved TXs">
+            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Transactions">
                <effect>
                   <Glow />
                </effect>

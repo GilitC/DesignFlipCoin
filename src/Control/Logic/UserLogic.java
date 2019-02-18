@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import Model.User;
@@ -75,6 +76,49 @@ public class UserLogic {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public User getBuyerEmailByOrder(Integer orderID) {
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					
+					) {
+				PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SELECT_BUYER_BY_ORDER);
+				stmt.setInt(1, orderID);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					return new User(null, null, rs.getString("UserName"), null, null, rs.getString("Email"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public List<User> getSellerEmailsByOrder(Integer orderID) {
+		List<User> toReturn = new ArrayList<>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					
+					) {
+				PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SELECT_SELLER_BY_ORDER);
+				stmt.setInt(1, orderID);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					User u = new User(null, null, rs.getString("UserName"), null, null, rs.getString("Email"));
+					toReturn.add(u);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return toReturn;
 	}
 	
 	/*----------------------------------------- ADD / REMOVE / UPDATE USER METHODS --------------------------------------------*/

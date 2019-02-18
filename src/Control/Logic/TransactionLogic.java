@@ -19,14 +19,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.Node;
 
+import org.json.simple.JsonArray;
+import org.json.simple.JsonObject;
+import org.json.simple.Jsoner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-//import org.json.simple.JsonArray;
-//import org.json.simple.JsonObject;
-//import org.json.simple.Jsoner;
 
 import Model.Consts;
 import Model.Product;
@@ -149,45 +149,48 @@ public abstract class TransactionLogic {
 		return -1;
 	}
 
-}
 
-//    /**
-//     * exports pay transactions from db to json.
-//     */
-//	public void exportPayTransactionsToJSON() {
-//    	   try {
-//               Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-//               try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-//                       PreparedStatement stmt = conn.prepareStatement(
-//                               Consts.SQL_SEL_TRANSPAY_PENDING_STATUS);
-//                       ResultSet rs = stmt.executeQuery()) {
-//            	   JsonArray customers = new JsonArray();
-//                   while (rs.next()) {
-//                	   JsonObject customer = new JsonObject();
-//                	   
-//                	   for (int i = 1; i < rs.getMetaData().getColumnCount(); i++)
-//                		   customer.put(rs.getMetaData().getColumnName(i), rs.getString(i));
-//                	   
-//                	   customers.add(customer);
-//                   }
-//                   
-//            	   JsonObject doc = new JsonObject();
-//            	   doc.put("Customers_info", customers);
-//                   
-//                   File file = new File("json/customers.json");
-//                   file.getParentFile().mkdir();
-//                   
-//                   try (FileWriter writer = new FileWriter(file)) {
-//                	   writer.write(Jsoner.prettyPrint(doc.toJson()));
-//                	   writer.flush();
-//                       System.out.println("customers data exported successfully!");
-//                   } catch (IOException e) {
-//                	   e.printStackTrace();
-//                   }
-//               } catch (SQLException | NullPointerException e) {
-//                   e.printStackTrace();
-//               }
-//           } catch (ClassNotFoundException e) {
-//               e.printStackTrace();
-//           }	
-//    }
+    /**
+     * exports pay transactions from db to json.
+     */
+	public static Boolean exportPayTransactionsToJSON() {
+    	   try {
+               Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+               try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+                       PreparedStatement stmt = conn.prepareStatement(
+                               Consts.SQL_SEL_TRANSPAY_PENDING_STATUS);
+                       ResultSet rs = stmt.executeQuery()) {
+            	   JsonArray txs = new JsonArray();
+                   while (rs.next()) {
+                	   JsonObject tx = new JsonObject();
+                	   
+                	   for (int i = 1; i < rs.getMetaData().getColumnCount(); i++)
+                		   tx.put(rs.getMetaData().getColumnName(i), rs.getString(i));
+                	   
+                	   txs.add(tx);
+                   }
+                   
+            	   JsonObject doc = new JsonObject();
+            	   doc.put("Transactions_info", txs);
+                   
+                   File file = new File("json/txs.json");
+                   file.getParentFile().mkdir();
+                   
+                   try (FileWriter writer = new FileWriter(file)) {
+                	   writer.write(Jsoner.prettyPrint(doc.toJson()));
+                	   writer.flush();
+                       System.out.println("Transactions data exported successfully!");
+                       return true;
+                   } catch (IOException e) {
+                	   e.printStackTrace();
+                   }
+               } catch (SQLException | NullPointerException e) {
+                   e.printStackTrace();
+               }
+           } catch (ClassNotFoundException e) {
+               e.printStackTrace();
+           }	
+	return false;
+	}
+	
+}

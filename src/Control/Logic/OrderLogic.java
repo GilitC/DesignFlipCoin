@@ -8,12 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import Control.Main;
 import Control.SysData;
 import Model.Consts;
 import Model.Product;
 import Model.User;
 
 public abstract class OrderLogic {
+
+	
 
 	public static Integer createOrder(Double totalSum, List<Product> products) {
 		
@@ -184,19 +187,13 @@ public abstract class OrderLogic {
 
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_ORDERS_TO_CHANGE, CallableStatement.RETURN_GENERATED_KEYS)) {
-
-				int verified = stmt.executeUpdate();
-				if(verified == 0)
-				{
-					return;
-				}
-				
-				ResultSet rs = stmt.getGeneratedKeys();
-				
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_ORDERS_TO_CHANGE)) {
+				conn.setAutoCommit(false);
+				ResultSet rs = stmt.executeQuery();
 				while(rs.next())
 				{
-					System.out.println("Updated order: " + rs.getInt(0));
+					System.out.println("Updating order: " + rs.getInt("ID"));
+					OrderLogic.finishOrder(rs.getInt("ID"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -208,8 +205,43 @@ public abstract class OrderLogic {
 	
 	public static void finishOrder(Integer orderID)
 	{
-		// SEND MAIL
+		// SEND MAIL and create confirm trans
+		System.out.println("Finishing order #"+orderID);
 		
+		try {
+
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_UPDATE_ORDER_STATUS)) {
+				stmt.setInt(1, orderID);
+				stmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String from = Main.getUSER_NAME();
+		String pass = Main.getPASSWORD();
+		
+		User buyerEmail = UserLogic.getInstance().getBuyerEmailByOrder(orderID);
+		List<User> sellerEmails = UserLogic.getInstance().getSellerEmailsByOrder(orderID);
+		
+		sellerEmails.add(buyerEmail);
+		
+		for(User u : sellerEmails)
+		{
+			System.out.println("Sending email to " + u.getEmail());
+			String[] to = { u.getEmail() }; // list of recipient email addresses
+			String subject = "New update on your wallet";
+			
+			String body = "Hello " + u.getUsername()+"!\nYour balance has been updated due to a completed transaction!\n\nPlease log into our application to view extra details and your updated balance.\n\n Thank you!";
+			
+			//When a new recommendation is added, we need to send the details to the user
+			Main.sendFromGMail(from, pass, to, subject, body);
+		}
+	
 		
 		
 	}

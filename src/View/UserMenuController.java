@@ -79,7 +79,7 @@ public class UserMenuController implements Initializable{
 
     @FXML
     void goToMyInfo(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
+    	loadUI(NameToWindow.MY_INFO);
     }
 
     @FXML

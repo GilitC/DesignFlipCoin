@@ -149,6 +149,7 @@ public class LoginController {
 		TransactionLogic.importConfirmedTransactions();
 		OrderLogic.checkOrders();
 	}
+	
 	@FXML
 	void register(ActionEvent event) throws IOException {
 		//Stage stage = (Stage) login.getScene().getWindow();

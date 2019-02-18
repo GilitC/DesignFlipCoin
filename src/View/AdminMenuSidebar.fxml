@@ -41,7 +41,12 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Transactions">
+            <Button mnemonicParsing="false" onAction="#GoToImportTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Import Transactions">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToExportTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Export Transactions">
                <effect>
                   <Glow />
                </effect>

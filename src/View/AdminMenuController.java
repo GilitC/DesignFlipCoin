@@ -3,13 +3,16 @@ package View;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import Control.Logic.TransactionLogic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import utils.NameToWindow;
@@ -49,11 +52,35 @@ public class AdminMenuController implements Initializable{
 		loadUI(NameToWindow.MENU_REPORTS);
 	}
 
-	@FXML
-	void GoToTransactions(ActionEvent event) {
+	
+	//Export transactions in state: pending to Flip coin mining (
+    @FXML
+    void GoToExportTransactions(ActionEvent event) {
 		loadUI(NameToWindow.WELCOMESCREEN);
-	}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Export");
+		alert.setHeaderText("");
 
+		if(TransactionLogic.exportPayTransactionsToJSON()) {
+			alert.setHeaderText("Success");
+			alert.setContentText("Exported Transactions in JSON File to FlipCoin Mining Successfully!");
+			alert.show();	
+		}
+    }
+
+    @FXML
+    void GoToImportTransactions(ActionEvent event) {
+		loadUI(NameToWindow.WELCOMESCREEN);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Import");
+		alert.setHeaderText("");
+
+		TransactionLogic.importConfirmedTransactions();
+	    alert.setHeaderText("Success");
+	    alert.setContentText("Transactions are Imported from FlipCoin Mining Automatically :)");
+		alert.show();	
+		
+    }
 
 	@FXML
 	void GoToRecommendmenu(ActionEvent event) {
@@ -73,7 +100,7 @@ public class AdminMenuController implements Initializable{
 
     @FXML
     void goToManageSystemPar(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
+    	loadUI(NameToWindow.MANAGE_SYSTEM_PARAMETERS);
     }
 
 
