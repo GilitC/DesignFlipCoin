@@ -65,7 +65,7 @@ public final class Consts {
 	
 	/*----------------------------------------- CONFIRM TX QUERIES --------------------------------------------*/
 	public static final String SQL_SEL_TRANSCONFIRM = "SELECT * FROM TblConfirmTransaction";
-    public static final String SQL_ADD_TRANSCORNFIM = "INSERT INTO TblConfirmTransaction ( Description, Size, CreationTime, ExecutionTime, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, confirmed, shipmentTime ) VALUES ( ?, ?, ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+    public static final String SQL_ADD_TRANSCORNFIM = "INSERT INTO TblConfirmTransaction ( Description, Size, Time, Fee, State, PayValue, CreatingAddress, CreatingSignature, DestinationAddress, DestinationSignature, walletAddress, confirmed, shipmentTime ) VALUES ( ?, ?, ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
 	
 	
 	/*----------------------------------------- CATEGORY QUERIES ----------------------------------------------*/

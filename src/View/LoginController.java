@@ -28,7 +28,7 @@ public class LoginController {
 	/**
 	 * class fields
 	 */
-	public static Boolean override = true;
+	public static Boolean override = false;
 
 	@FXML
 	private AnchorPane login;

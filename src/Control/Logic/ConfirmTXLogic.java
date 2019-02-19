@@ -58,8 +58,7 @@ public class ConfirmTXLogic {
 	 * return true if the insertion was successful, else - return false
      * @return 
 	 */
-	public boolean addConfirmTransaction( String description, int sizeInBytes, Date dtCreated,
-			Date executionTimeDate, double fee, String state, double payValue, String creatingAddress,
+	public boolean addConfirmTransaction( String description, int sizeInBytes, double fee, String state, double payValue, String creatingAddress,
 			String creatingSignature, String destinationAddress, String destinationSignature, String walletAddress, boolean confirmed,
 			Date shipmentTime) {
 		try {
@@ -69,8 +68,6 @@ public class ConfirmTXLogic {
 				int i = 1;
 				stmt.setString(i++, description); // can't be null
 				stmt.setInt(i++, sizeInBytes); // can't be null
-				stmt.setDate(i++, (java.sql.Date) dtCreated); // can't be null
-				stmt.setDate(i++, (java.sql.Date) executionTimeDate); // can't be null
 				stmt.setDouble(i++, fee); // can't be null
 				stmt.setString(i++, state); // can't be null
 				stmt.setDouble(i++, payValue); // can't be null

@@ -2,39 +2,44 @@
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransactionsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5bc099d-9c78-474a-b49f-f4b47d9c4798">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FlipCoin Main"/>
 	<parameter name="myDate" class="java.sql.Date">
 		<defaultValueExpression><![CDATA[DATE(2018,11,1)]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from qryTransactionStatusByDay where qryTransactionStatusByDay.dateCreated = $P{myDate}]]>
+		<![CDATA[select * from qryTransactionStatusByDay where qryTransactionStatusByDay.creationTime = $P{myDate}]]>
 	</queryString>
-	<field name="DATECREATED" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="DATECREATED"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
+	<field name="CreationTime" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="CreationTime"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
-	<field name="CURRENTSTATUS" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="CURRENTSTATUS"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
+	<field name="State" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="State"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
-	<field name="&quot;Minimum Tax&quot;" class="java.lang.Integer">
+	<field name="&quot;Minimum Tax&quot;" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label">
 			<![CDATA["Minimum Tax"]]>
 		</property>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
-	<field name="&quot;Maximum Tax&quot;" class="java.lang.Integer">
+	<field name="&quot;Maximum Tax&quot;" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label">
 			<![CDATA["Maximum Tax"]]>
 		</property>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
 	<field name="&quot;Transactions Per Day&quot;" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label">
 			<![CDATA["Transactions Per Day"]]>
 		</property>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
 	<field name="&quot;Precentage&quot;" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label">
 			<![CDATA["Precentage"]]>
 		</property>
+		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -86,11 +91,11 @@
 		<band height="37" splitType="Stretch">
 			<textField>
 				<reportElement x="-2" y="0" width="82" height="30" uuid="81d4f9fc-2e85-4e01-91ed-1433f2dfb341"/>
-				<textFieldExpression><![CDATA[$F{DATECREATED}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CreationTime}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="80" y="0" width="100" height="30" uuid="a61e89b7-1924-4425-a407-a93a782cd4b7"/>
-				<textFieldExpression><![CDATA[$F{CURRENTSTATUS}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{State}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="180" y="0" width="100" height="30" uuid="c1e7180e-7aaf-45e1-bfdb-9884999bdc0a"/>
@@ -114,13 +119,13 @@
 		<band height="280" splitType="Stretch">
 			<pieChart>
 				<chart evaluationTime="Report">
-					<reportElement x="44" y="7" width="470" height="270" uuid="583190eb-f6e6-4b1e-b2f7-5e21a0a80933"/>
+					<reportElement x="44" y="7" width="470" height="270" uuid="b24eb1e8-1196-4d92-a49f-fd322c5f8dec"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{CURRENTSTATUS}]]></keyExpression>
+					<keyExpression><![CDATA[$F{State}]]></keyExpression>
 					<valueExpression><![CDATA[$F{"Precentage"}]]></valueExpression>
 				</pieDataset>
 				<piePlot>
