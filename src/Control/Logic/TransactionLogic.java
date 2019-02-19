@@ -70,6 +70,38 @@ public abstract class TransactionLogic {
 		return null;
 	}
 
+	/**
+	 * outputs report at runtime.
+	 * 
+	 * @return
+	 */
+	public static JFrame compileUserReport() {
+		try {
+			System.out.println("Defining class.forName");
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				System.out.println("Connection initiated");
+				HashMap<String, Object> toSend = new HashMap<>();
+				System.out.println("Attempting to open jasper: "
+						+ TransactionLogic.class.getResource("../../View/UserReport.jasper"));
+				JasperPrint print = JasperFillManager.fillReport(
+						TransactionLogic.class.getResourceAsStream("../../View/UserReport.jasper"), toSend,
+						conn);
+				JFrame frame = new JFrame("User Report");
+				frame.getContentPane().add(new JRViewer(print));
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				frame.pack();
+				return frame;
+			} catch (SQLException | JRException | NullPointerException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public static void updateTXStatus(Integer txID) {
 		try {
 

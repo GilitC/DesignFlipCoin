@@ -46,16 +46,6 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToConfirmTrans" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Create Confirm Transaction">
-               <effect>
-                  <Glow />
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToTransactions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Transactions">
-               <effect>
-                  <Glow />
-               </effect>
-            </Button>
             <Button mnemonicParsing="false" onAction="#GoToAddProd" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Add Products">
                <effect>
                   <Glow />

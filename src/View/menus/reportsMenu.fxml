@@ -23,5 +23,6 @@
       </Label>
       <DatePicker fx:id="datepick" layoutX="235.0" layoutY="113.0" prefHeight="31.0" prefWidth="228.0" />
       <Label layoutX="203.0" layoutY="78.0" opacity="0.83" prefHeight="21.0" prefWidth="378.0" text="Please choose a date. The default date is: 01/11/18" />
+      <Button fx:id="addRec1" layoutX="234.0" layoutY="370.0" mnemonicParsing="false" onAction="#gotoUserReport" prefHeight="55.0" prefWidth="221.0" text="Produce User Report" />
    </children>
 </AnchorPane>

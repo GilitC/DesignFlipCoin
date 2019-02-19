@@ -32,5 +32,9 @@ import Control.Logic.*;
 	    	TransactionLogic.compileTransactionsReport(d).setVisible(true);
 	    }
 
+	    @FXML
+	    void gotoUserReport(ActionEvent event) {
+	    	TransactionLogic.compileUserReport().setVisible(true);
+	    }
 	
 }

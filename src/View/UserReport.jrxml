@@ -3,39 +3,37 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransactionsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5bc099d-9c78-474a-b49f-f4b47d9c4798">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FlipCoin Main"/>
-	<parameter name="myDate" class="java.sql.Date"/>
 	<queryString>
-		<![CDATA[SELECT allTransactions.State, Min(allTransactions.Fee) AS ["Minimum Tax"], Max(allTransactions.Fee) AS ["Maximum Tax"], Count(*) AS ["Transactions Per Day"], Count(*)*100/(select count(*) from TblPayTransaction) AS ["Precentage"]
-FROM allTransactions, TblSystem
-GROUP BY allTransactions.State]]>
+		<![CDATA[SELECT * FROM (
+select U.PublicAddress, U.UserName, count(T.TXID) as numTransaction, avg(Fee) as averageFee, 0.33*count(T.TXID) as execAmt, sum(PayValue) as TotalPay, sum(Fee) as TotalFee from tblUser as U inner join TblPayTransaction T ON U.PublicAddress = T.CreatingAddress group by U.UserName, U.PublicAddress ) as myTable]]>
 	</queryString>
-	<field name="STATE" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="STATE"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
+	<field name="PublicAddress" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PublicAddress"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
 	</field>
-	<field name="&quot;Minimum Tax&quot;" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label">
-			<![CDATA["Minimum Tax"]]>
-		</property>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
+	<field name="UserName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="UserName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
 	</field>
-	<field name="&quot;Maximum Tax&quot;" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label">
-			<![CDATA["Maximum Tax"]]>
-		</property>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
+	<field name="NUMTRANSACTION" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="NUMTRANSACTION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
 	</field>
-	<field name="&quot;Transactions Per Day&quot;" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.label">
-			<![CDATA["Transactions Per Day"]]>
-		</property>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
+	<field name="AVERAGEFEE" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="AVERAGEFEE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
 	</field>
-	<field name="&quot;Precentage&quot;" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label">
-			<![CDATA["Precentage"]]>
-		</property>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
+	<field name="EXECAMT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="EXECAMT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
+	</field>
+	<field name="TOTALPAY" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="TOTALPAY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
+	</field>
+	<field name="TOTALFEE" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="TOTALFEE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SYSTEM_SUBQUERY"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -51,7 +49,7 @@ GROUP BY allTransactions.State]]>
 				<textElement>
 					<font fontName="Script MT Bold" size="30" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Daily Transaction Report]]></text>
+				<text><![CDATA[Daily User Report]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -59,23 +57,19 @@ GROUP BY allTransactions.State]]>
 		<band height="45" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="10" width="100" height="30" uuid="24d34ae5-6ee3-4769-95fb-6ee48ce193ed"/>
-				<text><![CDATA[Status:]]></text>
+				<text><![CDATA[User]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="120" y="10" width="100" height="30" uuid="fa12d5ea-6e21-49c0-bc0d-0c407064b484"/>
-				<text><![CDATA[Minimun Tax]]></text>
+				<text><![CDATA[# Transactions]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="230" y="10" width="100" height="30" uuid="dbbc57e9-a2b3-456a-8602-e58b14d83e67"/>
-				<text><![CDATA[Maximum Tax]]></text>
+				<text><![CDATA[Average Fee]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="340" y="10" width="100" height="30" uuid="6b683016-2163-4e0a-b1e8-916246ece403"/>
-				<text><![CDATA[Transactions Per Day]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="10" width="94" height="30" uuid="186e4d18-a6c2-4e4b-9bb5-1d45c30aeb84"/>
-				<text><![CDATA[Precentage]]></text>
+				<text><![CDATA[Executed Average]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -83,23 +77,19 @@ GROUP BY allTransactions.State]]>
 		<band height="37" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="100" height="30" uuid="a61e89b7-1924-4425-a407-a93a782cd4b7"/>
-				<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{UserName}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="120" y="0" width="100" height="30" uuid="c1e7180e-7aaf-45e1-bfdb-9884999bdc0a"/>
-				<textFieldExpression><![CDATA[$F{"Minimum Tax"}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NUMTRANSACTION}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="230" y="0" width="100" height="30" uuid="7b290cd3-bef1-4dce-8634-62ccc009fc45"/>
-				<textFieldExpression><![CDATA[$F{"Maximum Tax"}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{AVERAGEFEE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="340" y="3" width="100" height="30" uuid="16013b0e-fef3-4a20-ad5d-fcb1d88ba756"/>
-				<textFieldExpression><![CDATA[$F{"Transactions Per Day"}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="450" y="0" width="70" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
-				<textFieldExpression><![CDATA[$F{"Precentage"}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{EXECAMT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -107,14 +97,14 @@ GROUP BY allTransactions.State]]>
 		<band height="280" splitType="Stretch">
 			<pieChart>
 				<chart evaluationTime="Report">
-					<reportElement x="44" y="7" width="470" height="270" uuid="6a8a093e-9524-4e28-8e7b-b7d4990be844"/>
+					<reportElement x="44" y="7" width="470" height="270" uuid="13aeea40-fdd7-4a43-8139-8747fac128b6"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{STATE}]]></keyExpression>
-					<valueExpression><![CDATA[$F{"Precentage"}]]></valueExpression>
+					<keyExpression><![CDATA[$F{TOTALFEE}]]></keyExpression>
+					<valueExpression><![CDATA[$F{TOTALPAY}]]></valueExpression>
 				</pieDataset>
 				<piePlot>
 					<plot/>

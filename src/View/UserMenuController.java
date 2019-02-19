@@ -51,10 +51,6 @@ public class UserMenuController implements Initializable{
     	loadUI(NameToWindow.PUBLISH_PRODUCT);
     }
 
-    @FXML
-    void GoToConfirmTrans(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
-    }
 
     @FXML
     void GoToEditProd(ActionEvent event) {
@@ -67,10 +63,7 @@ public class UserMenuController implements Initializable{
     	loadUI(NameToWindow.MANAGE_ORDERS);
     }
 
-    @FXML
-    void GoToTransactions(ActionEvent event) {
-    	loadUI(NameToWindow.WELCOMESCREEN);
-    }
+
 
     @FXML
     void GoToViewRecommendations(ActionEvent event) {
