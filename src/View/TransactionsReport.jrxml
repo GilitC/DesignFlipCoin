@@ -7,15 +7,13 @@
 		<defaultValueExpression><![CDATA[DATE(2018,11,1)]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from qryTransactionStatusByDay where qryTransactionStatusByDay.creationTime = $P{myDate}]]>
+		<![CDATA[SELECT allTransactions.State, Min(allTransactions.Fee) AS ["Minimum Tax"], Max(allTransactions.Fee) AS ["Maximum Tax"], Count(*) AS ["Transactions Per Day"], Count(*)*100/(select count(*) from TblPayTransaction) AS ["Precentage"]
+FROM allTransactions, TblSystem
+GROUP BY allTransactions.State]]>
 	</queryString>
-	<field name="CreationTime" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="CreationTime"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
-	</field>
-	<field name="State" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="State"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="qryTransactionStatusByDay"/>
+	<field name="STATE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="STATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="allTransactions"/>
 	</field>
 	<field name="&quot;Minimum Tax&quot;" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label">
@@ -62,27 +60,23 @@
 	<pageHeader>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="-2" y="10" width="82" height="30" uuid="e60e1a45-ae61-45a8-9cd5-50180a38e109"/>
-				<text><![CDATA[Date:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="80" y="10" width="100" height="30" uuid="24d34ae5-6ee3-4769-95fb-6ee48ce193ed"/>
+				<reportElement x="0" y="10" width="100" height="30" uuid="24d34ae5-6ee3-4769-95fb-6ee48ce193ed"/>
 				<text><![CDATA[Status:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="10" width="100" height="30" uuid="fa12d5ea-6e21-49c0-bc0d-0c407064b484"/>
+				<reportElement x="120" y="10" width="100" height="30" uuid="fa12d5ea-6e21-49c0-bc0d-0c407064b484"/>
 				<text><![CDATA[Minimun Tax]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="10" width="100" height="30" uuid="dbbc57e9-a2b3-456a-8602-e58b14d83e67"/>
+				<reportElement x="230" y="10" width="100" height="30" uuid="dbbc57e9-a2b3-456a-8602-e58b14d83e67"/>
 				<text><![CDATA[Maximum Tax]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="10" width="100" height="30" uuid="6b683016-2163-4e0a-b1e8-916246ece403"/>
+				<reportElement x="340" y="10" width="100" height="30" uuid="6b683016-2163-4e0a-b1e8-916246ece403"/>
 				<text><![CDATA[Transactions Per Day]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="10" width="94" height="30" uuid="186e4d18-a6c2-4e4b-9bb5-1d45c30aeb84"/>
+				<reportElement x="450" y="10" width="94" height="30" uuid="186e4d18-a6c2-4e4b-9bb5-1d45c30aeb84"/>
 				<text><![CDATA[Precentage]]></text>
 			</staticText>
 		</band>
@@ -90,27 +84,23 @@
 	<detail>
 		<band height="37" splitType="Stretch">
 			<textField>
-				<reportElement x="-2" y="0" width="82" height="30" uuid="81d4f9fc-2e85-4e01-91ed-1433f2dfb341"/>
-				<textFieldExpression><![CDATA[$F{CreationTime}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="100" height="30" uuid="a61e89b7-1924-4425-a407-a93a782cd4b7"/>
+				<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="0" width="100" height="30" uuid="a61e89b7-1924-4425-a407-a93a782cd4b7"/>
-				<textFieldExpression><![CDATA[$F{State}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="180" y="0" width="100" height="30" uuid="c1e7180e-7aaf-45e1-bfdb-9884999bdc0a"/>
+				<reportElement x="120" y="0" width="100" height="30" uuid="c1e7180e-7aaf-45e1-bfdb-9884999bdc0a"/>
 				<textFieldExpression><![CDATA[$F{"Minimum Tax"}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="0" width="100" height="30" uuid="7b290cd3-bef1-4dce-8634-62ccc009fc45"/>
+				<reportElement x="230" y="0" width="100" height="30" uuid="7b290cd3-bef1-4dce-8634-62ccc009fc45"/>
 				<textFieldExpression><![CDATA[$F{"Maximum Tax"}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="0" width="100" height="30" uuid="16013b0e-fef3-4a20-ad5d-fcb1d88ba756"/>
+				<reportElement x="340" y="3" width="100" height="30" uuid="16013b0e-fef3-4a20-ad5d-fcb1d88ba756"/>
 				<textFieldExpression><![CDATA[$F{"Transactions Per Day"}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="490" y="0" width="70" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
+				<reportElement x="450" y="0" width="70" height="30" uuid="9c4e6809-8484-4c61-a0e0-f49be2de3917"/>
 				<textFieldExpression><![CDATA[$F{"Precentage"}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -119,13 +109,13 @@
 		<band height="280" splitType="Stretch">
 			<pieChart>
 				<chart evaluationTime="Report">
-					<reportElement x="44" y="7" width="470" height="270" uuid="b24eb1e8-1196-4d92-a49f-fd322c5f8dec"/>
+					<reportElement x="44" y="7" width="470" height="270" uuid="6a8a093e-9524-4e28-8e7b-b7d4990be844"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{State}]]></keyExpression>
+					<keyExpression><![CDATA[$F{STATE}]]></keyExpression>
 					<valueExpression><![CDATA[$F{"Precentage"}]]></valueExpression>
 				</pieDataset>
 				<piePlot>
